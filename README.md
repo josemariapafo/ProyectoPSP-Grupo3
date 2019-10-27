@@ -33,6 +33,6 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 - **Programa de puntos:** El usuario tras abonar y retirar sus pedidos recibirá en su cuenta un número de puntos que podrá canjear por descuentos o bien productos completos (según la cantidad de puntos de las que disponga, p.ej: cada punto podría ser 10 o 20 céntimos de descuento).
 - **Chat de texto que difunde mensajes (descuentos u otros):** En este chat se notificará a todos los usuarios de la aplicación de ofertas, descuentos o asistencia en caso de querer un bocadillo personalizado.
 <a name="4"></a>
-## Actividad 3
+## 2. Actividad 3
 <a name="5"></a>
-## Casos de Usos
+## 2.1 Casos de Usos
