@@ -1,5 +1,15 @@
 # PROYECTO PSP
-# Gestión de Bocatería.
+# <p align="center"><b>GESTION DE BOCATERÍA</b></p>
+<p align="center">
+<img src="/resources/bocateriaFoto.PNG"/>
+</p>
+
+# <p align="center"><b>Índice:</b></p>
+> **[1. Licencia y Autores](#1):**<br>
+> **[1. Presentación](#2):**<br>
+> **[2. Actividad 1](#3):**<br>
+> **[&nbsp;&nbsp;&nbsp;&nbsp; Título](#4):**<br>
+> **[&nbsp;&nbsp;&nbsp;&nbsp; Resumen](#5):**<br>
 
 Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas, agilizando así la venta de bocadillos, haciendo que el usuario no tenga que esperar dentro del local más que para recoger el bocadillo.
 
