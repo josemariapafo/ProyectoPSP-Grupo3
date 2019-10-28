@@ -24,8 +24,7 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <a name="3"></a>
 ##  1.2 Funcionalidades
 ***Funcionalidades***
-- **Registro:** El usuario debe crearse una cuenta para usar nuestro servicio, uno de los datos que se pedirá para evitar pedidos sin abonar, es un número de teléfono, y para poder completar el registro se mandará al usuario un sms con un código de verificación.
-- **Logging:** El usuario deberá de haberse registrado anteriormente para poder loguearse, una vez logueado tendrá permisos a todas las funciones de la aplicación.
+- **Ingresar al sistema:** El usuario deberá de haberse registrado anteriormente para poder loguearse, una vez logueado tendrá permisos a todas las funciones de la aplicación.
 - **Consulta productos:** El usuario tendrá una vista disponible de todos los productos que ofrecemos para así poder elegir su pedido.
 - **Carrito de pedidos:** El usuario tendrá que añadir al carrito los productos que deseas comprar para realizar el pedido.
 - **Realizar pedidos :** El usuario al completar el pedido con los productos del carrito.
