@@ -25,10 +25,42 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 ##  1.2 Funcionalidades
 ***Funcionalidades***
 - **Ingresar al sistema:** El usuario deberá de haberse registrado anteriormente para poder loguearse, una vez logueado tendrá permisos a todas las funciones de la aplicación.
+- **Registro:** El usuario debe crearse una cuenta para usar nuestro servicio, uno de los datos que se pedirá para evitar pedidos sin abonar, es un número de teléfono, y para poder completar el registro se mandará al usuario un sms con un código de verificación.
+ - **Logging:** El usuario deberá de haberse registrado anteriormente para poder loguearse, una vez logueado tendrá permisos a todas las  funciones de la aplicación.
 - **Consulta productos:** El usuario tendrá una vista disponible de todos los productos que ofrecemos para así poder elegir su pedido.
 - **Realizar pedidos :** El usuario al completar el pedido con los productos del carrito.
+- **Pagar pedidos :** El usuario pagará el pedido para que se pueda generar la comanda.
+- **Pedido y Orden Generadas :** Una vez el usuario paga el pedido, se genera una orden o comanda que recogerán en el local para tener listo el pedido del cliente a su hora.
 - **Chat de texto que difunde mensajes (descuentos u otros):** En este chat se notificará a todos los usuarios de la aplicación de ofertas, descuentos o asistencia en caso de querer un bocadillo personalizado.
 <a name="4"></a>
 ## 2. Actividad 3
 <a name="5"></a>
 ## 2.1 Casos de Usos
+<p align="center">
+<img src="/recursos/casoUsos.png"/>
+</p>
+<p align="center">
+<img src="/recursos/ingresar.png"/>
+</p>
+<p align="center">
+<img src="/recursos/registrar.png"/>
+</p>
+<p align="center">
+<img src="/recursos/loguear.png"/>
+</p>
+<p align="center">
+<img src="/recursos/consultar.png"/>
+</p>
+<p align="center">
+<img src="/recursos/realizar.png"/>
+</p>
+<p align="center">
+<img src="/recursos/pagar.png"/>
+</p>
+<p align="center">
+<img src="/recursos/orden.png"/>
+</p>
+<p align="center">
+<img src="/recursos/chat.png"/>
+</p>
+
