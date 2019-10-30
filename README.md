@@ -37,30 +37,27 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <a name="5"></a>
 ## 2.1 Casos de Usos
 <p align="center">
-<img src="/recursos/casoUsos.PNG"/>
+<img src="/recursos/diagramaCU.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/ingresar.PNG"/>
+<img src="/recursos/cu1.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/registrar.PNG"/>
+<img src="/recursos/cu2.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/loguear.PNG"/>
+<img src="/recursos/cu3.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/consultar.PNG"/>
+<img src="/recursos/cu4.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/realizar.PNG"/>
+<img src="/recursos/cu5.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/pagar.PNG"/>
+<img src="/recursos/cu6.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/orden.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/chat.PNG"/>
+<img src="/recursos/cu7.PNG"/>
 </p>
 
