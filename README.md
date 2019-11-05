@@ -14,6 +14,7 @@
 > **[2. Actividad 3](#4):**<br>
 > **[&nbsp;&nbsp;&nbsp;&nbsp;  2.1 Casos de Usos](#5):**<br></p>
 > **[3. Actividad 4](#6):**<br></p>
+> **[4. Actividad 5](#7):**<br></p>
 
 
 <a name="1"></a>
@@ -63,11 +64,23 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 </p>
 
 <a name="6"></a>
-## 3. Actividad 4
+## 3. Actividad 4(Diagramas)
 
 <p align="center">
 <img src="/recursos/digramaModelo.PNG"/>
 </p>
 <p align="center">
 <img src="/recursos/diagramaEntidadRelacion.PNG"/>
+</p>
+
+<a name="3"></a>
+## 4. Actividad 5(Vistas)
+<p align="center">
+<img src="/recursos/Cart.PNG"/>
+</p>
+<p align="center">
+<img src="/recursos/RegisterForm.PNG"/>
+</p>
+<p align="center">
+<img src="/recursos/AdministratorSandwichRegister.PNG"/>
 </p>
