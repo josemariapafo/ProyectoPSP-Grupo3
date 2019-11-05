@@ -13,6 +13,7 @@
 > **[&nbsp;&nbsp;&nbsp;&nbsp;  1.2 Funcionalidades](#3):**<br>
 > **[2. Actividad 3](#4):**<br>
 > **[&nbsp;&nbsp;&nbsp;&nbsp;  2.1 Casos de Usos](#5):**<br></p>
+> **[3. Actividad 4](#6):**<br></p>
 
 
 <a name="1"></a>
@@ -60,4 +61,12 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <p align="center">
 <img src="/recursos/cu7.PNG"/>
 </p>
+<a name="6"></a>
+## 3. Actividad 4
 
+<p align="center">
+<img src="/recursos/diagramaModelo.PNG"/>
+</p>
+<p align="center">
+<img src="/recursos/diagramaEntidadRelacion.PNG"/>
+</p>
