@@ -76,13 +76,13 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <a name="3"></a>
 ## 4. Actividad 5(Vistas)
 <p align="center">
-<img src="/recursos/Cart.PNG"/>
+<img src="/recursos/Cart.png"/>
 </p>
 <p align="center">
-<img src="/recursos/RegisterForm.PNG"/>
+<img src="/recursos/RegisterForm.png"/>
 </p>
 <p align="center">
-<img src="/recursos/AdministratorSandwichRegister.PNG"/>
+<img src="/recursos/AdministratorSandwichRegister.png"/>
 </p>
 <p align="center">
 <img src="/recursos/viewChat.png"/>
@@ -91,6 +91,3 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <img src="/recursos/viewMain.png"/>
 </p>
 
-<p align="center">
-<img src="/recursos/1.PNG"/>
-</p>
