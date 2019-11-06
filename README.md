@@ -91,3 +91,6 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <img src="/recursos/viewMain.PNG"/>
 </p>
 
+<p align="center">
+<img src="/recursos/1.PNG"/>
+</p>
