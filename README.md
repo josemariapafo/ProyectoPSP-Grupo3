@@ -70,7 +70,7 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 ## 3. Actividad 4(Diagramas)
 
 <p align="center">
-<img src="/recursos/digramaModelo.PNG"/>
+<img src="/recursos/digramaModelo1.PNG"/>
 </p>
 <p align="center">
 <img src="/recursos/diagramaEntidadRelacion.PNG"/>
