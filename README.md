@@ -42,7 +42,7 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <a name="5"></a>
 ## 2.1 Casos de Usos
 <p align="center">
-	| Nombre         |       |
+| Nombre         |       |
 |----------------|-------|
 | ID             | CU -  |
 | Descripción    |       |
