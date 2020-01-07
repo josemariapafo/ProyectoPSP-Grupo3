@@ -3,7 +3,6 @@
 <p align="center">
 <img src="/recursos/bocateriaFotoP.png"/>
 </p>
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/%22%3E<img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/%22%3Elicencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional</a>
 <p>Alumnos: <br>
   -José María Parrilla Forte</br>
   -Sebastián Cuesta Molto</p>
