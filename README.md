@@ -18,7 +18,7 @@
 
 <a name="8"></a>
 ## 1. Licencia
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/%22%3E<img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/%22%3Elicencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional</a>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional</a>.
 
 <a name="1"></a>
 ## 1. Actividad 1 y 2
