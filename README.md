@@ -92,53 +92,7 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 ## 2. Actividad 3
 <a name="5"></a>
 ## 2.1 Casos de Usos
-
-
-	<table>
-		<tr>
-			<td>Nombre</td>
-			<td>Registrarse</td>
-		</tr>
-		<tr>
-			<td>ID</td>
-			<td>CU - 1</td>
-		</tr>
-		<tr>
-			<td>Descripción</td>
-			<td>El usuario podrá registrarse en nuestro sistema si no tiene cuenta.<br />Para registrarse en el sistema el usuario debe rellenar un formulario con una serie de datos que serán validados.</td>
-		</tr>
-		<tr>
-			<td>Actores</td>
-			<td>Usuario</td>
-		</tr>
-		<tr>
-			<td>Precondiciones</td>
-			<td>Nada</td>
-		</tr>
-		<tr>
-			<td>Curso normal</td>
-			<td>El usuario rellenará un formulario, los datos introducidos serán validados.<br />Si los datos introducidos son correctos se generará el usuario y contraseña  con el que el usuario podrá loguearse.</td>
-		</tr>
-		<tr>
-			<td>Postcondiciones</td>
-			<td>El usuario se loguea automáticamente</td>
-		</tr>
-		<tr>
-			<td>Alternativas</td>
-			<td>Nada</td>
-		</tr>
-	</table>
-
 <p align="center">
-| Nombre         |       |
-|----------------|-------|
-| ID             | CU -  |
-| Descripción    |       |
-| Actores        |       |
-| Precondiciones |       |
-| Curso normal   |       |
-| Postcondicones |       |
-| Alternativas   |       |
 <img src="/recursos/diagramaCU.PNG"/>
 </p>
 <p align="center">
