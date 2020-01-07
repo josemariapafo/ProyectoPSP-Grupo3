@@ -1,7 +1,7 @@
 ## PROYECTO PSP
 ### <p align="center"><b>GESTION DE BOCATERÍA</b></p>
 <p align="center">
-<img src="/recursos/bocateriaFoto.png"/>
+<img src="/recursos/bocateriaFotoP.png"/>
 </p>
 <p>Alumnos: <br>
   -José María Parrilla Forte</br>
