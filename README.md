@@ -41,30 +41,41 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 ## 2. Actividad 3
 <a name="5"></a>
 ## 2.1 Casos de Usos
-<p align="center">
-<img src="/recursos/diagramaCU.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu1.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu2.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu3.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu4.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu5.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu6.PNG"/>
-</p>
-<p align="center">
-<img src="/recursos/cu7.PNG"/>
-</p>
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
 
 <a name="6"></a>
 ## 3. Actividad 4(Diagramas)
