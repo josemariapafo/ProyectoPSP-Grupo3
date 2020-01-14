@@ -155,175 +155,177 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Realizar Pedido</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU-4</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El usuario una vez consultado los productos ofertados elegirá aquellos 
+        que desee incluir en su pedido.
+        </td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Usuario Autentificado</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>El usuario debe de tener una cuenta en el sistema y haberse logueado.</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1.El usuario elige productos que se van añadiendo a una lista<br>2.El precio aparecerá reflejado junto a una lista y será la suma del valor de los productos añadidos a dicha lista</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>El usuario debe de pagar el pedido.</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>1.A. El usuario selecciona un producto no disponible<br>1.B. El sistema notificará al usuario de que el producto no se añadirá y el motivo por el que el producto no está disponible.</td>
     </tr>
 </table>
 
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Pagar pedido</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 5</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El usuario pagará el pedido para que se pueda generar la comanda</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Usuario autentificado</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>El usuario debe haber realizado un pedido.</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1. El usuario introduce los datos de tarjeta<br>2. Se valida la tarjeta<br>3. Se procede al cobro y a la generación de la comanda.</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Nada</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>3.A La tarjeta no pudo ser validada<br>4.A Se notifica al cliente que introduzca otros datos o cancele el pedido.</td>
     </tr>
 </table>
 
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Genera Comanda </td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 6</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>Una vez el usuario ha pagado el pedido, se genera una orden o comando que recogerá en el local para tener listo el pedido del cliente a su hora.<br>Y se generará un ticket o resguardo para el usuario.</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Usuario Autentificado</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>El usuario debe de haber pagado el pedido realizado</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1.El sistema generará una comanda que será impresa en el local.<br>2.El sistema generará un resguardo o comprobante para el usuario.</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Generación de comanda</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>Nada</td>
     </tr>
 </table>
 
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Chat de texto</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 7</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El chat de texto tendrá como objetivo dar soporte a todas las personas que se encuentran conectadas a nuestra app. En este se notificarán los descuentos, días festivos, etc.</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Usuario autentificado y administrador</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>Ingresar en el sistema</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1. El usuario chat<br>2. El usuario recibirá descuentos.<br>3. El usuario podrá enviar mensajes al personal de la bocatería.<br>4. El usuario será contestado por el personal.</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Nada</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>Nada</td>
     </tr>
 </table>
 
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Consultar comandas</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 8</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El administrador tiene permiso para consultar las comandas que se han ido generando conforme a los pedidos realizados por los clientes.<br>Estas podrán ser impresas.</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Administrador</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>Usuario autenticado debe haber realizado algun pedido.</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1. Se genera un archivo que puede ser consultado<br>2. El fichero generado se muestra (pantalla o impreso)</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Nada</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>1. Si no hay comandas el sistema así lo indicará.</td>
     </tr>
 </table>
 
