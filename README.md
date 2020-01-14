@@ -44,15 +44,17 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Registrarse</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 1</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El usuario podrá registrarse en nuestro sistema si no tiene cuenta.
+Para registrarse en el sistema el usuario debe rellenar un formulario con una serie de datos que serán validados.
+</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
@@ -64,11 +66,13 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>El usuario rellenará un formulario, los datos introducidos serán validados.<br>
+Si los datos introducidos son correctos se generará el usuario y contraseña  con el que el usuario podrá loguearse.
+</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>El usuario se loguea automáticamente</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
