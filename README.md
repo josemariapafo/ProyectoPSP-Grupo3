@@ -9,7 +9,8 @@
 <p>Alumnos: <br>
   -José María Parrilla Forte</br>
   -Sebastián Cuesta Molto</p>
-
+<a neme="0"></a>
+## Indice
 # <p align="center"><b>Índice:</b></br>
 > **[1. Actividad 1 y 2](#1):**<br>
 > **[&nbsp;&nbsp;&nbsp;&nbsp;  1.1 Resumen](#2):**<br>
@@ -22,13 +23,13 @@
 
 
 <a name="1"></a>
-## 1. Actividad 1 y 2
+## 1. Actividad 1 y 2(#0)
 <a name="2"></a>
-##  1.1 Resumen
+##  1.1 Resumen (#0)
 Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas, agilizando así la venta de bocadillos, haciendo que el usuario no tenga que esperar dentro del local más que para recoger el bocadillo.
 
 <a name="3"></a>
-##  1.2 Funcionalidades
+##  1.2 Funcionalidades(#0)
 ***Funcionalidades***
 - **Ingresar al sistema:** El usuario deberá de haberse registrado anteriormente para poder loguearse, una vez logueado tendrá permisos a todas las funciones de la aplicación.
 - **Registro:** El usuario debe crearse una cuenta para usar nuestro servicio, uno de los datos que se pedirá para evitar pedidos sin abonar, es un número de teléfono, y para poder completar el registro se mandará al usuario un sms con un código de verificación.
@@ -331,7 +332,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 
 
 <a name="6"></a>
-## 3. Actividad 4(Diagramas)
+## 3. Actividad 4(Diagramas)(#0)
 
 <p align="center">
 <img src="/recursos/digramaModelo1.PNG"/>
@@ -341,7 +342,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 </p>
 
 <a name="3"></a>
-## 4. Actividad 5(Vistas)
+## 4. Actividad 5(Vistas)(#0)
 <p align="center">
 <img src="/recursos/viewMain.png"/>
 </p>
@@ -360,6 +361,6 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  
  
 <a name="8"></a>
-## Actividad 6 Hilos
+## Actividad 6 Hilos(#0)
 - Realizar Pedido: El usuario a la hora de realizar un pedido actuará de consumidor, ya que bajará el stock dependiendo de cuantas compre, mientras que el proveedor/admin será el productor encargado de actualizar el stock, la cola en este caso será el stock.
 - Chat: El administrador de la aplicación actuará de productor porque será el encargado de poner las ofertas, la cual será vista por todos los usuarios que serán los consumidores, el mensaje del administrador será la cola.
