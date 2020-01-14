@@ -118,35 +118,37 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Consultar Productos</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU-3</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>El usuario podrá acceder a ver una lista de los productos que ofrece la bocatería sin la necesidad de tener que estar logueado.</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
-   	 <td>Usuario.</td>
+   	 <td>Usuario / Usuario Autentificado</td>
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>Estar Registrado</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1.El cliente hará una consulta a la base de datos<br>
+2.Dependiendo del número de consultas se generarán sus correspondiente productos visualmente.
+</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Entrar al sistema(Caso de Uso: Loguearse)</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>Nada</td>
     </tr>
 </table>
 
