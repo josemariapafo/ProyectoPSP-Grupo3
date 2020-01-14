@@ -362,5 +362,5 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  
 <a name="8"></a>
 ## Actividad 6 Hilos
->Realizar Pedido: El usuario a la hora de realizar un pedido actuará de consumidor, ya que bajará el stock dependiendo de cuantas compre, mientras que el proveedor/admin será el productor encargado de actualizar el stock, la cola en este caso será el stock.
->Chat: El administrador de la aplicación actuará de productor porque será el encargado de poner las ofertas, la cual será vista por todos los usuarios que serán los consumidores, el mensaje del administrador será la cola.
+- Realizar Pedido: El usuario a la hora de realizar un pedido actuará de consumidor, ya que bajará el stock dependiendo de cuantas compre, mientras que el proveedor/admin será el productor encargado de actualizar el stock, la cola en este caso será el stock.
+- Chat: El administrador de la aplicación actuará de productor porque será el encargado de poner las ofertas, la cual será vista por todos los usuarios que serán los consumidores, el mensaje del administrador será la cola.
