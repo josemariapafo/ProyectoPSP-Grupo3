@@ -76,6 +76,251 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
     </tr>
 </table>
 
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
+<table style="width:100%">
+    <tr>
+   	 <td><b>Nombre: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>ID: </b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Descripción:</b></td>
+   	 <td></td>
+    </tr>
+    <tr>
+   	 <td><b>Actores:</b></td>
+   	 <td>Usuario.</td>
+    </tr>
+    <tr>
+      <td><b>Precondiciones:</b></td>
+      <td>Nada.</td>
+    </tr>
+    <tr>
+      <td><b>Curso normal del caso de uso:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Postcondiciones:</b></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>Alternativas/Excepciones:</b></td>
+      <td></td>
+    </tr>
+</table>
+
 
 <a name="6"></a>
 ## 3. Actividad 4(Diagramas)
