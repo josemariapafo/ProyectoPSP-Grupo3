@@ -83,15 +83,15 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
-   	 <td></td>
+   	 <td>Loguearse</td>
     </tr>
     <tr>
    	 <td><b>ID: </b></td>
-   	 <td></td>
+   	 <td>CU - 2</td>
     </tr>
     <tr>
    	 <td><b>Descripción:</b></td>
-   	 <td></td>
+   	 <td>Si el usuario tiene cuenta en el sistema se logueará para poder acceder a él.<br><br>Para loguearse en el sistema solo hará falta que el usuario proporcione su usuario y contraseña.</td>
     </tr>
     <tr>
    	 <td><b>Actores:</b></td>
@@ -99,19 +99,19 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
     </tr>
     <tr>
       <td><b>Precondiciones:</b></td>
-      <td>Nada.</td>
+      <td>Que el usuario se encuentre registrado en nuestro sistema</td>
     </tr>
     <tr>
       <td><b>Curso normal del caso de uso:</b></td>
-      <td><br></td>
+      <td>1. Si el usuario se encuentra registrado rellenará un formulario con su usuario y contraseña.<br>2. Si los datos son correctos podrá ingresar al sistema.</td>
     </tr>
     <tr>
       <td><b>Postcondiciones:</b></td>
-      <td><br></td>
+      <td>Nada</td>
     </tr>
     <tr>
       <td><b>Alternativas/Excepciones:</b></td>
-      <td></td>
+      <td>1A. Si el usuario no tiene cuenta en el sistema no podrá loguearse, por lo que será redirigido al formulario de registro.</td>
     </tr>
 </table>
 
