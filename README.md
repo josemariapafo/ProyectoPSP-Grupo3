@@ -20,7 +20,6 @@
 > **[4. Actividad 5](#7):**<br>
 > **[5. Actividad 6](#8):**<br></p>
 
-<a name="8"></a>
 
 <a name="1"></a>
 ## 1. Actividad 1 y 2
