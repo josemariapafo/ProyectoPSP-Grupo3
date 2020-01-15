@@ -331,7 +331,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 
 
 <a name="6"></a>
-## 3. Actividad 4(Diagramas)(#0)
+## 3. Actividad 4(Diagramas)
 
 <p align="center">
 <img src="/recursos/digramaModelo1.PNG"/>
