@@ -41,7 +41,7 @@ Nuestro proyecto será de la gestión de entregas de bocadillos en horas puntas,
 ## 2. Actividad 3
 <a name="5"></a>
 ## 2.1 Casos de Usos
-<img src="/recursos/diagramaCU.PNG"/>
+<img align="center" src="/recursos/diagramaCU.PNG"/>
 <table style="width:100%">
     <tr>
    	 <td><b>Nombre: </b></td>
