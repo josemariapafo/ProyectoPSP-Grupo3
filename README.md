@@ -18,7 +18,9 @@
 > **[&nbsp;&nbsp;&nbsp;&nbsp;  2.1 Casos de Usos](#5):**<br>
 > **[3. Actividad 4](#6):**<br>
 > **[4. Actividad 5](#7):**<br>
-> **[5. Actividad 6](#8):**<br></p>
+> **[5. Actividad 6](#8):**<br>
+> **[6. Actividad 7. Interfaces y Clases](#9):**<br>
+> **[7. Actividad 8](#10):**<br></p>
 
 
 <a name="1"></a>
@@ -365,8 +367,25 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 - Realizar Pedido: El usuario a la hora de realizar un pedido actuará de consumidor, ya que bajará el stock dependiendo de cuantas compre, mientras que el proveedor/admin será el productor encargado de actualizar el stock, la cola en este caso será el stock.
 - Chat: El administrador de la aplicación actuará de productor porque será el encargado de poner las ofertas, la cual será vista por todos los usuarios que serán los consumidores, el mensaje del administrador será la cola.
 
-<a name="9"></a>
-## Actividad 7 Diagrama de secuencia
+<a name="10"></a>
+## Actividad 7 Interfaces y Clases
+<p align="center">
+  <img src="/recursos/clases/interfaces/ifazDAO.PNG"/>
+  <img src="/recursos/clases/interfaces/ifazDAOManager.PNG"/>
+  <img src="/recursos/clases/interfaces/ifazUsuarioDAO.PNG"/>
+  <img src="/recursos/clases/interfaces/ifazProductoDAO.PNG"/>
+  <img src="/recursos/clases/interfaces/ifazPedidoDAO.PNG"/>
+  <img src="/recursos/clases/vo/UsuarioVO.PNG"/>
+  <img src="/recursos/clases/vo/ProductoVO.PNG"/>
+  <img src="/recursos/clases/vo/PedidoVO.PNG"/>
+  <img src="/recursos/clases/bd/BDManager.PNG"/>
+  <img src="/recursos/clases/bd/BDUsuario.PNG"/>
+  <img src="/recursos/clases/bd/BDProducto.PNG"/>
+  <img src="/recursos/clases/bd/BDPedido.PNG"/>
+ </p>
+
+<a name="10"></a>
+## Actividad 8 Diagramas de secuencia
 <p align="center">
   <img src="/recursos/seqdig/cu1.PNG"/>
   <img src="/recursos/seqdig/cu2.PNG"/>
