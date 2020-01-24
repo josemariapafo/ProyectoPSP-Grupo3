@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="287.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.controlador.CarritoController">
+   <children>
+      <Label layoutX="149.0" layoutY="14.0" prefHeight="52.0" prefWidth="114.0" text="Carrito">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="225.0" layoutY="77.0" prefHeight="27.0" prefWidth="54.0" text="Total" />
+      <Label layoutX="296.0" layoutY="82.0" text="0,00$" />
+      <Button layoutX="225.0" layoutY="124.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="127.0" text="Hacer el Pedido" />
+      <Label layoutX="32.0" layoutY="82.0" text="Lista de Artículos" />
+   </children>
+</AnchorPane>
