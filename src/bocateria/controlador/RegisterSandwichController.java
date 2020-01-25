@@ -29,6 +29,9 @@ public class RegisterSandwichController {
     TextArea descripcion;
 
     @FXML
+    TextField stock;
+
+    @FXML
     public void handleImagen() {
         final FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(dialogStage);
@@ -42,6 +45,7 @@ public class RegisterSandwichController {
         ProductoVO p = new ProductoVO();
         p.setNombre(nombre.getText());
         p.setDescripcion(descripcion.getText());
+        p.setStock(Integer.parseInt(stock.getText()));
         p.setRutaImg(rutaImg.getText());
         p.setPrecio(Double.valueOf(precio.getText()));
         if (mainApp.getModel().altaProducto(p)) {
@@ -60,7 +64,6 @@ public class RegisterSandwichController {
         }
         System.out.println("HAGO CLICK FIN METODO");
     }
-
     @FXML
     public void handleBorrar() {
         nombre.setText("");

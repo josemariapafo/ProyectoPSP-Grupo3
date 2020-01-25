@@ -25,13 +25,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="nombre" GridPane.columnIndex="1" />
             <TextArea fx:id="descripcion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="precio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#handleImagen" text="Elija la imagen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="rutaImg" disable="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleImagen" text="Elija la imagen" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="rutaImg" disable="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="95.0" />
                </GridPane.margin>
@@ -39,7 +40,9 @@
             <Label text="Nombre:" />
             <Label text="Descripción:" GridPane.rowIndex="1" />
             <Label text="Precio:" GridPane.rowIndex="2" />
-            <Label text="Imagen:" GridPane.rowIndex="3" />
+            <Label text="Imagen:" GridPane.rowIndex="4" />
+            <Label text="Stock:" GridPane.rowIndex="3" />
+            <TextField fx:id="stock" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="122.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleEnviar" text="Enviar" />
