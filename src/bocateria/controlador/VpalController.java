@@ -1,4 +1,4 @@
-package bocateria.vista;
+package bocateria.controlador;
 
 import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;
@@ -143,13 +143,25 @@ public class VpalController {
         return productos;
     }
 
+
+    public void load() throws ExcepcionBocateria, SQLException {
+        if (mainApp.getModel().compruebaAdmin(usuario))
+            loadAdminUI();
+        setIndexInicial(getIndexActual());
+        despejaPanel();
+        if(getProductos().size()<11)
+            hBot.setVisible(false);
+        for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
+            loadPanel(panel);
+            setIndexActual(getIndexActual() + 1);
+        }
+    }
     @FXML
     public void loadUI() throws ExcepcionBocateria, SQLException {
         if (mainApp.getModel().compruebaAdmin(usuario))
             loadAdminUI();
         setIndexInicial(getIndexActual());
         despejaPanel();
-        FXMLLoader loader = new FXMLLoader();
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
             loadPanel(panel);
             setIndexActual(getIndexActual() + 1);
@@ -159,7 +171,6 @@ public class VpalController {
     @FXML
     public void loadUIBack() {
         despejaPanel();
-        FXMLLoader loader = new FXMLLoader();
 
         for (int panel = 9; panel > -1 && (getIndexActual() > -1); panel++) {
             loadPanel(panel);
@@ -203,7 +214,7 @@ public class VpalController {
 
     @FXML
     public void initRegistrarSandwich() {
-        mainApp.initRegistroSandwich();
+        mainApp.initRegistroSandwich(/*this*/);
     }
 
     @FXML

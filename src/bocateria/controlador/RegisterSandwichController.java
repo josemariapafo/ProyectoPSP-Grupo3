@@ -2,7 +2,6 @@ package bocateria.controlador;
 
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
-import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.ProductoVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,6 +15,7 @@ import java.io.File;
 public class RegisterSandwichController {
     Main mainApp;
     private Stage dialogStage;
+    /*VpalController controller;*/
 
     @FXML
     TextField nombre;
@@ -58,6 +58,7 @@ public class RegisterSandwichController {
                 alert.setContentText("SE REALIZÓ EL ALTA");
                 alert.showAndWait();
                 dialogStage.close();
+                /*controller.setProductos();*/
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("NO SE REALIZÓ EL ALTA");
@@ -152,4 +153,12 @@ public class RegisterSandwichController {
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
+
+   /*public VpalController getController() {
+        return controller;
+    }
+
+    public void setController(VpalController controller) {
+        this.controller = controller;
+    }*/
 }
