@@ -1,12 +1,15 @@
 package bocateria;
 
-import bocateria.vista.CarritoController;
+import bocateria.controlador.CarritoController;
 import bocateria.controlador.LoginControlador;
+import bocateria.modelo.vo.ProductoVO;
+import bocateria.modelo.vo.UsuarioVO;
 import bocateria.vista.VpalController;
 import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -14,11 +17,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     Stage primaryStage;
     AnchorPane rootLayout;
     Model model= new Model();
+    UsuarioVO usuario;
+    List<ProductoVO> listaCarrito = new ArrayList<>();
+
 
     public Model getModel() {
         return model;
@@ -137,7 +145,9 @@ public class Main extends Application {
             // Set the usuarioVO into the controller.
             VpalController controller = loader.getController();
             controller.setMainApp(this);
-            //controller.loadUI();
+            controller.setUsuario(getUsuario());
+            controller.setProductos();
+            controller.loadUI();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -175,7 +185,20 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    public void setUsuario(UsuarioVO u){
+        this.usuario = u;
+    }
+    public UsuarioVO getUsuario(){
+        return usuario;
+    }
 
+    public List<ProductoVO> getListaCarrito() {
+        return listaCarrito;
+    }
+
+    public void setListaCarrito(List<ProductoVO> listaCarrito) {
+        this.listaCarrito = listaCarrito;
+    }
 
     public static void main(String[] args) {
         launch(args);
