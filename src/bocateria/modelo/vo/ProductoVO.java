@@ -6,12 +6,14 @@ import java.io.InputStream;
 import java.sql.Blob;
 
 public class ProductoVO {
-    int codigo;
-    String nombre;
-    String descripcion;
-    Blob foto;
-    String rutaImg;
-    Double precio;
+    private int codigo;
+    private String nombre;
+    private String descripcion;
+    private Blob foto;
+    private String rutaImg;
+    private Double precio;
+    private int stock;
+    private int cantidad;
 
     public ProductoVO() {
     }
@@ -21,6 +23,22 @@ public class ProductoVO {
         this.descripcion = descripcion;
         this.precio = precio;
         this.foto = foto;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getCodigo() {
@@ -53,7 +71,7 @@ public class ProductoVO {
         return new FileInputStream(getRutaImg());
     }
 
-    public String getRutaImg() {
+    private String getRutaImg() {
         return rutaImg;
     }
 
