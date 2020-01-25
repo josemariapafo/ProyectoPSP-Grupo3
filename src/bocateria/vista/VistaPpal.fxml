@@ -53,7 +53,7 @@
                                 <Label text="Nombre:" />
                             </children>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h00" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta00" text="-" />
                                 <Label fx:id="cantidad00" text="0">
@@ -64,6 +64,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma00" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock00" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v01" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -88,7 +93,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h01" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta01" text="-" />
                                 <Label fx:id="cantidad01" text="0">
@@ -99,6 +104,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma01" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock01" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v02" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
@@ -123,7 +133,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h02" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta02" text="-" />
                                 <Label fx:id="cantidad02" text="0">
@@ -134,6 +144,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma02" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock02" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v03" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
@@ -158,7 +173,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h03" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta03" text="-" />
                                 <Label fx:id="cantidad03" text="0">
@@ -169,6 +184,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma03" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock03" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v04" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
@@ -193,7 +213,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h04" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta04" text="-" />
                                 <Label fx:id="cantidad04" text="0">
@@ -204,6 +224,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma04" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock04" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v10" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
@@ -228,7 +253,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h10" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta10" text="-" />
                                 <Label fx:id="cantidad10" text="0">
@@ -239,6 +264,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma10" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock10" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v11" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -263,7 +293,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h11" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta11" text="-" />
                                 <Label fx:id="cantidad11" text="0">
@@ -274,6 +304,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma11" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock11" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v12" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -298,7 +333,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h12" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta12" text="-" />
                                 <Label fx:id="cantidad12" text="0">
@@ -309,6 +344,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma12" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock12" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v13" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -333,7 +373,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h13" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta13" text="-" />
                                 <Label fx:id="cantidad13" text="0">
@@ -344,6 +384,11 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma13" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock13" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox fx:id="v14" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -368,7 +413,7 @@
                                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                        <HBox fx:id="h14" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#botonResta14" text="-" />
                                 <Label fx:id="cantidad14" text="0">
@@ -379,12 +424,17 @@
                                 <Button mnemonicParsing="false" onAction="#botonSuma14" text="+" />
                             </children>
                         </HBox>
+                  <Label fx:id="noStock14" text="No hay stock!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
             </children>
         </GridPane>
         <Button fx:id="regSandwich" disable="true" layoutX="22.0" layoutY="851.0" mnemonicParsing="false" onAction="#initRegistrarSandwich" prefHeight="32.0" prefWidth="132.0" text="Registrar Sandwich" visible="false" />
-      <HBox layoutX="609.0" layoutY="851.0" prefHeight="25.0" prefWidth="107.0">
+      <HBox fx:id="hBot" layoutX="609.0" layoutY="851.0" prefHeight="25.0" prefWidth="107.0">
          <children>
             <Button mnemonicParsing="false" onAction="#loadUIBack" text="&lt;&lt;">
                <HBox.margin>
