@@ -77,7 +77,7 @@ public class BDPedido implements PedidoDAO {
     }
 
     @Override
-    public PedidoVO obtener(int id) throws ExcepcionBocateria{
+    public PedidoVO obtener(PedidoVO pedidoVO) throws ExcepcionBocateria{
         PedidoVO pedido = new PedidoVO();
         String query1 = "select usuario,pedidoId,precio,cantidad from pedido";
         try {

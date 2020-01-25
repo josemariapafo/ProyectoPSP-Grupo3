@@ -139,13 +139,13 @@ public class BDProducto implements ProductoDAO {
     }
 
     @Override
-    public ProductoVO obtener(int id) throws ExcepcionBocateria {
+    public ProductoVO obtener(ProductoVO productoVO) throws ExcepcionBocateria {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ProductoVO p = null;
         try {
             stmt = conn.prepareStatement(GETONE);
-            stmt.setInt(1, id);
+            stmt.setInt(1, productoVO.getCodigo());
             rs = stmt.executeQuery();
             if (rs.next())
                 p = convertir(rs);

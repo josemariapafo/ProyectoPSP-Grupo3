@@ -1,6 +1,7 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -32,6 +33,7 @@ public class LoginControlador {
     @FXML
     private Button regist;
 
+    private UsuarioVO usuarioVO = new UsuarioVO();
     private Main mainApp;
     private Desktop desktop = Desktop.getDesktop();
     private URI uri = new URI ("www.geeksforgeeks.org");
@@ -48,10 +50,11 @@ public class LoginControlador {
 
     @FXML
     public void login(){
-        String u, p;
-        u = usuario.getText();
-        p = pwd.getText();
-        if(u.equalsIgnoreCase("test") && p.equalsIgnoreCase("test")){
+
+        usuarioVO.setUsuario(usuario.getText());
+        usuarioVO.setContraseña(pwd.getText());
+        System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
+        if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ACCESO CONCEDIDO");
             alert.setHeaderText("Acceso concedido");

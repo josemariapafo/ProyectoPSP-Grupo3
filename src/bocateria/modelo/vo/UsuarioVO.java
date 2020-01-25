@@ -2,6 +2,21 @@ package bocateria.modelo.vo;
 
 public class UsuarioVO {
     String usuario;
+
+    @Override
+    public String toString() {
+        return "UsuarioVO{" +
+                "usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", localidad='" + localidad + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
+
     String nombre;
     String apellidos;
     String email;

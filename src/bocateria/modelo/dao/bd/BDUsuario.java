@@ -2,12 +2,10 @@ package bocateria.modelo.dao.bd;
 
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.UsuarioDAO;
+import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +69,7 @@ public class BDUsuario implements UsuarioDAO {
                 String direccion = (rs.getString("direccion"));
                 String localidad = (rs.getString("localidad"));
                 String telefono = rs.getString("telefono");
-                UsuarioVO persona = new UsuarioVO(usuario, nombre, apellidos, email, contraseña, direccion, localidad,telefono);
+                UsuarioVO persona = new UsuarioVO(usuario, nombre, apellidos, email, contraseña, direccion, localidad, telefono);
                 persons.add(persona);
                 return persons;
             }
@@ -82,10 +80,45 @@ public class BDUsuario implements UsuarioDAO {
     }
 
     @Override
-    public UsuarioVO obtener(int id) {
+    public UsuarioVO obtener(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+        UsuarioVO usuario = new UsuarioVO();
+        String query1 = "select usuario,nombre,apellidos,email,contraseña,direccion,localidad,telefono from usuario where usuario = ? and contraseña = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO p = null;
+        try {
+            stmt = conexion.prepareStatement(query1);
+            System.out.println("1");
 
-        return null;
+            stmt.setString(1, usuarioVO.getUsuario());
+            stmt.setString(2, usuarioVO.getContraseña());
+            System.out.println("2");
+            rs = stmt.executeQuery();
+            System.out.println("3");
+
+            if (rs.next()) {
+                usuario.setUsuario(rs.getString("usuario"));
+                System.out.println("4");
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellidos(rs.getString("apellidos"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setContraseña(rs.getString("contraseña"));
+                usuario.setDireccion(rs.getString("direccion"));
+                usuario.setLocalidad(rs.getString("localidad"));
+                usuario.setTelefono(rs.getString("telefono"));
+            }else{
+                System.out.println("No se encontró nada");
+                System.out.println(usuario.toString());
+
+            }
+            return usuario;
+        } catch (SQLException e1) {
+            System.out.println("Error al encontrar el usuario");
+            return null;
+        }
+
     }
+
 
     @Override
     public UsuarioVO convertir(ResultSet rs) {

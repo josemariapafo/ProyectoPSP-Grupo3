@@ -6,11 +6,21 @@ import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Model {
 
     private BDManager bdManager;
+
+    public Model(){
+        try {
+            bdManager= new BDManager();
+        } catch (SQLException e) {
+            System.out.println("Error al cargar bdManager desde el modelo");
+            e.printStackTrace();
+        }
+    }
 
     //METODOS USUARIO
     public boolean altaUsuario(UsuarioVO usuarioVO){
@@ -18,7 +28,7 @@ public class Model {
             bdManager.getUsuarioDAO().alta(usuarioVO);
             return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
-            System.out.println("Error enel alta del usuario");
+            System.out.println("Error en el alta del usuario");
             excepcionBocateria.printStackTrace();
             return false;
         }
@@ -39,6 +49,15 @@ public class Model {
             return bdManager.getUsuarioDAO().obtenerTodos();
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error en la optención de todos los usuarios");
+            excepcionBocateria.printStackTrace();
+        }
+        return null;
+    }
+    public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO){
+        try {
+            return bdManager.getUsuarioDAO().obtener(usuarioVO);
+        } catch (ExcepcionBocateria excepcionBocateria) {
+            System.out.println("Error en la busqueda del usuario");
             excepcionBocateria.printStackTrace();
         }
         return null;
