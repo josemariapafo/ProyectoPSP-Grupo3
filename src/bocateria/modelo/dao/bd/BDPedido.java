@@ -13,9 +13,17 @@ import java.util.List;
 
 public class BDPedido implements PedidoDAO {
 
-    Connection conexion;
+    private Connection conexion;
 
-    public BDPedido(Connection conexion){
+    private final String INSERT = "INSERT INTO PEDIDO(PEDIDOID,TOTAL,FECHA) VALUES (?,?,SYSDATE)";
+    private final String INSERT_PEDPROD = "INSERT INTO PEDIDO_PRODUCTO (IDPEDIDO, IDPRODUCTO,CANTIDAD) VALUES (?,?,?)";
+    private final String INSERT_USUPED = "INSERT INTO USUARIO_PEDIDO (IDUSUARIO,IDPEDIDO) VALUES (?,?)";
+    private final String UPDATE = "UPDATE PEDIDO SET TOTAL = ?, FECHA = SYSDATE WHERE PEDIDOID = ?";
+    private final String DELETE = "DELETE FROM PEDIDO WHERE PEDIDOID = ?";
+    private final String GETALL = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO";
+    private final String GETONE = "SELECT CODIGO,NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK FROM PRODUCTO WHERE PEDIDOID = ?";
+
+    BDPedido(Connection conexion){
         this.conexion = conexion;
     }
 
@@ -55,7 +63,7 @@ public class BDPedido implements PedidoDAO {
 
     @Override
     public List<PedidoVO> obtenerTodos() throws ExcepcionBocateria{
-        ArrayList<PedidoVO> pedidos = new ArrayList<PedidoVO>();
+        ArrayList<PedidoVO> pedidos = new ArrayList<>();
         String query1 = "select usuario,pedidoId,precio,cantidad from pedido";
 
         try {
