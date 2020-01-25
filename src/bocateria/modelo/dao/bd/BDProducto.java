@@ -1,13 +1,23 @@
 package bocateria.modelo.dao.bd;
 
+import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.ProductoDAO;
 import bocateria.modelo.vo.ProductoVO;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BDProducto implements ProductoDAO {
 
@@ -57,13 +67,13 @@ public class BDProducto implements ProductoDAO {
         try (PreparedStatement stmt = conn.prepareStatement(UPDATE)) {
             stmt.setString(1, productoVO.getNombre());
             stmt.setString(2, productoVO.getDescripcion());
-            stmt.setBlob(3, productoVO.getFoto());
+            stmt.setBlob(3, productoVO.getInputStream());
             stmt.setDouble(4, productoVO.getPrecio());
             stmt.setInt(5, productoVO.getCodigo());
             if (stmt.executeUpdate() == 0) {
                 throw new ExcepcionBocateria("Puede que no se haya modificado el cliente");
             }
-        } catch (SQLException | ExcepcionBocateria e) {
+        } catch (SQLException | ExcepcionBocateria | FileNotFoundException e) {
             throw new ExcepcionBocateria("Error en sql", e);
         }
         return false;
@@ -92,8 +102,7 @@ public class BDProducto implements ProductoDAO {
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error en SQL");
         }
-
-        return null;
+        return productos;
     }
 
     @Override
@@ -127,10 +136,22 @@ public class BDProducto implements ProductoDAO {
     public ProductoVO convertir(ResultSet rs) throws SQLException {
         String nombre = rs.getString(2);
         String descripcion = rs.getString(3);
-        Blob foto = rs.getBlob(4);
+        byte[] f = rs.getBytes(4);
+        Image foto = convertToJavaFXImage(f,100,100);
         Double precio = rs.getDouble(5);
         ProductoVO p = new ProductoVO(nombre, descripcion, foto, precio);
         p.setCodigo(rs.getInt(1));
         return p;
+    }
+    private static Image convertToJavaFXImage(byte[] raw, final int width, final int height) {
+        WritableImage image = new WritableImage(width, height);
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(raw);
+            BufferedImage read = ImageIO.read(bis);
+            image = SwingFXUtils.toFXImage(read, null);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return image;
     }
 }

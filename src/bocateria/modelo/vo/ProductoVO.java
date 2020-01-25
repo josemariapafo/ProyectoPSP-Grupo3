@@ -1,5 +1,8 @@
 package bocateria.modelo.vo;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -9,7 +12,7 @@ public class ProductoVO {
     private int codigo;
     private String nombre;
     private String descripcion;
-    private Blob foto;
+    private Image foto;
     private String rutaImg;
     private Double precio;
     private int stock;
@@ -18,7 +21,7 @@ public class ProductoVO {
     public ProductoVO() {
     }
 
-    public ProductoVO(String nombre, String descripcion, Blob foto, Double precio) {
+    public ProductoVO(String nombre, String descripcion, Image foto, Double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -79,9 +82,9 @@ public class ProductoVO {
         this.rutaImg = rutaImg;
     }
 
-    public Blob getFoto() { return foto; }
+    public Image getFoto() { return foto; }
 
-    public void setFoto(Blob foto) { this.foto = foto; }
+    public void setFoto(Image foto) { this.foto = foto; }
 
     public Double getPrecio() {
         return precio;
