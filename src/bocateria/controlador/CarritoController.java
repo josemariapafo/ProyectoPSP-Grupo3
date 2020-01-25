@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarritoController {
 
@@ -22,7 +23,7 @@ public class CarritoController {
     Label total;
     Main mainApp;
     private Stage dialogStage;
-    private ArrayList<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
+    private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
     double totalPrecio  = 0;
     UsuarioVO usuario = new UsuarioVO();
 
@@ -44,6 +45,7 @@ public class CarritoController {
         p1.setStock(18);
         listaProductos.add(p1);
         listaProductos.add(p2);
+//        listaProductos = mainApp.getListaCarrito();
         list.setItems((ObservableList<ProductoVO>) listaProductos);
     }
 

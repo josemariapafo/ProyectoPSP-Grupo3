@@ -60,6 +60,7 @@ public class LoginControlador {
         System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
 
         if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
+            mainApp.setUsuario(mainApp.getModel().obtenerUsuario(usuarioVO));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ACCESO CONCEDIDO");
             alert.setHeaderText("Acceso concedido");

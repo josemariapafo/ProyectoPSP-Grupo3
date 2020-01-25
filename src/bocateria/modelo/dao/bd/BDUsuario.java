@@ -55,7 +55,7 @@ public class BDUsuario implements UsuarioDAO {
     }
 
     @Override
-    public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria{
+    public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
         boolean efectuado;
         try (PreparedStatement stmt = conn.prepareStatement(UPDATE)) {
             stmt.setString(1, usuarioVO.getNombre());
@@ -77,7 +77,7 @@ public class BDUsuario implements UsuarioDAO {
     }
 
     @Override
-    public boolean eliminar(UsuarioVO usuarioVO) throws ExcepcionBocateria{
+    public boolean eliminar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
         boolean efectuado;
         try (PreparedStatement stmt = conn.prepareStatement(DELETE)) {
             stmt.setString(1, usuarioVO.getUsuario());
@@ -153,5 +153,33 @@ public class BDUsuario implements UsuarioDAO {
         stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(count);
         return rs.next();
+    }
+
+    @Override
+    public boolean compruebaAdmin(UsuarioVO usuario) throws ExcepcionBocateria, SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int i = 0;
+        try {
+            stmt = conn.prepareStatement(GETONE);
+            stmt.setString(1, usuario.getUsuario());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                i = rs.getInt(9);
+            }
+        } catch (SQLException e) {
+            throw new ExcepcionBocateria("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        if (i == 1)
+            return true;
+        else
+            return false;
     }
 }

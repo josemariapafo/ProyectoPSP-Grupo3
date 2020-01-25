@@ -38,7 +38,9 @@ public class Model {
     public UsuarioVO obtenerUsuario(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         return bdManager.getUsuarioDAO().obtener(usuarioVO);
     }
-
+    public boolean compruebaAdmin(UsuarioVO usuario) throws ExcepcionBocateria, SQLException {
+        return bdManager.getUsuarioDAO().compruebaAdmin(usuario);
+    }
     public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         String usu, pwd;
         pwd = usuarioVO.getContrasena();
