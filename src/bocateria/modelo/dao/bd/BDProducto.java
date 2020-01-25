@@ -11,13 +11,13 @@ import java.util.List;
 
 public class BDProducto implements ProductoDAO {
 
-    final String INSERT = "INSERT INTO PRODUCTO(NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK) VALUES (?,?,?,?,0)";
-    final String UPDATE = "UPDATE PRODUCTO SET NOMBRE = ?, DESCRIPCION = ?, FOTO = ?, PRECIO = ?, STOCK = ? WHERE CODIGO = ?";
-    final String STOCKUP = "UPDATE PRODUCTO SET STOCK = (STOCK + ?) WHERE CODIGO = ?";
-    final String STOCKDOWN = "UPDATE PRODUCTO SET STOCK = (STOCK - ?) WHERE CODIGO = ?";
-    final String DELETE = "DELETE FROM PRODUCTO WHERE CODIGO = ?";
-    final String GETALL = "SELECT CODIGO,NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK FROM PRODUCTO";
-    final String GETONE = "SELECT CODIGO,NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK FROM PRODUCTO WHERE CODIGO = ?";
+    private final String INSERT = "INSERT INTO PRODUCTO(NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK) VALUES (?,?,?,?,0)";
+    private final String UPDATE = "UPDATE PRODUCTO SET NOMBRE = ?, DESCRIPCION = ?, FOTO = ?, PRECIO = ?, STOCK = ? WHERE CODIGO = ?";
+    private final String STOCKUP = "UPDATE PRODUCTO SET STOCK = (STOCK + ?) WHERE CODIGO = ?";
+    private final String STOCKDOWN = "UPDATE PRODUCTO SET STOCK = (STOCK - ?) WHERE CODIGO = ?";
+    private final String DELETE = "DELETE FROM PRODUCTO WHERE CODIGO = ?";
+    private final String GETALL = "SELECT CODIGO,NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK FROM PRODUCTO";
+    private final String GETONE = "SELECT CODIGO,NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK FROM PRODUCTO WHERE CODIGO = ?";
 
     private String filePath;
 
@@ -108,7 +108,7 @@ public class BDProducto implements ProductoDAO {
     public List<ProductoVO> obtenerTodos() throws ExcepcionBocateria {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<ProductoVO> productos = new ArrayList<ProductoVO>();
+        List<ProductoVO> productos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(GETALL);
             rs = stmt.executeQuery();
@@ -142,7 +142,7 @@ public class BDProducto implements ProductoDAO {
     public ProductoVO obtener(ProductoVO productoVO) throws ExcepcionBocateria {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ProductoVO p = null;
+        ProductoVO p;
         try {
             stmt = conn.prepareStatement(GETONE);
             stmt.setInt(1, productoVO.getCodigo());

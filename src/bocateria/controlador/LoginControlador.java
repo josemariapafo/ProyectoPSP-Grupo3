@@ -1,13 +1,13 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.io.File;
@@ -49,10 +49,10 @@ public class LoginControlador {
     }
 
     @FXML
-    public void login(){
+    public void login() throws ExcepcionBocateria {
 
         usuarioVO.setUsuario(usuario.getText());
-        usuarioVO.setContraseña(pwd.getText());
+        usuarioVO.setContrasena(pwd.getText());
         System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
         if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

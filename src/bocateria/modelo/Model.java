@@ -13,9 +13,9 @@ public class Model {
 
     private BDManager bdManager;
 
-    public Model(){
+    public Model() {
         try {
-            bdManager= new BDManager();
+            bdManager = new BDManager();
         } catch (SQLException e) {
             System.out.println("Error al cargar bdManager desde el modelo");
             e.printStackTrace();
@@ -23,45 +23,22 @@ public class Model {
     }
 
     //METODOS USUARIO
-    public boolean altaUsuario(UsuarioVO usuarioVO){
-        try {
-            bdManager.getUsuarioDAO().alta(usuarioVO);
-            return true;
-        } catch (ExcepcionBocateria excepcionBocateria) {
-            System.out.println("Error en el alta del usuario");
-            excepcionBocateria.printStackTrace();
-            return false;
-        }
+    public boolean altaUsuario(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+        return bdManager.getUsuarioDAO().alta(usuarioVO);
     }
-    public boolean eliminarUsuario(UsuarioVO usuarioVO){
-        try {
-            bdManager.getUsuarioDAO().eliminar(usuarioVO);
-            return true;
-        } catch (ExcepcionBocateria excepcionBocateria) {
-            System.out.println("Error en la eliminacion");
-            excepcionBocateria.printStackTrace();
-            return false;
-        }
 
+    public boolean eliminarUsuario(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+        return bdManager.getUsuarioDAO().eliminar(usuarioVO);
     }
-    public List<UsuarioVO> obtenerTodosUsuarios(){
-        try {
-            return bdManager.getUsuarioDAO().obtenerTodos();
-        } catch (ExcepcionBocateria excepcionBocateria) {
-            System.out.println("Error en la optención de todos los usuarios");
-            excepcionBocateria.printStackTrace();
-        }
-        return null;
+
+    public List<UsuarioVO> obtenerTodosUsuarios() throws ExcepcionBocateria {
+        return bdManager.getUsuarioDAO().obtenerTodos();
     }
-    public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO){
-        try {
-            return bdManager.getUsuarioDAO().obtener(usuarioVO);
-        } catch (ExcepcionBocateria excepcionBocateria) {
-            System.out.println("Error en la busqueda del usuario");
-            excepcionBocateria.printStackTrace();
-        }
-        return null;
+
+    public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+        return bdManager.getUsuarioDAO().obtener(usuarioVO);
     }
+
     //METODOS DE LOS PEDIDOS
     /*public boolean altaPedido(PedidoVO pedidoVO){
         try {
@@ -84,7 +61,8 @@ public class Model {
             return false;
         }
     }
-    public List<PedidoVO> obtenerTodosPedidos(){
+
+    public List<PedidoVO> obtenerTodosPedidos() {
         try {
             return bdManager.getPedidoDAO().obtenerTodos();
         } catch (ExcepcionBocateria excepcionBocateria) {
@@ -93,8 +71,9 @@ public class Model {
         }
         return null;
     }
+
     //METODOS  DE PRODUCTOS
-    public boolean altaProducto(ProductoVO productoVO){
+    public boolean altaProducto(ProductoVO productoVO) {
         try {
             bdManager.getProductoDAO().alta(productoVO);
             return true;
@@ -104,7 +83,8 @@ public class Model {
             return false;
         }
     }
-    public boolean eliminarProducto(ProductoVO productoVO){
+
+    public boolean eliminarProducto(ProductoVO productoVO) {
         try {
             bdManager.getProductoDAO().eliminar(productoVO);
             return true;
@@ -114,7 +94,8 @@ public class Model {
             return false;
         }
     }
-    public List<ProductoVO> obtenerTodosProductos(){
+
+    public List<ProductoVO> obtenerTodosProductos() {
         try {
             return bdManager.getProductoDAO().obtenerTodos();
         } catch (ExcepcionBocateria excepcionBocateria) {

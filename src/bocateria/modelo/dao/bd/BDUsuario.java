@@ -2,7 +2,6 @@ package bocateria.modelo.dao.bd;
 
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.UsuarioDAO;
-import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 
 import java.sql.*;
@@ -10,119 +9,203 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BDUsuario implements UsuarioDAO {
-    private Connection conexion;
+    private Connection conn;
+    /*Crear sentencias y hacer funcionar el alta de usuarios, primero crear un usuario admin
+        recordar quitar admin para los siguientes usuarios
+    */
 
-    public BDUsuario(Connection conexion) {
-        this.conexion = conexion;
+    private final String INSERT = "INSERT INTO USUARIO (USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN) VALUES (?,?,?,?,?,?,?,?,0)";
+    private final String INSERTADMIN = "INSERT INTO USUARIO (USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN) VALUES (?,?,?,?,?,?,?,?,1)";
+    private final String UPDATE = "UPDATE USUARIO SET NOMBRE = ?, APELLIDOS = ?, EMAIL = ?, CONTRASEÑA = ?, DIRECCION = ?, LOCALIDAD = ?, TELEFONO = ? WHERE USUARIO = ?";
+    private final String DELETE = "DELETE FROM USUARIO WHERE USUARIO = ?";
+    private final String GETALL = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO";
+    private final String GETONE = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO WHERE USUARIO = ?";
+
+    public BDUsuario(Connection conn) {
+        this.conn = conn;
     }
 
     @Override
-    public boolean alta(UsuarioVO usuarioVO) throws ExcepcionBocateria {
-        String query2 = "insert into usuario(usuario,nombre,apellidos,email,contraseña,direccion,localidad) values('"
-                + usuarioVO.getUsuario() + "','" + usuarioVO.getNombre() + "','" + usuarioVO.getApellidos() + "','"
-                + usuarioVO.getEmail() + "','" + usuarioVO.getContraseña() + "','" + usuarioVO.getDireccion() + "','" + usuarioVO.getLocalidad() + "')";
-        Statement stmt2;
+    public boolean alta(UsuarioVO u) throws ExcepcionBocateria {
+        PreparedStatement stmt = null;
+        boolean efectuado = false;
         try {
-            stmt2 = conexion.createStatement();
-            stmt2.executeUpdate(query2);
-            return true;
-        } catch (SQLException e) {
-            throw new ExcepcionBocateria("Error al introducir una Persona");
-        }
+            if (!checkAdmin())
+                stmt = conn.prepareStatement(INSERTADMIN);
+            else
+                stmt = conn.prepareStatement(INSERT);
 
+            stmt.setString(1, u.getUsuario());
+            stmt.setString(2, u.getNombre());
+            stmt.setString(3, u.getApellidos());
+            stmt.setString(4, u.getEmail());
+            stmt.setString(5, u.getContrasena());
+            stmt.setString(6, u.getDireccion());
+            stmt.setString(7, u.getLocalidad());
+            stmt.setString(8, u.getTelefono());
+            if (stmt.executeUpdate() == 0)
+                throw new ExcepcionBocateria("Puede que no se haya guardado el bocata");
+            else
+                efectuado = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null)
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error en sql", e);
+                }
+        }
+        return efectuado;
     }
 
     @Override
-    public boolean modificar(UsuarioVO usuarioVO) {
-
-        return false;
+    public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+        boolean efectuado;
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, usuarioVO.getNombre());
+            stmt.setString(2, usuarioVO.getApellidos());
+            stmt.setString(3, usuarioVO.getEmail());
+            stmt.setString(4, usuarioVO.getContrasena());
+            stmt.setString(5, usuarioVO.getDireccion());
+            stmt.setString(6, usuarioVO.getLocalidad());
+            stmt.setString(7, usuarioVO.getTelefono());
+            stmt.setString(8, usuarioVO.getUsuario());
+            if (stmt.executeUpdate() == 0) {
+                throw new ExcepcionBocateria("Puede que no se haya modificado el cliente");
+            } else
+                efectuado = true;
+        } catch (SQLException | ExcepcionBocateria e) {
+            throw new ExcepcionBocateria("Error SQL");
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error");
+                }
+            }
+        }
+        return efectuado;
     }
 
     @Override
     public boolean eliminar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
-        String query = "delete from usuario where usuario='" + usuarioVO.getUsuario() + "'";
-
+        boolean efectuado;
+        PreparedStatement stmt = null;
         try {
-            Statement stmt = conexion.createStatement();
-            stmt.executeUpdate(query);
-            return true;
+            stmt = conn.prepareStatement(DELETE);
+            stmt.setString(1, usuarioVO.getUsuario());
+            if (stmt.executeUpdate() == 0)
+                throw new ExcepcionBocateria("Puede que no se haya borrado el Usuario");
+            else
+                efectuado = true;
         } catch (SQLException e) {
-            throw new ExcepcionBocateria("Error al eliminar una persona");
+            throw new ExcepcionBocateria("SQL Error");
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("No se puede cerrar el statement");
+                }
+            }
         }
-
+        return efectuado;
     }
 
     @Override
     public List<UsuarioVO> obtenerTodos() throws ExcepcionBocateria {
-        ArrayList<UsuarioVO> persons = new ArrayList<UsuarioVO>();
-        String query1 = "select usuario,nombre,apellidos,email,contraseña,direccion,localidad,telefono from usuario";
-
+        List<UsuarioVO> usuarios = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
-            Statement stmt = conexion.createStatement();
-            ResultSet rs = stmt.executeQuery(query1);
+            stmt = conn.prepareStatement(GETALL);
+            rs = stmt.executeQuery();
             while (rs.next()) {
-                String usuario = (rs.getString("usuario"));
-                String nombre = (rs.getString("nombre"));
-                String apellidos = (rs.getString("apellidos"));
-                String email = (rs.getString("email"));
-                String contraseña = (rs.getString("contraseña"));
-                String direccion = (rs.getString("direccion"));
-                String localidad = (rs.getString("localidad"));
-                String telefono = rs.getString("telefono");
-                UsuarioVO persona = new UsuarioVO(usuario, nombre, apellidos, email, contraseña, direccion, localidad, telefono);
-                persons.add(persona);
-                return persons;
+                usuarios.add(convertir(rs));
             }
-        } catch (SQLException e1) {
-            throw new ExcepcionBocateria("Error al obtener todos los usuarios");
+        } catch (SQLException e) {
+            throw new ExcepcionBocateria("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error en SQL", e);
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error en SQL", e);
+                }
+            }
+
         }
-        return persons;
+        return usuarios;
     }
 
     @Override
     public UsuarioVO obtener(UsuarioVO usuarioVO) throws ExcepcionBocateria {
-        UsuarioVO usuario = new UsuarioVO();
-        String query1 = "select usuario,nombre,apellidos,email,contraseña,direccion,localidad,telefono from usuario where usuario = ? and contraseña = ?";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ProductoVO p = null;
+        UsuarioVO u;
         try {
-            stmt = conexion.prepareStatement(query1);
-            System.out.println("1");
-
+            stmt = conn.prepareStatement(GETONE);
             stmt.setString(1, usuarioVO.getUsuario());
-            stmt.setString(2, usuarioVO.getContraseña());
-            System.out.println("2");
             rs = stmt.executeQuery();
-            System.out.println("3");
-
             if (rs.next()) {
-                usuario.setUsuario(rs.getString("usuario"));
-                System.out.println("4");
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setApellidos(rs.getString("apellidos"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setDireccion(rs.getString("direccion"));
-                usuario.setLocalidad(rs.getString("localidad"));
-                usuario.setTelefono(rs.getString("telefono"));
-            }else{
-                System.out.println("No se encontró nada");
-                System.out.println(usuario.toString());
-
+                u = convertir(rs);
+            } else {
+                throw new ExcepcionBocateria("No se ha encontrado ese registro");
             }
-            return usuario;
-        } catch (SQLException e1) {
-            System.out.println("Error al encontrar el usuario");
-            return null;
+        } catch (SQLException e) {
+            throw new ExcepcionBocateria("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error en SQL", e);
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new ExcepcionBocateria("Error en SQL", e);
+                }
+            }
         }
-
+        return u;
     }
 
 
     @Override
-    public UsuarioVO convertir(ResultSet rs) {
+    public UsuarioVO convertir(ResultSet rs) throws SQLException {
+        String usu, nom, apl, email, pwd, dir, loc, tel;
+        usu = rs.getString(1);
+        nom = rs.getString(2);
+        apl = rs.getString(3);
+        email = rs.getString(4);
+        pwd = rs.getString(5);
+        dir = rs.getString(6);
+        loc = rs.getString(7);
+        tel = rs.getString(8);
 
-        return null;
+        return new UsuarioVO(nom, apl, email, usu, pwd, dir, loc, tel);
+    }
+
+    private boolean checkAdmin() throws SQLException {
+        final String count = "SELECT USUARIO FROM USUARIO";
+        Statement stmt;
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(count);
+        return rs.next();
     }
 }

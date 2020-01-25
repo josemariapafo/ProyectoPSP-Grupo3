@@ -1,39 +1,25 @@
 package bocateria.modelo.vo;
 
 public class UsuarioVO {
-    String usuario;
 
-    @Override
-    public String toString() {
-        return "UsuarioVO{" +
-                "usuario='" + usuario + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", email='" + email + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", localidad='" + localidad + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
-    }
-
-    String nombre;
-    String apellidos;
-    String email;
-    String contraseña;
-    String direccion;
-    String localidad;
-    String telefono;
+    private String usuario;
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private String contrasena;
+    private String direccion;
+    private String localidad;
+    private String telefono;
 
     public UsuarioVO() {
     }
 
-    public UsuarioVO(String nombre, String apellidos, String email, String usuario, String contraseña, String direccion, String localidad, String telefono) {
+    public UsuarioVO(String nombre, String apellidos, String email, String usuario, String contrasena, String direccion, String localidad, String telefono) {
         this.usuario = usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.direccion = direccion;
         this.localidad = localidad;
         this.telefono = telefono;
@@ -72,12 +58,12 @@ public class UsuarioVO {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getDireccion() {
@@ -102,5 +88,20 @@ public class UsuarioVO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+
+    @Override
+    public String toString() {
+        return "UsuarioVO{" +
+                "usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contrasena + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", localidad='" + localidad + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
     }
 }
