@@ -1,6 +1,7 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.ProductoVO;
 import javafx.fxml.FXML;
@@ -29,6 +30,9 @@ public class RegisterSandwichController {
     TextArea descripcion;
 
     @FXML
+    TextField stock;
+
+    @FXML
     public void handleImagen() {
         final FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(dialogStage);
@@ -37,28 +41,100 @@ public class RegisterSandwichController {
     }
 
     @FXML
-    public void handleEnviar() throws ExcepcionBocateria {
-        System.out.println("HAGO CLICK INICIO METODO");
+    public void handleEnviar() {
         ProductoVO p = new ProductoVO();
-        p.setNombre(nombre.getText());
-        p.setDescripcion(descripcion.getText());
-        p.setRutaImg(rutaImg.getText());
-        p.setPrecio(Double.valueOf(precio.getText()));
-        if (mainApp.getModel().altaProducto(p)) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Alta realizada con éxito");
-            alert.setHeaderText("Alta realizada con éxito");
-            alert.setContentText("SE REALIZÓ EL ALTA");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("NO SE REALIZÓ EL ALTA");
-            alert.setHeaderText("NO SE REALIZÓ EL ALTA");
-            alert.setContentText("NO SE REALIZÓ EL ALTA");
-            alert.showAndWait();
-
+        if (!checkDatos())
+            Alertas.alertaAviso("Rellene todos los campos");
+        else {
+            p.setNombre(nombre.getText());
+            p.setDescripcion(descripcion.getText());
+            p.setStock(Integer.parseInt(stock.getText()));
+            p.setRutaImg(rutaImg.getText());
+            p.setPrecio(Double.valueOf(precio.getText()));
+            if (mainApp.getModel().altaProducto(p)) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alta realizada con éxito");
+                alert.setHeaderText("Alta realizada con éxito");
+                alert.setContentText("SE REALIZÓ EL ALTA");
+                alert.showAndWait();
+                dialogStage.close();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("NO SE REALIZÓ EL ALTA");
+                alert.setHeaderText("NO SE REALIZÓ EL ALTA");
+                alert.setContentText("NO SE REALIZÓ EL ALTA");
+                alert.showAndWait();
+            }
         }
-        System.out.println("HAGO CLICK FIN METODO");
+    }
+
+    boolean checkDatos() {
+        return checkNombre() && checkPrecio() && checkDescripcion() && checkStock() && checkRutaImg();
+    }
+
+    boolean checkRutaImg() {
+        if (rutaImg.getText().equals("")) {
+            Alertas.alertaAviso("Elige una imagen");
+            return false;
+        }
+        return true;
+    }
+
+    boolean checkStock() {
+        if (stock.getText().equals("")) {
+            Alertas.alertaAviso("El campo precio está vacio");
+            return false;
+        } else {
+            try {
+                int i = Integer.parseInt(stock.getText());
+            } catch (NumberFormatException e) {
+                Alertas.alertaAviso("El precio no es un número");
+                return false;
+            }
+            return true;
+        }
+
+    }
+
+    boolean checkNombre() {
+        if (nombre.getText().equals("")) {
+            Alertas.alertaAviso("El nombre debe contener texto");
+            return false;
+        }
+        if (nombre.getText().length() > 30) {
+            Alertas.alertaAviso("El nombre debe contener 30 o menos caracteres");
+            return false;
+        }
+        return true;
+
+    }
+
+    boolean checkDescripcion() {
+
+        if (descripcion.getText().equals("")) {
+            Alertas.alertaAviso("La descripcion debe contener texto");
+            return false;
+        }
+        if (descripcion.getText().length() > 30) {
+            Alertas.alertaAviso("La descripcion debe contener 30 o menos caracteres");
+            return false;
+        }
+        return true;
+    }
+
+    boolean checkPrecio() {
+        if (precio.getText().equals("")) {
+            Alertas.alertaAviso("El campo precio está vacio");
+            return false;
+        } else {
+            try {
+                Double d = Double.parseDouble(precio.getText());
+            } catch (NumberFormatException e) {
+                Alertas.alertaAviso("El precio no es un número");
+                return false;
+            }
+            return true;
+        }
     }
 
     @FXML

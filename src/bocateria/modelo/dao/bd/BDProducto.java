@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class BDProducto implements ProductoDAO {
 
-    private final String INSERT = "INSERT INTO PRODUCTO(NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK) VALUES (?,?,?,?,0)";
+    private final String INSERT = "INSERT INTO PRODUCTO(NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK) VALUES (?,?,?,?,?)";
     private final String UPDATE = "UPDATE PRODUCTO SET NOMBRE = ?, DESCRIPCION = ?, FOTO = ?, PRECIO = ?, STOCK = ? WHERE CODIGO = ?";
     private final String STOCKUP = "UPDATE PRODUCTO SET STOCK = (STOCK + ?) WHERE CODIGO = ?";
     private final String STOCKDOWN = "UPDATE PRODUCTO SET STOCK = (STOCK - ?) WHERE CODIGO = ?";
@@ -47,6 +47,7 @@ public class BDProducto implements ProductoDAO {
             stmt.setString(2, productoVO.getDescripcion());
             stmt.setBlob(3, productoVO.getInputStream());
             stmt.setDouble(4, productoVO.getPrecio());
+            stmt.setInt(5,productoVO.getStock());
             if (stmt.executeUpdate() == 0)
                 throw new ExcepcionBocateria("Puede que no se haya guardado el bocata");
             else
@@ -139,8 +140,10 @@ public class BDProducto implements ProductoDAO {
         byte[] f = rs.getBytes(4);
         Image foto = convertToJavaFXImage(f,100,100);
         Double precio = rs.getDouble(5);
+        int stock = rs.getInt(6);
         ProductoVO p = new ProductoVO(nombre, descripcion, foto, precio);
         p.setCodigo(rs.getInt(1));
+        p.setStock(stock);
         return p;
     }
     private static Image convertToJavaFXImage(byte[] raw, final int width, final int height) {
