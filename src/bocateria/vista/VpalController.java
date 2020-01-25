@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -50,6 +51,26 @@ public class VpalController {
     VBox v13;
     @FXML
     VBox v14;
+    @FXML
+    HBox h00;
+    @FXML
+    HBox h01;
+    @FXML
+    HBox h02;
+    @FXML
+    HBox h03;
+    @FXML
+    HBox h04;
+    @FXML
+    HBox h10;
+    @FXML
+    HBox h11;
+    @FXML
+    HBox h12;
+    @FXML
+    HBox h13;
+    @FXML
+    HBox h14;
     @FXML
     ImageView img00;
     @FXML

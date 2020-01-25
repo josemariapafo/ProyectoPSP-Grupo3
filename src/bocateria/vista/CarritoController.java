@@ -50,7 +50,6 @@ public class CarritoController {
     }
 
     public void visualizarListaProductos(){
-
         ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8);
         p1.setStock(5);
         p1.setCantidad(56);
@@ -74,7 +73,7 @@ public class CarritoController {
 
         tableView.setItems(observable);
 
-        nombreColum.setCellValueFactory(cellData -> cellData.getValue().getNombreProperty());
+//        nombreColum.setCellValueFactory(cellData -> cellData.getValue().getNombreProperty());
         //cantidadColum.setCellValueFactory(cellData -> cellData.getValue().getCantidadProperty());
 
 

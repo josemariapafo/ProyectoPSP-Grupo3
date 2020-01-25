@@ -61,11 +61,11 @@ public class LoginControlador {
 
         if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
             mainApp.setUsuario(mainApp.getModel().obtenerUsuario(usuarioVO));
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ACCESO CONCEDIDO");
-            alert.setHeaderText("Acceso concedido");
-            alert.setContentText("Has acertado el usuario y la contraseña");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("ACCESO CONCEDIDO");
+//            alert.setHeaderText("Acceso concedido");
+//            alert.setContentText("Has acertado el usuario y la contraseña");
+//            alert.showAndWait();
             mainApp.getPrimaryStage().close();
             mainApp.initVistaPrincipal();
         }else{

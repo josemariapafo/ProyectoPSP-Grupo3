@@ -14,31 +14,24 @@ import java.sql.Blob;
 
 public class ProductoVO {
     private int codigo;
-    private StringProperty nombre;
+    private String nombre;
     private String descripcion;
     private Image foto;
     private String rutaImg;
     private Double precio;
     private int stock;
-    private IntegerProperty cantidad;
+    private int cantidad;
 
     public ProductoVO() {
     }
 
     public ProductoVO(String nombre, String descripcion, Image foto, Double precio) {
-        this.nombre =  new SimpleStringProperty(nombre);
+        this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.foto = foto;
-        this.cantidad = new SimpleIntegerProperty(0);
     }
 
-    public StringProperty getNombreProperty(){
-        return nombre;
-    }
-    public IntegerProperty getCantidadProperty(){
-        return cantidad;
-    }
     public int getStock() {
         return stock;
     }
@@ -48,11 +41,11 @@ public class ProductoVO {
     }
 
     public int getCantidad() {
-        return cantidad.get();
+        return cantidad;
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad.set(cantidad);
+        this.cantidad = cantidad;
     }
 
     public int getCodigo() {
@@ -64,11 +57,11 @@ public class ProductoVO {
     }
 
     public String getNombre() {
-        return nombre.get();
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre.set(nombre);
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -93,9 +86,13 @@ public class ProductoVO {
         this.rutaImg = rutaImg;
     }
 
-    public Image getFoto() { return foto; }
+    public Image getFoto() {
+        return foto;
+    }
 
-    public void setFoto(Image foto) { this.foto = foto; }
+    public void setFoto(Image foto) {
+        this.foto = foto;
+    }
 
     public Double getPrecio() {
         return precio;

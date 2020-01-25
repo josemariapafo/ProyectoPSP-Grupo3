@@ -42,10 +42,10 @@ public class RegisterSandwichController {
 
     @FXML
     public void handleEnviar() {
+        ProductoVO p = new ProductoVO();
         if (!checkDatos())
             Alertas.alertaAviso("Rellene todos los campos");
         else {
-            ProductoVO p = new ProductoVO();
             p.setNombre(nombre.getText());
             p.setDescripcion(descripcion.getText());
             p.setStock(Integer.parseInt(stock.getText()));
@@ -57,13 +57,13 @@ public class RegisterSandwichController {
                 alert.setHeaderText("Alta realizada con éxito");
                 alert.setContentText("SE REALIZÓ EL ALTA");
                 alert.showAndWait();
+                dialogStage.close();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("NO SE REALIZÓ EL ALTA");
                 alert.setHeaderText("NO SE REALIZÓ EL ALTA");
                 alert.setContentText("NO SE REALIZÓ EL ALTA");
                 alert.showAndWait();
-
             }
         }
     }
@@ -86,7 +86,7 @@ public class RegisterSandwichController {
             return false;
         } else {
             try {
-                Double d = Double.parseDouble(stock.getText());
+                int i = Integer.parseInt(stock.getText());
             } catch (NumberFormatException e) {
                 Alertas.alertaAviso("El precio no es un número");
                 return false;
@@ -120,10 +120,6 @@ public class RegisterSandwichController {
             return false;
         }
         return true;
-    }
-
-    public TextArea getDescripcion() {
-        return descripcion;
     }
 
     boolean checkPrecio() {

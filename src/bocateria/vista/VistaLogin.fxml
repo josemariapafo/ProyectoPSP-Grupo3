@@ -14,7 +14,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="login" layoutX="146.0" layoutY="174.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <Button fx:id="login" defaultButton="true" layoutX="146.0" layoutY="174.0" mnemonicParsing="false" onAction="#login" text="Login" />
       <Button fx:id="regist" layoutX="221.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleReg" text="Register" />
       <GridPane layoutX="105.0" layoutY="72.0">
         <columnConstraints>
