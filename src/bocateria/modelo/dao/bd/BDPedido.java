@@ -65,11 +65,11 @@ public class BDPedido implements PedidoDAO {
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query1);
             while (rs.next()) {
-                String usuario = (rs.getString("usuario"));
                 int pedidoId = (rs.getInt("pedidoiId"));
-                Double precio= (rs.getDouble("precio"));
-                int cantidad = (rs.getInt("cantidad"));
-                PedidoVO pedido = new PedidoVO(usuario,pedidoId,precio,cantidad);
+                Double total= (rs.getDouble("total"));
+                Date fecha = rs.getDate("fecha");
+
+                PedidoVO pedido = new PedidoVO(pedidoId,total,fecha);
                 pedidos.add(pedido);
                 return pedidos;
             }
@@ -82,15 +82,14 @@ public class BDPedido implements PedidoDAO {
     @Override
     public PedidoVO obtener(PedidoVO pedidoVO) throws ExcepcionBocateria{
         PedidoVO pedido = new PedidoVO();
-        String query1 = "select usuario,pedidoId,precio,cantidad from pedido";
+        String query1 = "select pedidoId,total,fecha from pedido";
         try {
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query1);
             while (rs.next()) {
-                pedido.setUsuario(rs.getString("usuario"));
                 pedido.setPedidoId(rs.getInt("pedidoiId"));
-                pedido.setPrecio(rs.getDouble("precio"));
-                pedido.setCantidad(rs.getInt("cantidad"));
+                pedido.setTotal(rs.getDouble("total"));
+                pedido.setDate(rs.getDate("fecha"));
                 return pedido;
             }
         } catch (SQLException e1){
@@ -145,5 +144,23 @@ public class BDPedido implements PedidoDAO {
         }
         return efectuado;
 
+    }
+
+    @Override
+    public int obtenerUltimaIDProducto() throws ExcepcionBocateria {
+        int ultimaID = 0;
+        String query1 = "select pedidoId,total,fecha from pedido";
+        try {
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(query1);
+            while (rs.next()) {
+                ultimaID = rs.getInt("pedidoiId");
+            }
+
+        } catch (SQLException e1){
+            throw new ExcepcionBocateria("Error al obtener el Pedido");
+        }
+
+        return ultimaID;
     }
 }

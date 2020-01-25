@@ -1,36 +1,21 @@
 package bocateria.modelo.vo;
 
-public class PedidoVO {
-    String usuario;
-    int pedidoId;
-    Double precio;
-    int cantidad;
-    double total;
+import java.util.Date;
 
-    public PedidoVO(String usuario, int pedidoId, Double precio, int cantidad) {
-        this.usuario = usuario;
+public class PedidoVO {
+
+    int pedidoId;
+    double total;
+    Date date;
+
+
+    public PedidoVO(int pedidoId, double total, Date date) {
         this.pedidoId = pedidoId;
-        this.precio = precio;
-        this.cantidad = cantidad;
+        this.total = total;
+        this.date = date;
     }
 
     public PedidoVO() {
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 
     public int getPedidoId() {
@@ -40,20 +25,20 @@ public class PedidoVO {
     public void setPedidoId(int pedidoId) {
         this.pedidoId = pedidoId;
     }
+    public double getTotal() {
 
-    public Double getPrecio() {
-        return precio;
+        return total;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

@@ -4,6 +4,7 @@ import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
+import bocateria.modelo.vo.UsuarioVO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,7 +23,12 @@ public class CarritoController {
     Main mainApp;
     private Stage dialogStage;
     private ArrayList<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
-    double totalPrecio  =0;
+    double totalPrecio  = 0;
+    UsuarioVO usuario = new UsuarioVO();
+
+    public void setUsuario(UsuarioVO usuario) {
+        this.usuario = usuario;
+    }
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -54,8 +60,9 @@ public class CarritoController {
     }
 
     @FXML
-    public void hacerPedido(){
+    public void hacerPedido() throws ExcepcionBocateria {
         //CREAMOS UN PEDIDO
+        int ultimaId=0;
         PedidoVO pedidoVO = new PedidoVO();
         pedidoVO.setTotal(totalPrecio);
         try {
@@ -65,10 +72,16 @@ public class CarritoController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //OBETENER LA ID DEL PEDIDO REALIZADO
+        ultimaId = mainApp.getModel().obtenerUltimaIdPedido();
         //HACEMOS UN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
         for (int i = 0; i<listaProductos.size(); i++){
-            mainApp.getModel();
+            if(listaProductos.get(i).getCantidad()!=0){
+                mainApp.getModel().insertarPedidoProducto(ultimaId,listaProductos.get(i).getCodigo(),listaProductos.get(i).getCantidad());
+            }
         }
+        //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO USUARIO
+        mainApp.getModel().insertarUsuarioPedido(usuario.getUsuario(),ultimaId);
     }
 
 

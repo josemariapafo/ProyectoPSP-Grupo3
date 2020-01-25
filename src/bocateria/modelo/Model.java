@@ -34,21 +34,24 @@ public class Model {
     public List<UsuarioVO> obtenerTodosUsuarios() throws ExcepcionBocateria, SQLException {
         return bdManager.getUsuarioDAO().obtenerTodos();
     }
+
     public UsuarioVO obtenerUsuario(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         return bdManager.getUsuarioDAO().obtener(usuarioVO);
     }
+
     public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         String usu, pwd;
         pwd = usuarioVO.getContrasena();
         UsuarioVO usuBD = bdManager.getUsuarioDAO().obtener(usuarioVO);
-        if(usuBD!=null){
-            if(checkPwd(pwd,usuBD)){
+        if (usuBD != null) {
+            if (checkPwd(pwd, usuBD)) {
                 return bdManager.getUsuarioDAO().obtener(usuarioVO);
             }
         }
         return null;
     }
-    private boolean checkPwd(String pwd, UsuarioVO u){
+
+    private boolean checkPwd(String pwd, UsuarioVO u) {
         return pwd.equals(u.getContrasena());
     }
     //METODOS DE LOS PEDIDOS
@@ -84,12 +87,21 @@ public class Model {
         }
         return null;
     }
+
     public boolean insertarPedido(PedidoVO pedidoVO) throws ExcepcionBocateria, SQLException {
         return bdManager.getPedidoDAO().alta(pedidoVO);
     }
 
-    public boolean insertarPedidoProducto(int idPedido,int idProducto,int cantidad) throws ExcepcionBocateria {
-        return bdManager.getPedidoDAO().insertarPedidoProducto(idPedido,idProducto,cantidad);
+    public boolean insertarPedidoProducto(int idPedido, int idProducto, int cantidad) throws ExcepcionBocateria {
+        return bdManager.getPedidoDAO().insertarPedidoProducto(idPedido, idProducto, cantidad);
+    }
+
+    public int obtenerUltimaIdPedido() throws ExcepcionBocateria {
+        return bdManager.getPedidoDAO().obtenerUltimaIDProducto();
+    }
+
+    public boolean insertarUsuarioPedido(String idUsuario, int idPedido) throws ExcepcionBocateria {
+        return bdManager.getPedidoDAO().insertarUsuarioPedido(idUsuario, idPedido);
     }
 
     //METODOS  DE PRODUCTOS
