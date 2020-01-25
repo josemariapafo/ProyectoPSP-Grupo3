@@ -21,12 +21,12 @@ public class BDUsuario implements UsuarioDAO {
     private final String GETALL = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO";
     private final String GETONE = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO WHERE USUARIO = ?";
 
-    public BDUsuario(Connection conn) {
+    BDUsuario(Connection conn) {
         this.conn = conn;
     }
 
     @Override
-    public boolean alta(UsuarioVO u) throws ExcepcionBocateria {
+    public boolean alta(UsuarioVO u) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
         boolean efectuado = false;
         try {
@@ -51,21 +51,15 @@ public class BDUsuario implements UsuarioDAO {
             e.printStackTrace();
         } finally {
             if (stmt != null)
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error en sql", e);
-                }
+                stmt.close();
         }
         return efectuado;
     }
 
     @Override
-    public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+    public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria{
         boolean efectuado;
-        PreparedStatement stmt = null;
-        try {
-            stmt = conn.prepareStatement(UPDATE);
+        try (PreparedStatement stmt = conn.prepareStatement(UPDATE)) {
             stmt.setString(1, usuarioVO.getNombre());
             stmt.setString(2, usuarioVO.getApellidos());
             stmt.setString(3, usuarioVO.getEmail());
@@ -80,24 +74,14 @@ public class BDUsuario implements UsuarioDAO {
                 efectuado = true;
         } catch (SQLException | ExcepcionBocateria e) {
             throw new ExcepcionBocateria("Error SQL");
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error");
-                }
-            }
         }
         return efectuado;
     }
 
     @Override
-    public boolean eliminar(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+    public boolean eliminar(UsuarioVO usuarioVO) throws ExcepcionBocateria{
         boolean efectuado;
-        PreparedStatement stmt = null;
-        try {
-            stmt = conn.prepareStatement(DELETE);
+        try (PreparedStatement stmt = conn.prepareStatement(DELETE)) {
             stmt.setString(1, usuarioVO.getUsuario());
             if (stmt.executeUpdate() == 0)
                 throw new ExcepcionBocateria("Puede que no se haya borrado el Usuario");
@@ -105,14 +89,6 @@ public class BDUsuario implements UsuarioDAO {
                 efectuado = true;
         } catch (SQLException e) {
             throw new ExcepcionBocateria("SQL Error");
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("No se puede cerrar el statement");
-                }
-            }
         }
         return efectuado;
     }
@@ -120,38 +96,18 @@ public class BDUsuario implements UsuarioDAO {
     @Override
     public List<UsuarioVO> obtenerTodos() throws ExcepcionBocateria {
         List<UsuarioVO> usuarios = new ArrayList<>();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = conn.prepareStatement(GETALL);
-            rs = stmt.executeQuery();
+        try (PreparedStatement stmt = conn.prepareStatement(GETALL); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 usuarios.add(convertir(rs));
             }
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error en SQL", e);
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error en SQL", e);
-                }
-            }
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error en SQL", e);
-                }
-            }
-
         }
         return usuarios;
     }
 
     @Override
-    public UsuarioVO obtener(UsuarioVO usuarioVO) throws ExcepcionBocateria {
+    public UsuarioVO obtener(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         UsuarioVO u;
@@ -162,24 +118,16 @@ public class BDUsuario implements UsuarioDAO {
             if (rs.next()) {
                 u = convertir(rs);
             } else {
-                throw new ExcepcionBocateria("No se ha encontrado ese registro");
+                u = null;
             }
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error en SQL", e);
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error en SQL", e);
-                }
+                rs.close();
             }
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new ExcepcionBocateria("Error en SQL", e);
-                }
+                stmt.close();
             }
         }
         return u;

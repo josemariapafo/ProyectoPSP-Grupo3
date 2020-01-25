@@ -2,6 +2,7 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class RegistroControlador {
@@ -37,15 +39,15 @@ public class RegistroControlador {
     TextField email;
 
     @FXML
-    public void handleAceptar() throws ExcepcionBocateria {
+    public void handleAceptar() throws ExcepcionBocateria, SQLException {
         UsuarioVO u = null;
         boolean p, e;
         p = compruebaPwd();
         e = compruebaEmail(email.getText());
         if(!p)
-            alertaError("Las contraseñas no coinciden");
+            Alertas.alertaError("Las contraseñas no coinciden");
         if(!e)
-            alertaError("E-Mail no válido");
+            Alertas.alertaError("E-Mail no válido");
         if (p && e) {
             u = new UsuarioVO(nombre.getText(), apellido.getText(), email.getText(), usuario.getText(), pwd.getText(), direccion.getText(), localidad.getText(), telefono.getText());
         }
@@ -105,17 +107,9 @@ public class RegistroControlador {
 
         Pattern pat = Pattern.compile(emailRegex);
         if (email == null){
-            alertaError("E-Mail VACIO");
+            Alertas.alertaError("E-Mail VACIO");
             return false;
         }
         return pat.matcher(email).matches();
-    }
-
-    private static void alertaError(String msg){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("ERROR");
-        alert.setContentText(msg);
-        alert.showAndWait();
     }
 }

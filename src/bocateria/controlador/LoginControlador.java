@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,17 +50,20 @@ public class LoginControlador {
     }
 
     @FXML
-    public void login() throws ExcepcionBocateria {
+    public void login() throws ExcepcionBocateria, SQLException {
+        if(usuario.getText().equals("") || pwd.getText().equals(""))
 
         usuarioVO.setUsuario(usuario.getText());
         usuarioVO.setContrasena(pwd.getText());
         System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
+
         if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ACCESO CONCEDIDO");
             alert.setHeaderText("Acceso concedido");
             alert.setContentText("Has acertado el usuario y la contraseña");
             alert.showAndWait();
+            mainApp.getPrimaryStage().close();
             mainApp.initVistaPrincipal();
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

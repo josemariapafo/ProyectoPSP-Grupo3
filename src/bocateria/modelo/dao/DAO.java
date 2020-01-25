@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface DAO<T> {
-    public boolean alta(T t)throws ExcepcionBocateria;
-    public boolean modificar(T t)throws ExcepcionBocateria;
-    public boolean eliminar(T t)throws ExcepcionBocateria;
-    public List<T> obtenerTodos()throws ExcepcionBocateria;
-    public T obtener(T t) throws ExcepcionBocateria;
-    public T convertir(ResultSet rs) throws SQLException, ExcepcionBocateria;
+    boolean alta(T t) throws ExcepcionBocateria, SQLException;
+    boolean modificar(T t) throws ExcepcionBocateria, SQLException;
+    boolean eliminar(T t) throws ExcepcionBocateria, SQLException;
+    List<T> obtenerTodos() throws ExcepcionBocateria, SQLException;
+    T obtener(T t) throws ExcepcionBocateria, SQLException;
+    T convertir(ResultSet rs) throws SQLException, ExcepcionBocateria;
 }
