@@ -257,7 +257,7 @@ public class VpalController {
     @FXML
     void botonResta00() {
         p = getProductos().get(getIndexInicial());
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad00.setText("" + (Integer.valueOf(cantidad00.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -266,7 +266,7 @@ public class VpalController {
     @FXML
     void botonResta01() {
         p = getProductos().get(getIndexInicial() + 1);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad01.setText("" + (Integer.valueOf(cantidad01.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -275,7 +275,7 @@ public class VpalController {
     @FXML
     void botonResta02() {
         p = getProductos().get(getIndexInicial() + 2);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad02.setText("" + (Integer.valueOf(cantidad02.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -284,7 +284,7 @@ public class VpalController {
     @FXML
     void botonResta03() {
         p = getProductos().get(getIndexInicial() + 3);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad03.setText("" + (Integer.valueOf(cantidad03.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -293,7 +293,7 @@ public class VpalController {
     @FXML
     void botonResta04() {
         p = getProductos().get(getIndexInicial() + 4);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad04.setText("" + (Integer.valueOf(cantidad04.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -302,7 +302,7 @@ public class VpalController {
     @FXML
     void botonResta10() {
         p = getProductos().get(getIndexInicial() + 5);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad10.setText("" + (Integer.valueOf(cantidad10.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -311,7 +311,7 @@ public class VpalController {
     @FXML
     void botonResta11() {
         p = getProductos().get(getIndexInicial() + 6);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad12.setText("" + (Integer.valueOf(cantidad11.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -320,7 +320,7 @@ public class VpalController {
     @FXML
     void botonResta12() {
         p = getProductos().get(getIndexInicial() + 7);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad12.setText("" + (Integer.valueOf(cantidad12.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -329,7 +329,7 @@ public class VpalController {
     @FXML
     void botonResta13() {
         p = getProductos().get(getIndexInicial() + 8);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad13.setText("" + (Integer.valueOf(cantidad13.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
@@ -338,7 +338,7 @@ public class VpalController {
     @FXML
     void botonResta14() {
         p = getProductos().get(getIndexInicial() + 9);
-        if (p.getCantidad() < p.getStock()) {
+        if (p.getCantidad() > 0) {
             cantidad14.setText("" + (Integer.valueOf(cantidad14.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
         }
