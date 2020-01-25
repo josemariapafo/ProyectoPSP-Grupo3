@@ -1,6 +1,6 @@
 package bocateria;
 
-import bocateria.controlador.CarritoController;
+import bocateria.vista.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.vista.VpalController;
 import bocateria.controlador.RegistroControlador;
@@ -19,7 +19,6 @@ public class Main extends Application {
     Stage primaryStage;
     AnchorPane rootLayout;
     Model model= new Model();
-
 
     public Model getModel() {
         return model;
@@ -138,7 +137,7 @@ public class Main extends Application {
             // Set the usuarioVO into the controller.
             VpalController controller = loader.getController();
             controller.setMainApp(this);
-            controller.loadUI();
+            //controller.loadUI();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

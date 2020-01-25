@@ -1,5 +1,9 @@
 package bocateria.modelo.vo;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -10,24 +14,31 @@ import java.sql.Blob;
 
 public class ProductoVO {
     private int codigo;
-    private String nombre;
+    private StringProperty nombre;
     private String descripcion;
     private Image foto;
     private String rutaImg;
     private Double precio;
     private int stock;
-    private int cantidad;
+    private IntegerProperty cantidad;
 
     public ProductoVO() {
     }
 
     public ProductoVO(String nombre, String descripcion, Image foto, Double precio) {
-        this.nombre = nombre;
+        this.nombre =  new SimpleStringProperty(nombre);
         this.descripcion = descripcion;
         this.precio = precio;
         this.foto = foto;
+        this.cantidad = new SimpleIntegerProperty(0);
     }
 
+    public StringProperty getNombreProperty(){
+        return nombre;
+    }
+    public IntegerProperty getCantidadProperty(){
+        return cantidad;
+    }
     public int getStock() {
         return stock;
     }
@@ -37,11 +48,11 @@ public class ProductoVO {
     }
 
     public int getCantidad() {
-        return cantidad;
+        return cantidad.get();
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        this.cantidad.set(cantidad);
     }
 
     public int getCodigo() {
@@ -53,11 +64,11 @@ public class ProductoVO {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre.set(nombre);
     }
 
     public String getDescripcion() {

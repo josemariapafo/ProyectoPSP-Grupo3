@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="287.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.controlador.CarritoController">
+<AnchorPane prefHeight="287.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.CarritoController">
    <children>
       <Label layoutX="149.0" layoutY="14.0" prefHeight="52.0" prefWidth="114.0" text="Carrito">
          <font>
@@ -16,6 +16,11 @@
       <Label layoutX="296.0" layoutY="82.0" text="0,00$" />
       <Button layoutX="225.0" layoutY="124.0" mnemonicParsing="false" onAction="#hacerPedido" prefHeight="27.0" prefWidth="127.0" text="Hacer el Pedido" />
       <Label layoutX="32.0" layoutY="82.0" text="Lista de Artículo:" />
-      <ListView fx:id="list" layoutX="6.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="104.0" prefHeight="174.0" prefWidth="169.0">
+        <columns>
+          <TableColumn fx:id="nombreColum" prefWidth="75.0" text="Nombre " />
+          <TableColumn fx:id="cantidadColum" prefWidth="93.0" text="Cantidad" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
