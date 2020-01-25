@@ -53,7 +53,8 @@ public class LoginControlador {
     @FXML
     public void login() throws ExcepcionBocateria, SQLException {
         if(usuario.getText().equals("") || pwd.getText().equals(""))
-            Alertas.alertaAviso("Algún campo esta vacio");
+            Alertas.alertaAviso("Algún campo está vacio");
+
         usuarioVO.setUsuario(usuario.getText());
         usuarioVO.setContrasena(pwd.getText());
         System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
