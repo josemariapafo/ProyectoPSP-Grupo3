@@ -7,6 +7,7 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -37,6 +38,8 @@ public class RegistroControlador {
     TextField telefono;
     @FXML
     TextField email;
+    @FXML
+    CheckBox admin;
 
     @FXML
     public void handleAceptar() throws ExcepcionBocateria, SQLException {
