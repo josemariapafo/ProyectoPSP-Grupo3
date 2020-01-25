@@ -1,6 +1,6 @@
 package bocateria;
 
-import bocateria.controlador.CarritoController;
+import bocateria.vista.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
