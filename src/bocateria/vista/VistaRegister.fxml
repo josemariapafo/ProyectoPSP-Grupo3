@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="366.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.VistaRegister">
+<AnchorPane prefHeight="421.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.controlador.RegistroControlador">
    <children>
       <Label layoutX="71.0" layoutY="14.0" text="Registrarse">
          <font>
@@ -49,7 +48,8 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
-      <Button layoutX="122.0" layoutY="327.0" mnemonicParsing="false" text="Enviar" />
-      <Button layoutX="194.0" layoutY="327.0" mnemonicParsing="false" text="Borrar" />
+      <Button layoutX="118.0" layoutY="371.0" mnemonicParsing="false" text="Enviar" />
+      <Button layoutX="189.0" layoutY="371.0" mnemonicParsing="false" text="Borrar" />
+      <CheckBox fx:id="ad" disable="true" layoutX="16.0" layoutY="328.0" mnemonicParsing="false" text="Admin" visible="false" />
    </children>
 </AnchorPane>
