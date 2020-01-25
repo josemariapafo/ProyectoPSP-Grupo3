@@ -2,7 +2,7 @@ package bocateria;
 
 import bocateria.controlador.CarritoController;
 import bocateria.controlador.LoginControlador;
-import bocateria.controlador.VpalController;
+import bocateria.vista.VpalController;
 import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
@@ -14,7 +14,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class Main extends Application {
     Stage primaryStage;
@@ -139,6 +138,7 @@ public class Main extends Application {
             // Set the usuarioVO into the controller.
             VpalController controller = loader.getController();
             controller.setMainApp(this);
+            controller.loadUI();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
