@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="913.0" prefWidth="1283.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.VpalController">
+    <children>
+        <Label layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="247.0" text="BOCATERÍA JOSEB">
+            <font>
+                <Font size="27.0" />
+            </font>
+        </Label>
+        <Button layoutX="1138.0" layoutY="851.0" mnemonicParsing="false" onAction="#pulsarBotonComprar" prefHeight="32.0" prefWidth="87.0" text="Comprar" />
+        <Button layoutX="1054.0" layoutY="851.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="Chatear" />
+        <GridPane layoutX="17.0" layoutY="77.0" prefHeight="732.0" prefWidth="1239.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox fx:id="v00" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <ImageView fx:id="img00" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label fx:id="nombre00" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio00" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion00" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta00" text="-" />
+                                <Label fx:id="cantidad00" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma00" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v01" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                    <children>
+                        <ImageView fx:id="img01" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre01" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio01" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion01" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta01" text="-" />
+                                <Label fx:id="cantidad01" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma01" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v02" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                    <children>
+                        <ImageView fx:id="img02" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre02" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio02" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion02" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta02" text="-" />
+                                <Label fx:id="cantidad02" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma02" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v03" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                    <children>
+                        <ImageView fx:id="img03" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre03" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio03" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion03" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta03" text="-" />
+                                <Label fx:id="cantidad03" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma03" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v04" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                    <children>
+                        <ImageView fx:id="img04" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre04" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio04" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion04" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta04" text="-" />
+                                <Label fx:id="cantidad04" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma04" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v10" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                    <children>
+                        <ImageView fx:id="img10" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre10" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio10" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcio10" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta10" text="-" />
+                                <Label fx:id="cantidad10" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma10" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v11" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <ImageView fx:id="img11" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre11" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio11" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion11" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta11" text="-" />
+                                <Label fx:id="cantidad11" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma11" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v12" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <children>
+                        <ImageView fx:id="img12" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre12" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio12" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion12" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta12" text="-" />
+                                <Label fx:id="cantidad12" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma12" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v13" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <children>
+                        <ImageView fx:id="img13" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre13" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio13" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion13" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta13" text="-" />
+                                <Label fx:id="cantidad13" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma13" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="v14" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                    <children>
+                        <ImageView fx:id="img14" fitHeight="242.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                        <GridPane>
+                            <children>
+                                <Label fx:id="nombre14" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="precio14" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descripcion14" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Descripción:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                <Label text="Precio:" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" />
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="75.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="72.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#botonResta14" text="-" />
+                                <Label fx:id="cantidad14" text="0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#botonSuma14" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+        <Button fx:id="regSandwich" disable="true" layoutX="22.0" layoutY="851.0" mnemonicParsing="false" onAction="#initRegistrarSandwich" prefHeight="32.0" prefWidth="132.0" text="Registrar Sandwich" visible="false" />
+      <HBox layoutX="609.0" layoutY="851.0" prefHeight="25.0" prefWidth="107.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#loadUIBack" text="&lt;&lt;">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadUI" text="&gt;&gt;">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
