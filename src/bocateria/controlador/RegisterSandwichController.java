@@ -50,7 +50,6 @@ public class RegisterSandwichController {
             alert.setHeaderText("Alta realizada con éxito");
             alert.setContentText("SE REALIZÓ EL ALTA");
             alert.showAndWait();
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("NO SE REALIZÓ EL ALTA");

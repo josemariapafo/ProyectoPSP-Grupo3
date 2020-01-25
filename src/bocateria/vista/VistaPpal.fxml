@@ -14,6 +14,7 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Button layoutX="476.0" layoutY="347.0" mnemonicParsing="false" onAction="#pulsarBotonComprar" prefHeight="32.0" prefWidth="87.0" text="Comprar" />
+      <Button  layoutX="476.0" layoutY="347.0" mnemonicParsing="false" onAction="#pulsarBotonComprar" prefHeight="32.0" prefWidth="87.0" text="Comprar" />
+      <Button layoutX="52.0" layoutY="347.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="Chatear" />
    </children>
 </AnchorPane>
