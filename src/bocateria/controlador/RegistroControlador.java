@@ -42,7 +42,7 @@ public class RegistroControlador {
         if(compruebaPwd() && compruebaEmail(email.getText())) {
             u = new UsuarioVO(nombre.getText(),apellido.getText(),email.getText(),usuario.getText(),pwd.getText(),direccion.getText(),localidad.getText(),telefono.getText());
         }
-        if (main.getBdManager().getUsuarioDAO().alta(u)) {
+        if (main.getModel().altaUsuario(u)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alta realizada con éxito");
             alert.setHeaderText("Alta realizada con éxito");

@@ -4,7 +4,7 @@ import bocateria.controlador.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.controlador.VpalController;
 import bocateria.controlador.RegistroControlador;
-import bocateria.modelo.dao.bd.BDManager;
+import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,26 +19,19 @@ import java.sql.SQLException;
 public class Main extends Application {
     Stage primaryStage;
     AnchorPane rootLayout;
-    BDManager bdManager;
+    Model model= new Model();
 
-    {
-        try {
-            bdManager = new BDManager();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public BDManager getBdManager() {
-        return bdManager;
+    public Model getModel() {
+        return model;
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public void setBdManager(BDManager bdManager) {
-        this.bdManager = bdManager;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     @Override
@@ -145,7 +138,7 @@ public class Main extends Application {
 
             // Set the usuarioVO into the controller.
             VpalController controller = loader.getController();
-            //controller.setMainApp(this);
+            controller.setMainApp(this);
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -155,7 +148,7 @@ public class Main extends Application {
         }
     }
 
-    public void initVistaCartera(){
+    public void initVistaCarrito(){
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -172,6 +165,7 @@ public class Main extends Application {
 
             // Set the usuarioVO into the controller.
             CarritoController controller = loader.getController();
+            controller.setMainApp(this);
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

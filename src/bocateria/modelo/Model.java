@@ -13,21 +13,26 @@ public class Model {
     private BDManager bdManager;
 
     //METODOS USUARIO
-    public void altaUsuario(UsuarioVO usuarioVO){
+    public boolean altaUsuario(UsuarioVO usuarioVO){
         try {
             bdManager.getUsuarioDAO().alta(usuarioVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error enel alta del usuario");
             excepcionBocateria.printStackTrace();
+            return false;
         }
     }
-    public void eliminarUsuario(UsuarioVO usuarioVO){
+    public boolean eliminarUsuario(UsuarioVO usuarioVO){
         try {
             bdManager.getUsuarioDAO().eliminar(usuarioVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error en la eliminacion");
             excepcionBocateria.printStackTrace();
+            return false;
         }
+
     }
     public List<UsuarioVO> obtenerTodosUsuarios(){
         try {
@@ -39,20 +44,25 @@ public class Model {
         return null;
     }
     //METODOS DE LOS PEDIDOS
-    public void altaPedido(PedidoVO pedidoVO){
+    /*public boolean altaPedido(PedidoVO pedidoVO){
         try {
+            return true;
             bdManager.getPedidoDAO().alta(pedidoVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error en el alta del pedido");
             excepcionBocateria.printStackTrace();
+            return false;
         }
-    }
-    public void eliminarPedido(PedidoVO pedidoVO) {
+    }*/
+    public boolean eliminarPedido(PedidoVO pedidoVO) {
         try {
             bdManager.getPedidoDAO().eliminar(pedidoVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error al eliminar el Pedido");
             excepcionBocateria.printStackTrace();
+            return false;
         }
     }
     public List<PedidoVO> obtenerTodosPedidos(){
@@ -65,20 +75,24 @@ public class Model {
         return null;
     }
     //METODOS  DE PRODUCTOS
-    public void altaProducto(ProductoVO productoVO){
+    public boolean altaProducto(ProductoVO productoVO){
         try {
             bdManager.getProductoDAO().alta(productoVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error en el alta del Producto");
             excepcionBocateria.printStackTrace();
+            return false;
         }
     }
-    public void eliminarProducto(ProductoVO productoVO){
+    public boolean eliminarProducto(ProductoVO productoVO){
         try {
             bdManager.getProductoDAO().eliminar(productoVO);
+            return true;
         } catch (ExcepcionBocateria excepcionBocateria) {
             System.out.println("Error en la eliminación del producto");
             excepcionBocateria.printStackTrace();
+            return false;
         }
     }
     public List<ProductoVO> obtenerTodosProductos(){

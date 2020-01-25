@@ -44,7 +44,7 @@ public class RegisterSandwichController {
         p.setDescripcion(descripcion.getText());
         p.setRutaImg(rutaImg.getText());
         p.setPrecio(Double.valueOf(precio.getText()));
-        if (mainApp.getBdManager().getProductoDAO().alta(p)) {
+        if (mainApp.getModel().altaProducto(p)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alta realizada con éxito");
             alert.setHeaderText("Alta realizada con éxito");

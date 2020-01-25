@@ -57,6 +57,7 @@ public class LoginControlador {
             alert.setHeaderText("Acceso concedido");
             alert.setContentText("Has acertado el usuario y la contraseña");
             alert.showAndWait();
+            mainApp.initVistaPrincipal();
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ACCESO NO PERMITIDO");
