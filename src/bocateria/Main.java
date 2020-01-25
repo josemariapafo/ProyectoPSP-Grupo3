@@ -165,7 +165,9 @@ public class Main extends Application {
 
             // Set the usuarioVO into the controller.
             CarritoController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
+            controller.cargarComponentes();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

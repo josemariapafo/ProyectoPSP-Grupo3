@@ -4,10 +4,7 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.PedidoDAO;
 import bocateria.modelo.vo.PedidoVO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +26,8 @@ public class BDPedido implements PedidoDAO {
 
     @Override
     public boolean alta(PedidoVO pedidoVO) throws ExcepcionBocateria {
-        String query2 = "insert into pedido(usuario,pedidoId,precio,cantidad) values('"
-                + pedidoVO.getUsuario() + "'," + pedidoVO.getPedidoId() + "," + pedidoVO.getPrecio() + ","
-                + pedidoVO.getCantidad() +")";
+        String query2 = "insert into pedido(total,fecha) values("
+                + pedidoVO.getTotal() + ",SYSDATE)";
         Statement stmt2;
         try {
             stmt2 = conexion.createStatement();
@@ -40,7 +36,6 @@ public class BDPedido implements PedidoDAO {
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error al introducir un Pedido");
         }
-
     }
 
     @Override
@@ -108,5 +103,47 @@ public class BDPedido implements PedidoDAO {
     @Override
     public PedidoVO convertir(ResultSet rs) throws ExcepcionBocateria{
         return null;
+    }
+
+    @Override
+    public boolean insertarPedidoProducto(int idPedido,int idProducto,int cantidad) throws ExcepcionBocateria{
+        PreparedStatement stmt = null;
+        boolean efectuado = false;
+        try {
+                stmt = conexion.prepareStatement(INSERT_PEDPROD);
+
+            stmt.setInt(1, idPedido);
+            stmt.setInt(2, idProducto);
+            stmt.setInt(3, cantidad);
+
+            if (stmt.executeUpdate() == 0)
+                throw new ExcepcionBocateria("Insert Pedido Producto no realizado");
+            else
+                efectuado = true;
+        } catch (SQLException | ExcepcionBocateria e) {
+            e.printStackTrace();
+        }
+        return efectuado;
+    }
+
+    @Override
+    public boolean insertarUsuarioPedido(String idUsuario,int idPedido) throws ExcepcionBocateria{
+        PreparedStatement stmt = null;
+        boolean efectuado = false;
+        try {
+            stmt = conexion.prepareStatement(INSERT_USUPED);
+
+            stmt.setString(1, idUsuario);
+            stmt.setInt(2, idPedido);
+
+            if (stmt.executeUpdate() == 0)
+                throw new ExcepcionBocateria("Insert Usuario Pedido no realizado");
+            else
+                efectuado = true;
+        } catch (SQLException | ExcepcionBocateria e) {
+            e.printStackTrace();
+        }
+        return efectuado;
+
     }
 }

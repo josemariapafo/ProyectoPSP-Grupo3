@@ -13,4 +13,5 @@ public interface DAO<T> {
     List<T> obtenerTodos() throws ExcepcionBocateria, SQLException;
     T obtener(T t) throws ExcepcionBocateria, SQLException;
     T convertir(ResultSet rs) throws SQLException, ExcepcionBocateria;
+
 }

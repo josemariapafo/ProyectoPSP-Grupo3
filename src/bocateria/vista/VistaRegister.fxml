@@ -50,6 +50,6 @@
       </GridPane>
       <Button layoutX="118.0" layoutY="371.0" mnemonicParsing="false" text="Enviar" />
       <Button layoutX="189.0" layoutY="371.0" mnemonicParsing="false" text="Borrar" />
-      <CheckBox fx:id="ad" disable="true" layoutX="16.0" layoutY="328.0" mnemonicParsing="false" text="Admin" visible="false" />
+      <CheckBox fx:id="admin" disable="true" layoutX="16.0" layoutY="328.0" mnemonicParsing="false" text="Admin" visible="false" />
    </children>
 </AnchorPane>

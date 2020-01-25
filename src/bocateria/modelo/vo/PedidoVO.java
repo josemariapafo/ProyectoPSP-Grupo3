@@ -5,6 +5,7 @@ public class PedidoVO {
     int pedidoId;
     Double precio;
     int cantidad;
+    double total;
 
     public PedidoVO(String usuario, int pedidoId, Double precio, int cantidad) {
         this.usuario = usuario;
@@ -18,6 +19,14 @@ public class PedidoVO {
 
     public String getUsuario() {
         return usuario;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public void setUsuario(String usuario) {

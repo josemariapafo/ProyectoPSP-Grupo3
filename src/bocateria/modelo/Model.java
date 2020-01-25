@@ -52,6 +52,7 @@ public class Model {
         return pwd.equals(u.getContrasena());
     }
     //METODOS DE LOS PEDIDOS
+
     /*public boolean altaPedido(PedidoVO pedidoVO){
         try {
             return true;
@@ -82,6 +83,13 @@ public class Model {
             excepcionBocateria.printStackTrace();
         }
         return null;
+    }
+    public boolean insertarPedido(PedidoVO pedidoVO) throws ExcepcionBocateria, SQLException {
+        return bdManager.getPedidoDAO().alta(pedidoVO);
+    }
+
+    public boolean insertarPedidoProducto(int idPedido,int idProducto,int cantidad) throws ExcepcionBocateria {
+        return bdManager.getPedidoDAO().insertarPedidoProducto(idPedido,idProducto,cantidad);
     }
 
     //METODOS  DE PRODUCTOS

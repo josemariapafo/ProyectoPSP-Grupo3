@@ -1,6 +1,7 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class LoginControlador {
     @FXML
     public void login() throws ExcepcionBocateria, SQLException {
         if(usuario.getText().equals("") || pwd.getText().equals(""))
-
+            Alertas.alertaAviso("Algún campo esta vacio");
         usuarioVO.setUsuario(usuario.getText());
         usuarioVO.setContrasena(pwd.getText());
         System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
