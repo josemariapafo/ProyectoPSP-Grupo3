@@ -13,14 +13,21 @@
          </font>
       </Label>
       <Label layoutX="225.0" layoutY="77.0" prefHeight="27.0" prefWidth="54.0" text="Total" />
-      <Label layoutX="296.0" layoutY="82.0" text="0,00$" />
+      <Label fx:id="total" layoutX="296.0" layoutY="82.0" text="0,00$" />
       <Button layoutX="225.0" layoutY="124.0" mnemonicParsing="false" onAction="#hacerPedido" prefHeight="27.0" prefWidth="127.0" text="Hacer el Pedido" />
       <Label layoutX="32.0" layoutY="82.0" text="Lista de Artículo:" />
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="104.0" prefHeight="174.0" prefWidth="169.0">
-        <columns>
-          <TableColumn fx:id="nombreColum" prefWidth="75.0" text="Nombre " />
-          <TableColumn fx:id="cantidadColum" prefWidth="93.0" text="Cantidad" />
-        </columns>
-      </TableView>
+      <GridPane layoutX="13.0" layoutY="124.0" prefHeight="127.0" prefWidth="206.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox fx:id="hBoxNombre" prefHeight="100.0" prefWidth="200.0" />
+            <HBox fx:id="hBoxCantidad" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

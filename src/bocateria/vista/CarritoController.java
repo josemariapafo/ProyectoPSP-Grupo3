@@ -30,6 +30,10 @@ public class CarritoController {
     TableColumn<ProductoVO, String> nombreColum;
     @FXML
     TableColumn<ProductoVO, String> cantidadColum;
+    @FXML
+    HBox hBoxNombre;
+    @FXML
+    HBox hBoxCantidad;
 
 
     Main mainApp;
@@ -49,8 +53,7 @@ public class CarritoController {
         this.mainApp = main;
     }
 
-    public void visualizarListaProductos(){
-
+    public void cargarLista(){
         ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8);
         p1.setStock(5);
         p1.setCantidad(56);
@@ -59,28 +62,37 @@ public class CarritoController {
         p2.setCantidad(23);
         listaProductos.add(p1);
         listaProductos.add(p2);
+    }
+    public void visualizarNombreProductos(){
+        ListView list = new ListView();
+        list.getItems().add(listaProductos.get(0).getNombre()+" ");
+        list.getItems().add(listaProductos.get(1).getNombre()+" ");
+        hBoxNombre = new HBox(list);
 
-       /* ListView list = new ListView();
-        list.getItems().add(listaProductos.get(0).getNombre()+" "+listaProductos.get(0).getCantidad());
-        list.getItems().add(listaProductos.get(1).getNombre()+" "+listaProductos.get(1).getCantidad());
-        HBox hbox = new HBox(list);
-
-        Scene scene = new Scene(hbox, 300, 120);
+        Scene scene = new Scene(hBoxNombre);
         dialogStage.setScene(scene);
-        dialogStage.show();*/
+        dialogStage.show();
+    }
 
-        ObservableList<ProductoVO> observable = FXCollections.observableArrayList();
-        observable.addAll(listaProductos);
+    public void visualizarPrecioProductos(){
+        ListView list = new ListView();
+        list.getItems().add(listaProductos.get(0).getCantidad()+" ");
+        list.getItems().add(listaProductos.get(1).getCantidad()+" ");
+        hBoxCantidad = new HBox(list);
 
-        tableView.setItems(observable);
+        Scene scene = new Scene(hBoxNombre);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
 
-        nombreColum.setCellValueFactory(cellData -> cellData.getValue().getNombreProperty());
-        //cantidadColum.setCellValueFactory(cellData -> cellData.getValue().getCantidadProperty());
+    public void visualizarListaProductos(){
 
-
+        visualizarNombreProductos();
+        visualizarPrecioProductos();
     }
 
     public void cargarComponentes(){
+        cargarLista();
         visualizarListaProductos();
         calcularTotal();
     }
