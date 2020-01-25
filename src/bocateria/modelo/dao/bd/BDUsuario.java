@@ -10,9 +10,7 @@ import java.util.List;
 
 public class BDUsuario implements UsuarioDAO {
     private Connection conn;
-    /*Crear sentencias y hacer funcionar el alta de usuarios, primero crear un usuario admin
-        recordar quitar admin para los siguientes usuarios
-    */
+
 
     private final String INSERT = "INSERT INTO USUARIO (USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN) VALUES (?,?,?,?,?,?,?,?,0)";
     private final String INSERTADMIN = "INSERT INTO USUARIO (USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN) VALUES (?,?,?,?,?,?,?,?,1)";
