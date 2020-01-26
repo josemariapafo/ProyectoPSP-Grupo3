@@ -169,14 +169,17 @@ public class VpalController {
     }
 
     @FXML
-    public void loadUIBack() {
-        despejaPanel();
+    public void loadUIBack() throws ExcepcionBocateria, SQLException {
+        /*despejaPanel();
 
         for (int panel = 9; panel > -1 && (getIndexActual() > -1); panel++) {
             loadPanel(panel);
             setIndexActual(getIndexActual() - 1);
         }
+        setIndexInicial(getIndexActual());*/
+        setIndexActual(getIndexActual()-10);
         setIndexInicial(getIndexActual());
+        loadUI();
     }
 
 
