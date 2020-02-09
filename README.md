@@ -337,7 +337,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 ## 3. Actividad 4(Diagramas)
 
 <p align="center">
-<img src="/recursos/digramaModelo1.PNG"/>
+<img src="/recursos/clasdigv2.png"/>
 </p>
 <p align="center">
 <img src="/recursos/diagramaEntidadRelacion.PNG"/>
