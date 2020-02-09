@@ -358,7 +358,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 <img src="/recursos/vistas/registro.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/registroSand.PNG"/>
+<img src="/recursos/vistas/registroSand.PNG"/>
 </p>
 <p align="center">
 <img src="/recursos/viewChat.png"/>
