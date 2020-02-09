@@ -4,12 +4,11 @@ import bocateria.vista.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
-import bocateria.vista.VpalController;
+import bocateria.controlador.VpalController;
 import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -23,7 +22,7 @@ import java.util.List;
 public class Main extends Application {
     Stage primaryStage;
     AnchorPane rootLayout;
-    Model model= new Model();
+    Model model = new Model();
     UsuarioVO usuario;
     List<ProductoVO> listaCarrito = new ArrayList<>();
 
@@ -41,7 +40,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         showLogIn();
 
@@ -57,7 +56,7 @@ public class Main extends Application {
             // Load login overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("vista/VistaLogin.fxml"));
-            AnchorPane vistaLogin = (AnchorPane) loader.load();
+            AnchorPane vistaLogin = loader.load();
 
             Scene scene = new Scene(vistaLogin);
             primaryStage.setScene(scene);
@@ -72,34 +71,34 @@ public class Main extends Application {
         }
     }
 
-    public void initRegistro(){
-            try {
-                // Load the fxml file and create a new stage for the popup dialog.
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("vista/VistaRegistro.fxml"));
-                AnchorPane page = loader.load();
+    public void initRegistro() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaRegistro.fxml"));
+            AnchorPane page = loader.load();
 
-                // Create the dialog Stage.
-                Stage dialogStage = new Stage();
-                dialogStage.setTitle("Edit Person");
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initOwner(primaryStage);
-                Scene scene = new Scene(page);
-                dialogStage.setScene(scene);
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
 
-                // Set the usuarioVO into the controller.
-                RegistroControlador controller = loader.getController();
-                controller.setDialogStage(dialogStage);
-                controller.setMainApp(this);
+            // Set the usuarioVO into the controller.
+            RegistroControlador controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
 
-                // Show the dialog and wait until the user closes it
-                dialogStage.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-    public void initRegistroSandwich(){
+    public void initRegistroSandwich(/*VpalController c*/) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -118,7 +117,7 @@ public class Main extends Application {
             RegisterSandwichController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
-
+            /*controller.setController(c);*/
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (Exception e) {
@@ -127,7 +126,7 @@ public class Main extends Application {
     }
 
 
-    public void initVistaPrincipal(){
+    public void initVistaPrincipal() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -147,7 +146,7 @@ public class Main extends Application {
             controller.setMainApp(this);
             controller.setUsuario(getUsuario());
             controller.setProductos();
-            controller.loadUI();
+            controller.load();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -157,7 +156,7 @@ public class Main extends Application {
         }
     }
 
-    public void initVistaCarrito(){
+    public void initVistaCarrito() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -185,10 +184,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    public void setUsuario(UsuarioVO u){
+
+    public void setUsuario(UsuarioVO u) {
         this.usuario = u;
     }
-    public UsuarioVO getUsuario(){
+
+    public UsuarioVO getUsuario() {
         return usuario;
     }
 
