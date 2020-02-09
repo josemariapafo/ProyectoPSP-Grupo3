@@ -346,16 +346,19 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
 <a name="3"></a>
 ## 4. Actividad 5(Vistas)
 <p align="center">
-<img src="/recursos/viewMain.png"/>
+<img src="/recursos/vistas/ppal.PNG"/>
 </p>
 <p align="center">
 <img src="/recursos/Cart.png"/>
 </p>
 <p align="center">
-<img src="/recursos/viewRegister.png"/>
+<img src="/recursos/vistas/login.PNG"/>
 </p>
 <p align="center">
-<img src="/recursos/AdministratorSandwichRegister.png"/>
+<img src="/recursos/vistas/registro.PNG"/>
+</p>
+<p align="center">
+<img src="/recursos/registroSand.PNG"/>
 </p>
 <p align="center">
 <img src="/recursos/viewChat.png"/>
