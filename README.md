@@ -407,8 +407,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
   <img src="/recursos/clase3.png"/>
   <img src="/recursos/clase4.png"/>
   <img src="/recursos/clase5.png"/>
-  <img src="/recursos/clase6.png"/>
-  <img src="/recursos/clase7.png"/>
+  <img src="/recursos/vpalController.png"/>
  </p>
  <h1>Diagrama de Sequencia</h1>
  <p align="center">
