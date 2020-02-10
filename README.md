@@ -402,17 +402,17 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  <h1>Caso de Uso: Registro de Sandwich</h1>
  <h1>Clases que intervienen:</h1>
   <p align="center">
-  <img src="/recursos/clase1.PNG"/>
-  <img src="/recursos/clase2.PNG"/>
-  <img src="/recursos/clase3.PNG"/>
-  <img src="/recursos/clase4.PNG"/>
-  <img src="/recursos/clase5.PNG"/>
-  <img src="/recursos/clase6.PNG"/>
-  <img src="/recursos/clase7.PNG"/>
+  <img src="/recursos/clase1.png"/>
+  <img src="/recursos/clase2.png"/>
+  <img src="/recursos/clase3.png"/>
+  <img src="/recursos/clase4.png"/>
+  <img src="/recursos/clase5.png"/>
+  <img src="/recursos/clase6.png"/>
+  <img src="/recursos/clase7.png"/>
  </p>
  <h1>Diagrama de Sequencia</h1>
  <p align="center">
-  <img src="/recursos/dc1.PNG"/>
-  <img src="/recursos/dc2.PNG"/>
+  <img src="/recursos/dc1.png"/>
+  <img src="/recursos/dc2.png"/>
   <img src="/recursos/dc3.png"/>
  </p>
