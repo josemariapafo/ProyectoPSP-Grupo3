@@ -143,8 +143,8 @@ public class VpalController {
         return productos;
     }
 
-
-    public void load() throws ExcepcionBocateria, SQLException {
+    @FXML
+    public void initialize() throws ExcepcionBocateria, SQLException {
         if (mainApp.getModel().compruebaAdmin(usuario))
             loadAdminUI();
         setIndexInicial(getIndexActual());
