@@ -413,6 +413,4 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  <h1>Diagrama de Sequencia</h1>
  <p align="center">
   <img src="/recursos/dc1.png"/>
-  <img src="/recursos/dc2.png"/>
-  <img src="/recursos/dc3.png"/>
  </p>
