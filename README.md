@@ -414,5 +414,5 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  <p align="center">
   <img src="/recursos/dc1.PNG"/>
   <img src="/recursos/dc2.PNG"/>
-  <img src="/recursos/dc3.PNG"/>
+  <img src="/recursos/dc3.png"/>
  </p>
