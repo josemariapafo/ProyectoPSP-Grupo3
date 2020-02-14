@@ -31,7 +31,7 @@ public class BDManager implements DAOManager {
     }
 
     public void conectar() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/bocateria", "root", "");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/bocateria?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET", "root", "");
     }
 
     @Override

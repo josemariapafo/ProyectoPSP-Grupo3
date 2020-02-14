@@ -146,6 +146,7 @@ public class Main extends Application {
             controller.setMainApp(this);
             controller.setUsuario(getUsuario());
             controller.setProductos();
+            controller.load();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
