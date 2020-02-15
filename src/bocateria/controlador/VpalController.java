@@ -147,8 +147,8 @@ public class VpalController {
     public void load() throws ExcepcionBocateria, SQLException {
         if (mainApp.getModel().compruebaAdmin(usuario))
             loadAdminUI();
-        setIndexInicial(getIndexActual());
-        despejaPanel();
+            setIndexInicial(getIndexActual());
+            despejaPanel();
         if(getProductos().size()<11)
             hBot.setVisible(false);
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {

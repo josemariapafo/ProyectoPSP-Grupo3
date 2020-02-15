@@ -27,11 +27,16 @@ public class BDPedido implements PedidoDAO {
     @Override
     public boolean alta(PedidoVO pedidoVO) throws ExcepcionBocateria {
         String query2 = "insert into pedido(total,fecha) values("
-                + pedidoVO.getTotal() + ",SYSDATE)";
+                + pedidoVO.getTotal() + ",'SYSDATE')";
+        System.out.printf("Precio total del pedido desde el alta: "+pedidoVO.getTotal());
+
         Statement stmt2;
         try {
             stmt2 = conexion.createStatement();
+            System.out.println("1111111");
+
             stmt2.executeUpdate(query2);
+            System.out.println("222222222222");
             return true;
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error al introducir un Pedido");
@@ -147,7 +152,7 @@ public class BDPedido implements PedidoDAO {
     }
 
     @Override
-    public int obtenerUltimaIDProducto() throws ExcepcionBocateria {
+    public int obtenerUltimaIDPedido() throws ExcepcionBocateria {
         int ultimaID = 0;
         String query1 = "select pedidoId,total,fecha from pedido";
         try {

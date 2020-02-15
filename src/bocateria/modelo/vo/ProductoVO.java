@@ -25,11 +25,21 @@ public class ProductoVO {
     public ProductoVO() {
     }
 
-    public ProductoVO(String nombre, String descripcion, Image foto, Double precio) {
+    public ProductoVO(String nombre, String descripcion, Image foto, Double precio, int stock,int cantidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.foto = foto;
+        this.stock = stock;
+        this.cantidad = cantidad;
+    }
+
+    public ProductoVO(String nombre, String descripcion, Image foto, Double precio, int stock) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.foto = foto;
+        this.stock = stock;
     }
 
     public int getStock() {
