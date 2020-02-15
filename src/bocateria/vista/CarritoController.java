@@ -14,10 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CarritoController {
 
@@ -68,10 +65,12 @@ public class CarritoController {
         listaProductos.add(p3);
         usuario.setUsuario("admin");
     }
-    public void visualizarNombreProductos(){
+
+    /*public void visualizarNombreProductos(){
         ListView list = new ListView();
         list.getItems().add(listaProductos.get(0).getNombre()+" ");
         list.getItems().add(listaProductos.get(1).getNombre()+" ");
+        list.getItems().add(listaProductos.get(2).getNombre()+" ");
         hBoxNombre = new HBox(list);
 
         Scene scene = new Scene(hBoxNombre);
@@ -83,6 +82,7 @@ public class CarritoController {
         ListView list = new ListView();
         list.getItems().add(listaProductos.get(0).getCantidad()+" ");
         list.getItems().add(listaProductos.get(1).getCantidad()+" ");
+        list.getItems().add(listaProductos.get(2).getCantidad()+" ");
         hBoxCantidad = new HBox(list);
 
         Scene scene = new Scene(hBoxNombre);
@@ -94,11 +94,11 @@ public class CarritoController {
 
         visualizarNombreProductos();
         visualizarPrecioProductos();
-    }
+    }*/
 
     public void cargarComponentes(){
         cargarLista();
-        //visualizarListaProductos();
+       // visualizarListaProductos();
         calcularTotal();
     }
 
