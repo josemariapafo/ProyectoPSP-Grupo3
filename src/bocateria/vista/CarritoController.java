@@ -66,7 +66,7 @@ public class CarritoController {
         listaProductos.add(p1);
         listaProductos.add(p2);
         listaProductos.add(p3);
-        usuario.set
+        usuario.setUsuario("admin");
     }
     public void visualizarNombreProductos(){
         ListView list = new ListView();
