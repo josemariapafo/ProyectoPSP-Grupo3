@@ -9,6 +9,8 @@ import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -25,7 +27,11 @@ public class Main extends Application {
     Model model = new Model();
     UsuarioVO usuario;
     List<ProductoVO> listaCarrito = new ArrayList<>();
+    private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
 
+    public ObservableList<ProductoVO> getCarritoData(){
+        return listaCarro;
+    }
 
     public Model getModel() {
         return model;
@@ -157,7 +163,7 @@ public class Main extends Application {
     }
 
     public void initVistaCarrito() {
-        try {
+       try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("vista/VistaCarrito.fxml"));
@@ -175,7 +181,7 @@ public class Main extends Application {
             CarritoController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
-            controller.cargarComponentes();
+            //controller.cargarComponentes();
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -183,6 +189,7 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void setUsuario(UsuarioVO u) {
@@ -199,6 +206,7 @@ public class Main extends Application {
 
     public void setListaCarrito(List<ProductoVO> listaCarrito) {
         this.listaCarrito = listaCarrito;
+        getCarritoData().addAll(listaCarrito);
     }
 
     public static void main(String[] args) {

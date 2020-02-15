@@ -21,6 +21,8 @@ public class ProductoVO {
     private Double precio;
     private int stock;
     private int cantidad;
+    public StringProperty nombreProperty;
+    public IntegerProperty cantidadProperty;
 
     public ProductoVO() {
     }
@@ -32,6 +34,8 @@ public class ProductoVO {
         this.foto = foto;
         this.stock = stock;
         this.cantidad = cantidad;
+        setNombreProperty(nombre);
+        setCantidadProperty(cantidad);
     }
 
     public ProductoVO(String nombre, String descripcion, Image foto, Double precio, int stock) {
@@ -110,5 +114,63 @@ public class ProductoVO {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public String getNombreProperty() {
+        return nombreProperty.get();
+    }
+
+    public StringProperty nombrePropertyProperty() {
+        return nombreProperty;
+    }
+
+    public void setNombreProperty(String nombreProperty) {
+        if(this.nombreProperty == null)
+            this.nombreProperty = new SimpleStringProperty(nombreProperty);
+        else
+            this.nombreProperty.set(nombreProperty);
+    }
+
+    public int getCantidadProperty() {
+        return cantidadProperty.get();
+    }
+
+    public IntegerProperty cantidadPropertyProperty() {
+        return cantidadProperty;
+    }
+
+    public void setCantidadProperty(int cantidadProperty) {
+        if(this.cantidadProperty == null)
+            this.cantidadProperty = new SimpleIntegerProperty(cantidadProperty);
+        else
+            this.cantidadProperty.set(cantidadProperty);
+    }
+
+    @Override
+    public String toString() {
+        return "ProductoVO{" +
+                "codigo=" + codigo +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", foto=" + foto +
+                ", rutaImg='" + rutaImg + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", cantidad=" + cantidad +
+                '}';
+    }
+    public String toString2() {
+        return "ProductoVO{" +
+                "codigo=" + codigo +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", foto=" + foto +
+                ", rutaImg='" + rutaImg + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", cantidad=" + cantidad +
+                ", nombreProperty=" + nombreProperty.get() +
+                ", cantidadProperty=" + cantidadProperty.get() +
+                '}';
     }
 }

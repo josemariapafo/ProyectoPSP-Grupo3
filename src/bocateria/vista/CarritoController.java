@@ -5,40 +5,37 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarritoController {
 
-    @FXML
-    HBox hbox;
+
     @FXML
     Label total;
     @FXML
-    TableView<ProductoVO> tableView;
+    private TableView<ProductoVO> tablaProductos;
     @FXML
-    TableColumn<ProductoVO, String> nombreColum;
+    private TableColumn<ProductoVO, String> columnaNombreProducto;
     @FXML
-    TableColumn<ProductoVO, String> cantidadColum;
-    @FXML
-    HBox hBoxNombre;
-    @FXML
-    HBox hBoxCantidad;
+    private TableColumn<ProductoVO, Integer> columnaCantidadProducto;
+
 
     //TENDRÉ QUE RECIBIR UN ARRAYLIST DE TODOS LOS PRODUCTOS DE LA VISTA PRINCIPAL
     //TENDRE QUE RECIBIR EL USUARIO LOGUEADO
 
     Main mainApp;
     private Stage dialogStage;
-    private ArrayList<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
+    private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
     double totalPrecio  = 0;
     UsuarioVO usuario = new UsuarioVO();
 
@@ -49,22 +46,34 @@ public class CarritoController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
     public void setMainApp(Main main){
         this.mainApp = main;
+        tablaProductos.setItems(main.getCarritoData());
+        listaProductos = new ArrayList<>(main.getCarritoData());
     }
 
-    public void cargarLista(){
-        ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8,5,20);
-        p1.setCodigo(1);
-        ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0,18,3);
-        p2.setCodigo(2);
-        ProductoVO p3 = new ProductoVO("Pizaa","Diforno dipiedra",null,4.0,25,3);
-        p3.setCodigo(3);
-        listaProductos.add(p1);
-        listaProductos.add(p2);
-        listaProductos.add(p3);
-        usuario.setUsuario("admin");
+    @FXML
+    private void initialize() {
+//        cargarLista();
+        // Initialize the person table with the two columns.
+
+        columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
+        columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
     }
+
+//    public void cargarLista(){
+//        ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8,5,20);
+//        p1.setCodigo(1);
+//        ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0,18,3);
+//        p2.setCodigo(2);
+//        ProductoVO p3 = new ProductoVO("Pizaa","Diforno dipiedra",null,4.0,25,3);
+//        p3.setCodigo(3);
+//        listaProductos.add(p1);
+//        listaProductos.add(p2);
+//        listaProductos.add(p3);
+//        usuario.setUsuario("admin");
+//    }
 
     /*public void visualizarNombreProductos(){
         ListView list = new ListView();
@@ -97,7 +106,7 @@ public class CarritoController {
     }*/
 
     public void cargarComponentes(){
-        cargarLista();
+//        cargarLista();
        // visualizarListaProductos();
         calcularTotal();
     }
