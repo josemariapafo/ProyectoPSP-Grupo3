@@ -58,11 +58,15 @@ public class CarritoController {
 
     public void cargarLista(){
         ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8,5,20);
+        p1.setCodigo(1);
         ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0,18,3);
+        p2.setCodigo(2);
         ProductoVO p3 = new ProductoVO("Pizaa","Diforno dipiedra",null,4.0,25,3);
+        p3.setCodigo(3);
         listaProductos.add(p1);
         listaProductos.add(p2);
         listaProductos.add(p3);
+        usuario.set
     }
     public void visualizarNombreProductos(){
         ListView list = new ListView();
@@ -114,6 +118,8 @@ public class CarritoController {
         //Calculamos cuanto será el total de todo el pedido
         System.out.printf("Total Pedido: "+totalPrecio);
         pedidoVO.setTotal(totalPrecio);
+        long tiempo = System.currentTimeMillis();
+        pedidoVO.setDate(tiempo);
         try {
 
             System.out.printf("Realizar un Pedido");

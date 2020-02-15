@@ -13,7 +13,7 @@ public class BDPedido implements PedidoDAO {
     private Connection conexion;
 
     private final String INSERT = "INSERT INTO PEDIDO(PEDIDOID,TOTAL,FECHA) VALUES (?,?,SYSDATE)";
-    private final String INSERT_PEDPROD = "INSERT INTO PEDIDO_PRODUCTO (IDPEDIDO, IDPRODUCTO,CANTIDAD) VALUES (?,?,?)";
+    private final String INSERT_PEDPROD = "INSERT INTO pedido_producto (idPedido, idProducto,cantidad) VALUES (?,?,?)";
     private final String INSERT_USUPED = "INSERT INTO USUARIO_PEDIDO (IDUSUARIO,IDPEDIDO) VALUES (?,?)";
     private final String UPDATE = "UPDATE PEDIDO SET TOTAL = ?, FECHA = SYSDATE WHERE PEDIDOID = ?";
     private final String DELETE = "DELETE FROM PEDIDO WHERE PEDIDOID = ?";
@@ -27,16 +27,13 @@ public class BDPedido implements PedidoDAO {
     @Override
     public boolean alta(PedidoVO pedidoVO) throws ExcepcionBocateria {
         String query2 = "insert into pedido(total,fecha) values("
-                + pedidoVO.getTotal() + ",'SYSDATE')";
+                + pedidoVO.getTotal() + ","+pedidoVO.getDate()+")";
         System.out.printf("Precio total del pedido desde el alta: "+pedidoVO.getTotal());
 
         Statement stmt2;
         try {
             stmt2 = conexion.createStatement();
-            System.out.println("1111111");
-
             stmt2.executeUpdate(query2);
-            System.out.println("222222222222");
             return true;
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error al introducir un Pedido");
@@ -72,7 +69,7 @@ public class BDPedido implements PedidoDAO {
             while (rs.next()) {
                 int pedidoId = (rs.getInt("pedidoiId"));
                 Double total= (rs.getDouble("total"));
-                Date fecha = rs.getDate("fecha");
+                long fecha = rs.getBigDecimal("fecha").longValue();
 
                 PedidoVO pedido = new PedidoVO(pedidoId,total,fecha);
                 pedidos.add(pedido);
@@ -94,7 +91,7 @@ public class BDPedido implements PedidoDAO {
             while (rs.next()) {
                 pedido.setPedidoId(rs.getInt("pedidoiId"));
                 pedido.setTotal(rs.getDouble("total"));
-                pedido.setDate(rs.getDate("fecha"));
+                pedido.setDate(rs.getBigDecimal("fecha").longValue());
                 return pedido;
             }
         } catch (SQLException e1){
@@ -120,10 +117,16 @@ public class BDPedido implements PedidoDAO {
             stmt.setInt(2, idProducto);
             stmt.setInt(3, cantidad);
 
-            if (stmt.executeUpdate() == 0)
+            System.out.printf("Buenas gente");
+            System.out.printf("idPedido: "+idPedido+" idProducto: "+idProducto+" cantidad: "+cantidad);
+
+            if (stmt.executeUpdate() == 0) {
+                System.out.printf("Estoy to doramion");
                 throw new ExcepcionBocateria("Insert Pedido Producto no realizado");
-            else
+            }
+            else {
                 efectuado = true;
+            }
         } catch (SQLException | ExcepcionBocateria e) {
             e.printStackTrace();
         }
@@ -158,14 +161,14 @@ public class BDPedido implements PedidoDAO {
         try {
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query1);
+            System.out.printf("Hola");
             while (rs.next()) {
-                ultimaID = rs.getInt("pedidoiId");
+                ultimaID = rs.getInt("pedidoId");
             }
+            return ultimaID;
 
         } catch (SQLException e1){
             throw new ExcepcionBocateria("Error al obtener el Pedido");
         }
-
-        return ultimaID;
     }
 }
