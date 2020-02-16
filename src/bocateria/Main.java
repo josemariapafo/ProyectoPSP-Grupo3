@@ -26,11 +26,18 @@ public class Main extends Application {
     AnchorPane rootLayout;
     Model model = new Model();
     UsuarioVO usuario;
+    //DATOS DEL CARRITO
     List<ProductoVO> listaCarrito = new ArrayList<>();
     private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
+    //DATOS DE LAS COMANDAS PUESTAS EN MARCHA
+    List<ProductoVO> listaComandas= new ArrayList<>();
+    private ObservableList<ProductoVO> listaComanda = FXCollections.observableArrayList();
 
     public ObservableList<ProductoVO> getCarritoData(){
         return listaCarro;
+    }
+    public ObservableList<ProductoVO> getComandaData(){
+        return listaComanda;
     }
 
     public Model getModel() {
@@ -207,6 +214,11 @@ public class Main extends Application {
     public void setListaCarrito(List<ProductoVO> listaCarrito) {
         this.listaCarrito = listaCarrito;
         getCarritoData().addAll(listaCarrito);
+    }
+
+    public void setListaComanda(List<ProductoVO> listaComanda) {
+        this.listaComandas = listaComanda;
+        getComandaData().addAll(listaComandas);
     }
 
     public static void main(String[] args) {

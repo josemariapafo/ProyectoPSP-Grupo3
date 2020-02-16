@@ -120,6 +120,7 @@ public class CarritoController {
 
     @FXML
     public void hacerPedido() throws ExcepcionBocateria {
+        calcularTotal();
         System.out.printf("Buenas");
         //CREAMOS UN PEDIDO
         int ultimaIdPedido=0;
@@ -150,5 +151,9 @@ public class CarritoController {
         }
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
         mainApp.getModel().insertarUsuarioPedido(usuario.getUsuario(),ultimaIdPedido);
+    }
+    @FXML
+    public void cancelar(){
+        System.exit(1);
     }
 }
