@@ -17,6 +17,6 @@ public class Productor extends Thread{
 
     public void run() {
         Main main = new Main();
-        main.getComandaData().addAll()
+        main.getComandaData().addAll();
     }
 }
