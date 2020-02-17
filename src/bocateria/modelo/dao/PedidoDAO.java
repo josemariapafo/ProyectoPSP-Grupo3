@@ -6,5 +6,5 @@ import bocateria.modelo.vo.PedidoVO;
 public interface PedidoDAO extends DAO<PedidoVO>{
     boolean insertarPedidoProducto(int idPedido,int idProducto,int cantidad) throws ExcepcionBocateria;
     boolean insertarUsuarioPedido(String idUsuario,int idPedido) throws ExcepcionBocateria;
-    int obtenerUltimaIDProducto()throws ExcepcionBocateria;
+    int obtenerUltimaIDPedido() throws ExcepcionBocateria;
 }

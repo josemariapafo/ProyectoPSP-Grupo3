@@ -1,15 +1,16 @@
 package bocateria.modelo.vo;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class PedidoVO {
 
     int pedidoId;
     double total;
-    Date date;
+    long date;
 
 
-    public PedidoVO(int pedidoId, double total, Date date) {
+    public PedidoVO(int pedidoId, double total, long date) {
         this.pedidoId = pedidoId;
         this.total = total;
         this.date = date;
@@ -34,11 +35,11 @@ public class PedidoVO {
         this.total = total;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 }

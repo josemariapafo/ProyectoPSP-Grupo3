@@ -99,7 +99,7 @@ public class Model {
     }
 
     public int obtenerUltimaIdPedido() throws ExcepcionBocateria {
-        return bdManager.getPedidoDAO().obtenerUltimaIDProducto();
+        return bdManager.getPedidoDAO().obtenerUltimaIDPedido();
     }
 
     public boolean insertarUsuarioPedido(String idUsuario, int idPedido) throws ExcepcionBocateria {

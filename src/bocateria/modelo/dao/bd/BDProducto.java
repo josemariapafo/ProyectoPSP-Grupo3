@@ -141,9 +141,8 @@ public class BDProducto implements ProductoDAO {
         Image foto = convertToJavaFXImage(f,100,100);
         Double precio = rs.getDouble(5);
         int stock = rs.getInt(6);
-        ProductoVO p = new ProductoVO(nombre, descripcion, foto, precio);
+        ProductoVO p = new ProductoVO(nombre, descripcion, foto, precio,stock);
         p.setCodigo(rs.getInt(1));
-        p.setStock(stock);
         return p;
     }
     private static Image convertToJavaFXImage(byte[] raw, final int width, final int height) {

@@ -1,6 +1,7 @@
 package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
@@ -147,8 +148,8 @@ public class VpalController {
     public void load() throws ExcepcionBocateria, SQLException {
         if (mainApp.getModel().compruebaAdmin(usuario))
             loadAdminUI();
-        setIndexInicial(getIndexActual());
-        despejaPanel();
+            setIndexInicial(getIndexActual());
+            despejaPanel();
         if(getProductos().size()<11)
             hBot.setVisible(false);
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
@@ -208,9 +209,13 @@ public class VpalController {
     @FXML
     public void pulsarBotonComprar() {
         try {
-            mainApp.setListaCarrito(listaCompra());
-            mainApp.initVistaCarrito();
+            if (listaCompra().size() != 0) {
+                mainApp.setListaCarrito(listaCompra());
+                mainApp.initVistaCarrito();
+            }else
+                Alertas.alertaAviso("Seleccione algún producto");
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Error al abrir el carrito");
         }
     }
@@ -226,6 +231,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad00.setText("" + (Integer.parseInt(cantidad00.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -235,6 +241,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad01.setText("" + (Integer.parseInt(cantidad01.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -244,6 +251,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad02.setText("" + (Integer.parseInt(cantidad02.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -253,6 +261,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad03.setText("" + (Integer.parseInt(cantidad03.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -262,6 +271,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad04.setText("" + (Integer.parseInt(cantidad04.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -271,6 +281,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad10.setText("" + (Integer.parseInt(cantidad10.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -280,6 +291,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad11.setText("" + (Integer.parseInt(cantidad11.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -289,6 +301,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad12.setText("" + (Integer.parseInt(cantidad12.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -298,6 +311,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad13.setText("" + (Integer.parseInt(cantidad13.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -307,6 +321,7 @@ public class VpalController {
         if (p.getCantidad() < p.getStock()) {
             cantidad14.setText("" + (Integer.parseInt(cantidad14.getText()) + 1));
             p.setCantidad(p.getCantidad() + 1);
+            System.out.println(p);
         }
     }
 
@@ -316,6 +331,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad00.setText("" + (Integer.parseInt(cantidad00.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -325,6 +341,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad01.setText("" + (Integer.parseInt(cantidad01.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -334,6 +351,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad02.setText("" + (Integer.parseInt(cantidad02.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -343,6 +361,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad03.setText("" + (Integer.parseInt(cantidad03.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -352,6 +371,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad04.setText("" + (Integer.parseInt(cantidad04.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -361,6 +381,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad10.setText("" + (Integer.parseInt(cantidad10.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -370,6 +391,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad12.setText("" + (Integer.parseInt(cantidad11.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -379,6 +401,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad12.setText("" + (Integer.parseInt(cantidad12.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -388,6 +411,7 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad13.setText("" + (Integer.parseInt(cantidad13.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
@@ -397,15 +421,21 @@ public class VpalController {
         if (p.getCantidad() > 0) {
             cantidad14.setText("" + (Integer.parseInt(cantidad14.getText()) - 1));
             p.setCantidad(p.getCantidad() - 1);
+            System.out.println(p);
         }
     }
 
 
     private List<ProductoVO> listaCompra() {
         List<ProductoVO> listaCompra = new ArrayList<>();
+        System.out.println("Lista de la compra");
         for (ProductoVO p : getProductos()){
-            if(p.getCantidad()>0)
+            if(p.getCantidad()>0){
+                p.setCantidadProperty(p.getCantidad());
+                p.setNombreProperty(p.getNombre());
                 listaCompra.add(p);
+                System.out.println(p);
+            }
         }
         return listaCompra;
     }

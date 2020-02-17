@@ -5,7 +5,6 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -13,28 +12,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarritoController {
 
-    @FXML
-    HBox hbox;
+
     @FXML
     Label total;
     @FXML
-    TableView<ProductoVO> tableView;
+    private TableView<ProductoVO> tablaProductos;
     @FXML
-    TableColumn<ProductoVO, String> nombreColum;
+    private TableColumn<ProductoVO, String> columnaNombreProducto;
     @FXML
-    TableColumn<ProductoVO, String> cantidadColum;
+    private TableColumn<ProductoVO, Integer> columnaCantidadProducto;
 
+
+    //TENDRÉ QUE RECIBIR UN ARRAYLIST DE TODOS LOS PRODUCTOS DE LA VISTA PRINCIPAL
+    //TENDRE QUE RECIBIR EL USUARIO LOGUEADO
 
     Main mainApp;
     private Stage dialogStage;
-    private ArrayList<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
+    private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
     double totalPrecio  = 0;
     UsuarioVO usuario = new UsuarioVO();
 
@@ -45,59 +46,93 @@ public class CarritoController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
     public void setMainApp(Main main){
         this.mainApp = main;
+        tablaProductos.setItems(main.getCarritoData());
+        listaProductos = new ArrayList<>(main.getCarritoData());
+    }
+
+    @FXML
+    private void initialize() {
+//        cargarLista();
+        // Initialize the person table with the two columns.
+
+        columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
+        columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
+    }
+
+//    public void cargarLista(){
+//        ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8,5,20);
+//        p1.setCodigo(1);
+//        ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0,18,3);
+//        p2.setCodigo(2);
+//        ProductoVO p3 = new ProductoVO("Pizaa","Diforno dipiedra",null,4.0,25,3);
+//        p3.setCodigo(3);
+//        listaProductos.add(p1);
+//        listaProductos.add(p2);
+//        listaProductos.add(p3);
+//        usuario.setUsuario("admin");
+//    }
+
+    /*public void visualizarNombreProductos(){
+        ListView list = new ListView();
+        list.getItems().add(listaProductos.get(0).getNombre()+" ");
+        list.getItems().add(listaProductos.get(1).getNombre()+" ");
+        list.getItems().add(listaProductos.get(2).getNombre()+" ");
+        hBoxNombre = new HBox(list);
+
+        Scene scene = new Scene(hBoxNombre);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    public void visualizarPrecioProductos(){
+        ListView list = new ListView();
+        list.getItems().add(listaProductos.get(0).getCantidad()+" ");
+        list.getItems().add(listaProductos.get(1).getCantidad()+" ");
+        list.getItems().add(listaProductos.get(2).getCantidad()+" ");
+        hBoxCantidad = new HBox(list);
+
+        Scene scene = new Scene(hBoxNombre);
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 
     public void visualizarListaProductos(){
-        ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8);
-        p1.setStock(5);
-        p1.setCantidad(56);
-        ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0);
-        p2.setStock(18);
-        p2.setCantidad(23);
-        listaProductos.add(p1);
-        listaProductos.add(p2);
 
-       /* ListView list = new ListView();
-        list.getItems().add(listaProductos.get(0).getNombre()+" "+listaProductos.get(0).getCantidad());
-        list.getItems().add(listaProductos.get(1).getNombre()+" "+listaProductos.get(1).getCantidad());
-        HBox hbox = new HBox(list);
-
-        Scene scene = new Scene(hbox, 300, 120);
-        dialogStage.setScene(scene);
-        dialogStage.show();*/
-
-        ObservableList<ProductoVO> observable = FXCollections.observableArrayList();
-        observable.addAll(listaProductos);
-
-        tableView.setItems(observable);
-
-//        nombreColum.setCellValueFactory(cellData -> cellData.getValue().getNombreProperty());
-        //cantidadColum.setCellValueFactory(cellData -> cellData.getValue().getCantidadProperty());
-
-
-    }
+        visualizarNombreProductos();
+        visualizarPrecioProductos();
+    }*/
 
     public void cargarComponentes(){
-        visualizarListaProductos();
+//        cargarLista();
+       // visualizarListaProductos();
         calcularTotal();
     }
 
     public void calcularTotal(){
         for(int i = 0; i<listaProductos.size(); i++){
-            totalPrecio = totalPrecio + listaProductos.get(i).getPrecio();
+            totalPrecio = totalPrecio + listaProductos.get(i).getPrecio()*listaProductos.get(i).getCantidad();
         }
         total.setText(totalPrecio+"€");
     }
 
     @FXML
     public void hacerPedido() throws ExcepcionBocateria {
+        calcularTotal();
+        System.out.printf("Buenas");
         //CREAMOS UN PEDIDO
-        int ultimaId=0;
+        int ultimaIdPedido=0;
         PedidoVO pedidoVO = new PedidoVO();
+        //Calculamos cuanto será el total de todo el pedido
+        System.out.printf("Total Pedido: "+totalPrecio);
         pedidoVO.setTotal(totalPrecio);
+        long tiempo = System.currentTimeMillis();
+        pedidoVO.setDate(tiempo);
         try {
+
+            System.out.printf("Realizar un Pedido");
             mainApp.getModel().insertarPedido(pedidoVO);
         } catch (ExcepcionBocateria excepcionBocateria) {
             excepcionBocateria.printStackTrace();
@@ -105,16 +140,20 @@ public class CarritoController {
             e.printStackTrace();
         }
         //OBETENER LA ID DEL PEDIDO REALIZADO
-        ultimaId = mainApp.getModel().obtenerUltimaIdPedido();
+        ultimaIdPedido = mainApp.getModel().obtenerUltimaIdPedido();
+
+
         //HACEMOS UN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
         for (int i = 0; i<listaProductos.size(); i++){
             if(listaProductos.get(i).getCantidad()!=0){
-                mainApp.getModel().insertarPedidoProducto(ultimaId,listaProductos.get(i).getCodigo(),listaProductos.get(i).getCantidad());
+                mainApp.getModel().insertarPedidoProducto(ultimaIdPedido,listaProductos.get(i).getCodigo(),listaProductos.get(i).getCantidad());
             }
         }
-        //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO USUARIO
-        mainApp.getModel().insertarUsuarioPedido(usuario.getUsuario(),ultimaId);
+        //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
+        mainApp.getModel().insertarUsuarioPedido(usuario.getUsuario(),ultimaIdPedido);
     }
-
-
+    @FXML
+    public void cancelar(){
+        System.exit(1);
+    }
 }
