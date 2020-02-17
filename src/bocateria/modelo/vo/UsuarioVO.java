@@ -10,7 +10,14 @@ public class UsuarioVO {
     private String direccion;
     private String localidad;
     private String telefono;
+    private boolean gmailSetted;
 
+    /*
+    Añadida vista para enviar correos
+    Añadida vista para configurar un correo de gmail
+    Añadido atributo que almacena si el usuario ha configurado gmail
+    Falta crear una tabla en la base de datos que guarde el email configurado del usuario
+     */
     public UsuarioVO() {
     }
 
@@ -23,6 +30,7 @@ public class UsuarioVO {
         this.direccion = direccion;
         this.localidad = localidad;
         this.telefono = telefono;
+        this.gmailSetted = false;
     }
 
 
@@ -90,6 +98,13 @@ public class UsuarioVO {
         this.telefono = telefono;
     }
 
+    public boolean isGmailSetted() {
+        return gmailSetted;
+    }
+
+    public void setGmailSetted(boolean gmailSetted) {
+        this.gmailSetted = gmailSetted;
+    }
 
     @Override
     public String toString() {
