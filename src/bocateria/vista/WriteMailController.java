@@ -17,7 +17,7 @@ public class WriteMailController {
     private String password = "testpwd1";
     private int puerto = 587;
     private String remitente = "scuesta.test@gmail.com";
-    private String destino1 = "sebastian.cuesta.molto@gmail.com";
+    private String destino = "sebastian.cuesta.molto@gmail.com";
     private String asunto = "Prueba 3 de SMTPClient con GMAIL y SIN TLS";
     private String mensaje = "Este mensaje no va con TLS.\n\nEste es el tercer mensaje que envio a mi cuenta de correo personal.\nA través de un programa en Java.\nUn Saludo!";
     private String resp = "";

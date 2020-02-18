@@ -1,4 +1,4 @@
-package bocateria.modelo.vo;
+package bocateria.modelo;
 
 import bocateria.Main;
 

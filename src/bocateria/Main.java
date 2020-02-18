@@ -190,7 +190,7 @@ public class Main extends Application {
             // Set the usuarioVO into the controller.
             CarritoController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setMainApp(this);
+            controller.setMain(this);
             //controller.cargarComponentes();
             //controller.setDialogStage(dialogStage);
 

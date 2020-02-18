@@ -2,17 +2,16 @@ package bocateria.vista;
 
 import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.Model;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +32,11 @@ public class CarritoController {
     //TENDRÉ QUE RECIBIR UN ARRAYLIST DE TODOS LOS PRODUCTOS DE LA VISTA PRINCIPAL
     //TENDRE QUE RECIBIR EL USUARIO LOGUEADO
 
-    Main mainApp;
+    private Main main;
+    private Model modelo;
     private Stage dialogStage;
     private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
-    double totalPrecio  = 0;
+    double totalPrecio = 0;
     UsuarioVO usuario = new UsuarioVO();
 
     public void setUsuario(UsuarioVO usuario) {
@@ -47,19 +47,23 @@ public class CarritoController {
         this.dialogStage = dialogStage;
     }
 
-    public void setMainApp(Main main){
-        this.mainApp = main;
+    public void setMain(Main main) {
+        this.main = main;
+        this.modelo = main.getModel();
+        this.usuario = main.getUsuario();
         tablaProductos.setItems(main.getCarritoData());
         listaProductos = new ArrayList<>(main.getCarritoData());
     }
 
     @FXML
     private void initialize() {
+
 //        cargarLista();
         // Initialize the person table with the two columns.
 
         columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
         columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
+        calcularTotal();
     }
 
 //    public void cargarLista(){
@@ -105,55 +109,58 @@ public class CarritoController {
         visualizarPrecioProductos();
     }*/
 
-    public void cargarComponentes(){
+    public void cargarComponentes() {
 //        cargarLista();
-       // visualizarListaProductos();
+        // visualizarListaProductos();
         calcularTotal();
     }
 
-    public void calcularTotal(){
-        for(int i = 0; i<listaProductos.size(); i++){
-            totalPrecio = totalPrecio + listaProductos.get(i).getPrecio()*listaProductos.get(i).getCantidad();
+    public void calcularTotal() {
+        for (ProductoVO p : listaProductos) {
+            setTotalPrecio(getTotalPrecio() + (p.getPrecio() * p.getCantidad()));
         }
-        total.setText(totalPrecio+"€");
+        total.setText(totalPrecio + " €");
+    }
+
+    public double getTotalPrecio() {
+        return totalPrecio;
+    }
+
+    public void setTotalPrecio(double totalPrecio) {
+        this.totalPrecio = totalPrecio;
     }
 
     @FXML
     public void hacerPedido() throws ExcepcionBocateria {
-        calcularTotal();
-        System.out.printf("Buenas");
+        int ultimaIdPedido = 0;
         //CREAMOS UN PEDIDO
-        int ultimaIdPedido=0;
-        PedidoVO pedidoVO = new PedidoVO();
+        ultimaIdPedido = modelo.obtenerUltimaIdPedido();
+        PedidoVO pedidoVO = new PedidoVO(ultimaIdPedido, usuario, listaProductos);
         //Calculamos cuanto será el total de todo el pedido
-        System.out.printf("Total Pedido: "+totalPrecio);
-        pedidoVO.setTotal(totalPrecio);
-        long tiempo = System.currentTimeMillis();
-        pedidoVO.setDate(tiempo);
-        try {
+        System.out.printf("Total Pedido: " + totalPrecio);
 
+        try {
             System.out.printf("Realizar un Pedido");
-            mainApp.getModel().insertarPedido(pedidoVO);
+            modelo.insertarPedido(pedidoVO);
         } catch (ExcepcionBocateria excepcionBocateria) {
             excepcionBocateria.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         //OBETENER LA ID DEL PEDIDO REALIZADO
-        ultimaIdPedido = mainApp.getModel().obtenerUltimaIdPedido();
-
+        ultimaIdPedido = modelo.obtenerUltimaIdPedido();
 
         //HACEMOS UN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
-        for (int i = 0; i<listaProductos.size(); i++){
-            if(listaProductos.get(i).getCantidad()!=0){
-                mainApp.getModel().insertarPedidoProducto(ultimaIdPedido,listaProductos.get(i).getCodigo(),listaProductos.get(i).getCantidad());
-            }
+        for (ProductoVO p : listaProductos) {
+            modelo.insertarPedidoProducto(ultimaIdPedido, p.getCodigo(), p.getCantidad());
         }
+
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
-        mainApp.getModel().insertarUsuarioPedido(usuario.getUsuario(),ultimaIdPedido);
+        modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
     }
+
     @FXML
-    public void cancelar(){
+    public void cancelar() {
         System.exit(1);
     }
 }
