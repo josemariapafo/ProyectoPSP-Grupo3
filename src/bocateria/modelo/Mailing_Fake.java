@@ -1,16 +1,5 @@
 package bocateria.modelo;
 
-import bocateria.Main;
-import bocateria.modelo.vo.UsuarioVO;
-import org.apache.commons.net.smtp.AuthenticatingSMTPClient;
-import org.apache.commons.net.smtp.SMTPReply;
-import org.apache.commons.net.smtp.SimpleSMTPHeader;
-import util.Read;
-
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.KeyManagerFactory;
-import java.io.IOException;
-import java.io.Writer;
 import java.security.InvalidKeyException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +7,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.spec.InvalidKeySpecException;
 
 public class Mailing_Fake {
-    public static void main(String[] args) throws NoSuchAlgorithmException, UnrecoverableKeyException,
+   /* public static void main(String[] args) throws NoSuchAlgorithmException, UnrecoverableKeyException,
             KeyStoreException, InvalidKeyException, InvalidKeySpecException {
         private Main main;
         private UsuarioVO user;
@@ -38,7 +27,7 @@ public class Mailing_Fake {
 
         System.out.println("Iniciando el programa........\n\n");
         /* ======================== DATOS IMPRESOS ======================== */
-        System.out.print("Necesita negociación TLS (S, N)?: ");
+        /*System.out.print("Necesita negociación TLS (S, N)?: ");
         resp = r.dato("");
         System.out.println("Introduce servidor SMTP.........: " + server);
         System.out.println("Introduce usuario...............: " + username);
@@ -60,7 +49,7 @@ public class Mailing_Fake {
         } while (!server.equals("*"));
 
         /* ======================== INICIO ENVIO ======================== */
-        System.out.println("\n\nIniciando envio del correo con los datos anteriores........\n");
+       /* System.out.println("\n\nIniciando envio del correo con los datos anteriores........\n");
         try {
             int respuesta;
 
@@ -109,10 +98,10 @@ public class Mailing_Fake {
                         System.out.println("FALLO AL ENVIAR DATA.");
                         System.exit(1);
                     }
-                    /**/
-                    writer.write(cabecera.toString()); // cabecera
-                    writer.write(mensaje);// luego mensaje
-                    writer.close();
+
+                   // writer.write(cabecera.toString()); // cabecera
+                    //writer.write(mensaje);// luego mensaje
+                    //writer.close();
                     System.out.println("6 - " + client.getReplyString());
 
                     boolean exito = client.completePendingCommand();
@@ -142,5 +131,5 @@ public class Mailing_Fake {
 
         System.out.println("Fin de envío.");
         System.exit(0);
-    }// main
-}// ..ClienteSMTP3
+    }*/
+}  // ..ClienteSMTP3

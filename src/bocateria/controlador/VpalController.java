@@ -6,6 +6,7 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
+import bocateria.vista.clienteFTPBasico;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,9 @@ public class VpalController {
 
     @FXML
     private Button regSandwich;
+
+    @FXML
+    private Button clienteFTP;
 
     @FXML
     private Button comprar;
@@ -441,6 +446,16 @@ public class VpalController {
             }
         }
         return listaCompra;
+    }
+
+    @FXML
+    private void abrirClienteFTP(){
+        try {
+            clienteFTPBasico cliente =  new clienteFTPBasico();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al abrir el cliente ftp");
+        }
     }
 
     private void loadPanel(int n) {

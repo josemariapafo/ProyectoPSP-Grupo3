@@ -1,7 +1,6 @@
 package bocateria.modelo.productor_consumidor;
 
 import bocateria.Main;
-import bocateria.modelo.productor_consumidor.ejem.Cola;
 import bocateria.modelo.vo.ProductoVO;
 
 import java.util.ArrayList;

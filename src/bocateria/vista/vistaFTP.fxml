@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="426.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.VistaFTP">
+   <children>
+      <Label layoutX="13.0" layoutY="342.0" prefHeight="22.0" prefWidth="441.0" text="Label" />
+      <Label layoutX="13.0" layoutY="364.0" prefHeight="22.0" prefWidth="441.0" text="Label" />
+      <Button layoutX="455.0" layoutY="59.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Subir Fichero" />
+      <Button layoutX="455.0" layoutY="110.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Descargar Fichero" />
+      <Button layoutX="455.0" layoutY="159.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Eliminar Fichero" />
+      <Button layoutX="455.0" layoutY="213.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Crear Carpeta" />
+      <Button layoutX="456.0" layoutY="265.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Eliminar Carpeta" />
+      <Button layoutX="455.0" layoutY="312.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Salir" />
+      <Label layoutX="14.0" layoutY="21.0" prefHeight="17.0" prefWidth="219.0" text="Servidor FTP: localhost" />
+      <Label layoutX="456.0" layoutY="21.0" prefHeight="17.0" prefWidth="142.0" text="Usuario: " />
+      <Label layoutX="14.0" layoutY="38.0" prefHeight="17.0" prefWidth="420.0" text="Directorio Raiz:/" />
+      <ListView layoutX="24.0" layoutY="65.0" prefHeight="265.0" prefWidth="406.0" />
+   </children>
+</AnchorPane>
