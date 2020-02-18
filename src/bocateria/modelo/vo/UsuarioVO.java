@@ -10,9 +10,6 @@ public class UsuarioVO {
     private String direccion;
     private String localidad;
     private String telefono;
-    private boolean gmailSetted;
-    private String gMailVal;
-    private String gPwdVal;
 
 
     /*
@@ -33,7 +30,6 @@ public class UsuarioVO {
         this.direccion = direccion;
         this.localidad = localidad;
         this.telefono = telefono;
-        this.gmailSetted = false;
     }
 
 
@@ -99,32 +95,6 @@ public class UsuarioVO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public boolean isGmailSetted() {
-        return gmailSetted;
-    }
-
-    public void setGmailSetted(boolean gmailSetted) {
-        this.gmailSetted = gmailSetted;
-    }
-
-
-
-    public String getgMailVal() {
-        return gMailVal;
-    }
-
-    public void setgMailVal(String gMailVal) {
-        this.gMailVal = gMailVal;
-    }
-
-    public String getgPwdVal() {
-        return gPwdVal;
-    }
-
-    public void setgPwdVal(String gPwdVal) {
-        this.gPwdVal = gPwdVal;
     }
 
     @Override

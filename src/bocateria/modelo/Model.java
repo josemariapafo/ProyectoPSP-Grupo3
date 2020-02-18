@@ -4,7 +4,6 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.bd.BDManager;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
-import bocateria.modelo.vo.UsuarioGMail;
 import bocateria.modelo.vo.UsuarioVO;
 
 import java.sql.SQLException;
@@ -52,10 +51,6 @@ public class Model {
             }
         }
         return null;
-    }
-
-    public boolean setGMail(UsuarioVO user){
-        return bdManager.getUsuarioDAO().setUserGMail(user);
     }
 
     private boolean checkPwd(String pwd, UsuarioVO u) {

@@ -19,7 +19,7 @@ public class BDUsuario implements UsuarioDAO {
     private final String GETALL = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO";
     private final String GETONE = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO WHERE USUARIO = ?";
     /*private final String SETMAIL = "INSERT INTO USU_MAIL (USUARIO, GMAIL, GPWD) VALUES (?,?,?)";*/
-    private final String SETMAIL = "UPDATE USUARIO SET GMAIL = ?, GPWD = ? WHERE USUARIO = ?";
+    private final String SETMAIL = "UPDATE USUARIO SET GMAIL_USER = ?, GMAIL_PWD = ? WHERE USUARIO = ?";
 
     BDUsuario(Connection conn) {
         this.conn = conn;
@@ -56,23 +56,7 @@ public class BDUsuario implements UsuarioDAO {
         return efectuado;
     }
 
-    @Override
-    public boolean setUserGMail(UsuarioVO u) throws ExcepcionBocateria {
-        boolean done;
-        try (PreparedStatement stmt = conn.prepareStatement(SETMAIL)) {
-            stmt.setString(1, u.getgMailVal());
-            stmt.setString(2, u.getgPwdVal());
-            stmt.setString(3, u.getUsuario());
-            if (stmt.executeUpdate() == 0) {
-                throw new ExcepcionBocateria("Puede que no se haya registrado el GMail del Usuario: " + u.getUsuario());
-            } else
-                done = true;
-        } catch (SQLException | ExcepcionBocateria e) {
-            e.printStackTrace();
-            throw new ExcepcionBocateria("Error SQL");
-        }
-        return done;
-    }
+
 
     @Override
     public boolean modificar(UsuarioVO usuarioVO) throws ExcepcionBocateria {

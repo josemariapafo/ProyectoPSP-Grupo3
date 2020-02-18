@@ -3,7 +3,7 @@ package bocateria.exepcion;
 import javafx.scene.control.Alert;
 
 public class Alertas {
-    private static Alert alert;
+    private Alert alert;
 
     // Alerta de INFORMACIÓN a la que sólo le pasamos el mensaje
     public void info(String msg) {
