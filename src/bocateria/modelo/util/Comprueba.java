@@ -5,7 +5,7 @@ import bocateria.exepcion.Alertas;
 import java.util.regex.Pattern;
 
 public class Comprueba {
-
+    Alertas alerta = new Alertas();
     public static boolean email(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                 "[a-zA-Z0-9_+&*-]+)*@" +
@@ -14,7 +14,7 @@ public class Comprueba {
 
         Pattern pat = Pattern.compile(emailRegex);
         if (email == null) {
-            Alertas.error("E-Mail VACIO");
+            alerta.error("E-Mail VACIO");
             return false;
         }
         return pat.matcher(email).matches();
@@ -29,5 +29,10 @@ public class Comprueba {
 
     public static boolean pwd(String p1, String p2) {
         return p1.equals(p2);
+    }
+
+    public static boolean longitud(String str, int maxLength){
+        boolean b = str <= maxLength;
+        return  b;
     }
 }
