@@ -9,6 +9,7 @@ import bocateria.controlador.VpalController;
 import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
+import bocateria.vista.WriteMailController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -172,6 +173,28 @@ public class Main extends Application {
         }
     }
 
+    public void initEnviaCorreo() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaWriteMail.fxml"));
+            AnchorPane page = loader.load();
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Enviar un correo");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            WriteMailController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMain(this);
+            dialogStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initVistaCarrito() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -236,4 +259,5 @@ public class Main extends Application {
     public void setAlerta(Alertas alert) {
         this.alerta = alert;
     }
+
 }

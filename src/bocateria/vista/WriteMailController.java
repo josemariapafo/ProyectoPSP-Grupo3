@@ -7,7 +7,9 @@ import bocateria.modelo.util.Comprueba;
 import bocateria.modelo.vo.MailVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -22,7 +24,7 @@ public class WriteMailController {
     @FXML
     TextField txAsunto;
     @FXML
-    TextField txMsj;
+    TextArea txMsj;
     @FXML
     Button send;
     @FXML
@@ -33,10 +35,14 @@ public class WriteMailController {
     private Main main;
     private Model modelo;
     private String destinatario, asunto, mensaje;
+    private Stage dialogStage;
     public void setMain(Main main){
         this.main = main;
         this.modelo = main.getModel();
         this.alerta = main.getAlerta();
+    }
+    public void setDialogStage(Stage dialogStage){
+        this.dialogStage = dialogStage;
     }
     @FXML
     public void initialize() {
@@ -67,6 +73,7 @@ public class WriteMailController {
     }
     @FXML
     public void handleCancel(){
+        dialogStage.close();
     }
     @FXML
     public void handleErase(){

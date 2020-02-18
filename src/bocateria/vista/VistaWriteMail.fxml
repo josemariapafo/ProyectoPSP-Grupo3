@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="461.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.WriteMailController">
    <children>
       <GridPane layoutX="6.0" prefHeight="391.0" prefWidth="535.0">
@@ -31,13 +30,13 @@
                   <Insets top="5.0" />
                </padding>
             </Label>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextArea prefHeight="309.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txDest" GridPane.columnIndex="1" />
+            <TextField fx:id="txAsunto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextArea fx:id="txMsj" prefHeight="309.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="75.0" layoutY="411.0" mnemonicParsing="false" text="Enviar" />
-      <Button layoutX="151.0" layoutY="411.0" mnemonicParsing="false" text="Borrar contenido" />
-      <Button layoutX="476.0" layoutY="411.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="send" defaultButton="true" layoutX="75.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleSend" text="Enviar" />
+      <Button fx:id="erase" layoutX="151.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleErase" text="Borrar contenido" />
+      <Button fx:id="cancel" cancelButton="true" layoutX="476.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
    </children>
 </AnchorPane>

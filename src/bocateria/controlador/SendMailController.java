@@ -35,7 +35,7 @@ public class SendMailController {
     private final String remitente = "scuesta.test@gmail.com";
     private String destinatario, asunto, mensaje;
 
-    public SendMailController(MailVO correo) throws IOException, InvalidKeyException, InvalidKeySpecException, KeyStoreException, NoSuchAlgorithmException, UnrecoverableKeyException {
+    public SendMailController(MailVO correo) {
         this.correo = correo;
         this.destinatario = correo.getDestinatario();
         this.asunto = correo.getAsunto();
@@ -135,6 +135,5 @@ public class SendMailController {
         }
 
         System.out.println("Fin de envío.");
-        System.exit(0);
     }
 }

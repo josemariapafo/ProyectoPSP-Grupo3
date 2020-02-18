@@ -156,15 +156,16 @@ public class VpalController {
     public void load() throws ExcepcionBocateria, SQLException {
         if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
-            setIndexInicial(getIndexActual());
-            despejaPanel();
-        if(getProductos().size()<11)
+        setIndexInicial(getIndexActual());
+        despejaPanel();
+        if (getProductos().size() < 11)
             hBot.setVisible(false);
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
             loadPanel(panel);
             setIndexActual(getIndexActual() + 1);
         }
     }
+
     @FXML
     public void loadUI() throws ExcepcionBocateria, SQLException {
         if (modelo.compruebaAdmin(usuario))
@@ -186,7 +187,7 @@ public class VpalController {
             setIndexActual(getIndexActual() - 1);
         }
         setIndexInicial(getIndexActual());*/
-        setIndexActual(getIndexActual()-10);
+        setIndexActual(getIndexActual() - 10);
         setIndexInicial(getIndexActual());
         loadUI();
     }
@@ -221,12 +222,17 @@ public class VpalController {
                 mainApp.getCarritoData().clear();
                 mainApp.getCarritoData().addAll(listaCompra());
                 mainApp.initVistaCarrito();
-            }else
+            } else
                 alerta.aviso("Seleccione algún producto");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al abrir el carrito");
         }
+    }
+
+    @FXML
+    public void handleEnviarCorreo() {
+        mainApp.initEnviaCorreo();
     }
 
     @FXML
@@ -438,8 +444,8 @@ public class VpalController {
     private List<ProductoVO> listaCompra() {
         List<ProductoVO> listaCompra = new ArrayList<>();
         System.out.println("Lista de la compra");
-        for (ProductoVO p : getProductos()){
-            if(p.getCantidad()>0){
+        for (ProductoVO p : getProductos()) {
+            if (p.getCantidad() > 0) {
                 p.setCantidadProperty(p.getCantidad());
                 p.setNombreProperty(p.getNombre());
                 listaCompra.add(p);
@@ -450,9 +456,9 @@ public class VpalController {
     }
 
     @FXML
-    private void abrirClienteFTP(){
+    private void abrirClienteFTP() {
         try {
-            clienteFTPBasico cliente =  new clienteFTPBasico();
+            clienteFTPBasico cliente = new clienteFTPBasico();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error al abrir el cliente ftp");
@@ -468,10 +474,10 @@ public class VpalController {
                 nombre00.setText(list.get(getIndexActual()).getNombre());
                 precio00.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion00.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h00.setVisible(false);
                     noStock00.setVisible(true);
-                } else{
+                } else {
                     h00.setVisible(true);
                     noStock00.setVisible(false);
                 }
@@ -482,10 +488,10 @@ public class VpalController {
                 nombre01.setText(list.get(getIndexActual()).getNombre());
                 precio01.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion01.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h01.setVisible(false);
                     noStock01.setVisible(true);
-                } else{
+                } else {
                     h01.setVisible(true);
                     noStock01.setVisible(false);
                 }
@@ -496,10 +502,10 @@ public class VpalController {
                 nombre02.setText(list.get(getIndexActual()).getNombre());
                 precio02.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion02.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h02.setVisible(false);
                     noStock02.setVisible(true);
-                } else{
+                } else {
                     h02.setVisible(true);
                     noStock02.setVisible(false);
                 }
@@ -510,10 +516,10 @@ public class VpalController {
                 nombre03.setText(list.get(getIndexActual()).getNombre());
                 precio03.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion03.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h03.setVisible(false);
                     noStock03.setVisible(true);
-                } else{
+                } else {
                     h03.setVisible(true);
                     noStock03.setVisible(false);
                 }
@@ -524,10 +530,10 @@ public class VpalController {
                 nombre04.setText(list.get(getIndexActual()).getNombre());
                 precio04.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion04.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h04.setVisible(false);
                     noStock04.setVisible(true);
-                } else{
+                } else {
                     h04.setVisible(true);
                     noStock04.setVisible(false);
                 }
@@ -538,10 +544,10 @@ public class VpalController {
                 nombre10.setText(list.get(getIndexActual()).getNombre());
                 precio10.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion10.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h10.setVisible(false);
                     noStock10.setVisible(true);
-                } else{
+                } else {
                     h10.setVisible(true);
                     noStock10.setVisible(false);
                 }
@@ -552,10 +558,10 @@ public class VpalController {
                 nombre11.setText(list.get(getIndexActual()).getNombre());
                 precio11.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion11.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h11.setVisible(false);
                     noStock11.setVisible(true);
-                } else{
+                } else {
                     h11.setVisible(true);
                     noStock11.setVisible(false);
                 }
@@ -566,10 +572,10 @@ public class VpalController {
                 nombre12.setText(list.get(getIndexActual()).getNombre());
                 precio12.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion12.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h12.setVisible(false);
                     noStock12.setVisible(true);
-                } else{
+                } else {
                     h12.setVisible(true);
                     noStock12.setVisible(false);
                 }
@@ -580,10 +586,10 @@ public class VpalController {
                 nombre13.setText(list.get(getIndexActual()).getNombre());
                 precio13.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion13.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h13.setVisible(false);
                     noStock13.setVisible(true);
-                } else{
+                } else {
                     h13.setVisible(true);
                     noStock13.setVisible(false);
                 }
@@ -594,10 +600,10 @@ public class VpalController {
                 nombre14.setText(list.get(getIndexActual()).getNombre());
                 precio14.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion14.setText(list.get(getIndexActual()).getDescripcion());
-                if(list.get(getIndexActual()).getStock() == 0){
+                if (list.get(getIndexActual()).getStock() == 0) {
                     h14.setVisible(false);
                     noStock14.setVisible(true);
-                } else{
+                } else {
                     h14.setVisible(true);
                     noStock14.setVisible(false);
                 }
