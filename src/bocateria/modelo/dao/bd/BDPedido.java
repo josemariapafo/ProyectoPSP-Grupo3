@@ -15,7 +15,7 @@ public class BDPedido implements PedidoDAO {
 
     private Connection conn;
 
-    private final String INSERT = "INSERT INTO PEDIDO(TOTAL,FECHA) VALUES (?,SYSDATE)";
+    private final String INSERT = "INSERT INTO PEDIDO(TOTAL,FECHA) VALUES (?, SYSDATE())";
     private final String INSERT_PEDPROD = "INSERT INTO pedido_producto (idPedido, idProducto,cantidad) VALUES (?,?,?)";
     private final String INSERT_USUPED = "INSERT INTO USUARIO_PEDIDO (IDUSUARIO,IDPEDIDO) VALUES (?,?)";
     private final String UPDATE = "UPDATE PEDIDO SET TOTAL = ?, FECHA = SYSDATE WHERE PEDIDOID = ?";
@@ -153,6 +153,7 @@ public class BDPedido implements PedidoDAO {
         }
         return pedido;
     }
+
     @Override
     public UsuarioPedidoVO obtenerUsuarioPedido(PedidoVO p) throws SQLException, ExcepcionBocateria {
         PreparedStatement stmt = null;
@@ -179,6 +180,7 @@ public class BDPedido implements PedidoDAO {
         }
         return usuped;
     }
+
     @Override
     public List<PedidoProductoVO> obtenerPedidoProductoList(PedidoVO p) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
@@ -203,8 +205,6 @@ public class BDPedido implements PedidoDAO {
         }
         return pedprod;
     }
-
-
 
 //    @Override
 //    public PedidoVO obtener(PedidoVO pedidoVO) throws ExcepcionBocateria {

@@ -191,6 +191,7 @@ public class Main extends Application {
             CarritoController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMain(this);
+            controller.calcularTotal();
             //controller.cargarComponentes();
             //controller.setDialogStage(dialogStage);
 

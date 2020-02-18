@@ -1,11 +1,12 @@
-package bocateria.modelo;
+package bocateria.controlador;
 
 import bocateria.Main;
+import bocateria.exepcion.Alertas;
+import bocateria.modelo.vo.MailVO;
 import bocateria.modelo.vo.UsuarioVO;
 import org.apache.commons.net.smtp.AuthenticatingSMTPClient;
 import org.apache.commons.net.smtp.SMTPReply;
 import org.apache.commons.net.smtp.SimpleSMTPHeader;
-import util.Read;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
@@ -17,48 +18,37 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.spec.InvalidKeySpecException;
 
-public class Mailing_Fake {
-    public static void main(String[] args) throws NoSuchAlgorithmException, UnrecoverableKeyException,
-            KeyStoreException, InvalidKeyException, InvalidKeySpecException {
-        private Main main;
-        private UsuarioVO user;
-        // se crea cliente SMTP seguro
-        AuthenticatingSMTPClient client = new AuthenticatingSMTPClient();
+public class SendMailController {
+    private Main main;
+    private Alertas alerta;
+    private MailVO correo;
+    private UsuarioVO user;
 
-        // datos del usuario y del servidor
-        String server = "smtp.gmail.com";
-        String username = "scuesta.test@gmail.com";
-        String password = "testpwd1";
-        int puerto = 587;
-        String remitente = "scuesta.test@gmail.com";
-        String destino1 =
-                String asunto = "Prueba 3 de SMTPClient con GMAIL y SIN TLS";
-        String mensaje = "Este mensaje no va con TLS.\n\nEste es el tercer mensaje que envio a mi cuenta de correo personal.\nA través de un programa en Java.\nUn Saludo!";
-        String resp = "";
+    // se crea cliente SMTP seguro
+    AuthenticatingSMTPClient client = new AuthenticatingSMTPClient();
 
-        System.out.println("Iniciando el programa........\n\n");
-        /* ======================== DATOS IMPRESOS ======================== */
-        System.out.print("Necesita negociación TLS (S, N)?: ");
-        resp = r.dato("");
-        System.out.println("Introduce servidor SMTP.........: " + server);
-        System.out.println("Introduce usuario...............: " + username);
-        System.out.println("Introduce contraseña............: " + password);
-        System.out.println("Introduce puerto................: " + puerto);
-        System.out.println("Introduce correo del remitente..: " + remitente);
-        System.out.println("Introduce correo destinatario...: " + destino1);
-        System.out.println("Introduce asunto................: " + asunto);
-        System.out.println("Introduce mensaje...............: " + mensaje);
+    // datos del usuario y del servidor
+    private final String server = "smtp.gmail.com";
+    private final String username = "scuesta.test@gmail.com";
+    private final String password = "testpwd1";
+    private final int puerto = 587;
+    private final String remitente = "scuesta.test@gmail.com";
+    private String destinatario, asunto, mensaje;
 
-        System.out.println("\nSe introducirán un asunto y mensaje nuevos: ");
-        asunto = "";
-        mensaje = "";
-        asunto = r.dato("Introduce asunto................: ");
-        System.out.print("Introduce mensaje...............: ");
-        do {
-            String s = r.dato("");
-            mensaje += s + "\n";
-        } while (!server.equals("*"));
+    public SendMailController(MailVO correo) throws IOException, InvalidKeyException, InvalidKeySpecException, KeyStoreException, NoSuchAlgorithmException, UnrecoverableKeyException {
+        this.correo = correo;
+        this.destinatario = correo.getDestinatario();
+        this.asunto = correo.getAsunto();
+        this.mensaje = correo.getMensaje();
+    }
 
+    public void setMain(Main main) {
+        this.main = main;
+        this.alerta = main.getAlerta();
+    }
+
+
+    public void sendMail() {
         /* ======================== INICIO ENVIO ======================== */
         System.out.println("\n\nIniciando envio del correo con los datos anteriores........\n");
         try {
@@ -72,16 +62,17 @@ public class Mailing_Fake {
             // nos conectamos al servidor SMTP
             client.connect(server, puerto);
             System.out.println("1 - " + client.getReplyString());
+
             // se establece la clave para la comunicación segura
             client.setKeyManager(km);
 
             respuesta = client.getReplyCode();
             if (!SMTPReply.isPositiveCompletion(respuesta)) {
                 client.disconnect();
+                alerta.info("Conexión rechazada");
                 System.err.println("CONEXIÓN RECHAZADA.");
                 System.exit(1);
             }
-
             // se envía el commando EHLO
             client.ehlo(server);// necesario
             System.out.println("2 - " + client.getReplyString());
@@ -96,11 +87,11 @@ public class Mailing_Fake {
                 if (client.auth(AuthenticatingSMTPClient.AUTH_METHOD.LOGIN, username, password)) {
                     System.out.println("4 - " + client.getReplyString());
                     // se crea la cabecera
-                    SimpleSMTPHeader cabecera = new SimpleSMTPHeader(remitente, destino1, asunto);
+                    SimpleSMTPHeader cabecera = new SimpleSMTPHeader(remitente, destinatario, asunto);
 
                     // el nombre de usuario y el email de origen coinciden
                     client.setSender(remitente);
-                    client.addRecipient(destino1);
+                    client.addRecipient(destinatario);
                     System.out.println("5 - " + client.getReplyString());
 
                     // se envia DATA
@@ -129,10 +120,13 @@ public class Mailing_Fake {
             } else
                 System.out.println("FALLO AL EJECUTAR  STARTTLS.");
 
-        } catch (IOException e) {
+        } catch (
+                IOException | NoSuchAlgorithmException e) {
             System.err.println("Could not connect to server.");
             e.printStackTrace();
             System.exit(1);
+        } catch (InvalidKeyException | UnrecoverableKeyException | KeyStoreException | InvalidKeySpecException e) {
+            e.printStackTrace();
         }
         try {
             client.disconnect();
@@ -142,5 +136,5 @@ public class Mailing_Fake {
 
         System.out.println("Fin de envío.");
         System.exit(0);
-    }// main
-}// ..ClienteSMTP3
+    }
+}

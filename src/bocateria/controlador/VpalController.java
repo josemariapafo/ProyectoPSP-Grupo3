@@ -213,7 +213,8 @@ public class VpalController {
     public void pulsarBotonComprar() {
         try {
             if (listaCompra().size() != 0) {
-                mainApp.setListaCarrito(listaCompra());
+                mainApp.getCarritoData().clear();
+                mainApp.getCarritoData().addAll(listaCompra());
                 mainApp.initVistaCarrito();
             }else
                 alerta.aviso("Seleccione algún producto");

@@ -1,8 +1,10 @@
 package bocateria.vista;
 
 import bocateria.Main;
+import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
+import bocateria.modelo.vo.MailVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
@@ -12,6 +14,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +43,10 @@ public class CarritoController {
     private Main main;
     private Model modelo;
     private Stage dialogStage;
+    private SendMailController sendMail;
     private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
     double totalPrecio = 0;
+
     UsuarioVO usuario = new UsuarioVO();
 
     public void setUsuario(UsuarioVO usuario) {
@@ -57,27 +67,10 @@ public class CarritoController {
 
     @FXML
     private void initialize() {
-
-//        cargarLista();
-        // Initialize the person table with the two columns.
-
         columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
         columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
-        calcularTotal();
     }
 
-//    public void cargarLista(){
-//        ProductoVO p1 = new ProductoVO("Serranito","Buen serranito",null,5.8,5,20);
-//        p1.setCodigo(1);
-//        ProductoVO p2 = new ProductoVO("SerriBurguer","Especial de la casa",null,3.0,18,3);
-//        p2.setCodigo(2);
-//        ProductoVO p3 = new ProductoVO("Pizaa","Diforno dipiedra",null,4.0,25,3);
-//        p3.setCodigo(3);
-//        listaProductos.add(p1);
-//        listaProductos.add(p2);
-//        listaProductos.add(p3);
-//        usuario.setUsuario("admin");
-//    }
 
     /*public void visualizarNombreProductos(){
         ListView list = new ListView();
@@ -119,7 +112,7 @@ public class CarritoController {
         for (ProductoVO p : listaProductos) {
             setTotalPrecio(getTotalPrecio() + (p.getPrecio() * p.getCantidad()));
         }
-        total.setText(totalPrecio + " €");
+        total.setText(getTotalPrecio() + " €");
     }
 
     public double getTotalPrecio() {
@@ -131,14 +124,15 @@ public class CarritoController {
     }
 
     @FXML
-    public void hacerPedido() throws ExcepcionBocateria {
+    public void hacerPedido() throws ExcepcionBocateria, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException {
+        System.out.println("HACER PEDIDO!!");
+        boolean done = true;
         int ultimaIdPedido = 0;
         //CREAMOS UN PEDIDO
         ultimaIdPedido = modelo.obtenerUltimaIdPedido();
         PedidoVO pedidoVO = new PedidoVO(ultimaIdPedido, usuario, listaProductos);
         //Calculamos cuanto será el total de todo el pedido
         System.out.printf("Total Pedido: " + totalPrecio);
-
         try {
             System.out.printf("Realizar un Pedido");
             modelo.insertarPedido(pedidoVO);
@@ -147,20 +141,25 @@ public class CarritoController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         //OBETENER LA ID DEL PEDIDO REALIZADO
         ultimaIdPedido = modelo.obtenerUltimaIdPedido();
-
-        //HACEMOS UN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
+        //HACEMOS UN INSERT EN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
         for (ProductoVO p : listaProductos) {
             modelo.insertarPedidoProducto(ultimaIdPedido, p.getCodigo(), p.getCantidad());
         }
-
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
         modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
+        MailVO correo = new MailVO(pedidoVO);
+        sendMail = new SendMailController(correo);
+        sendMail.sendMail();
     }
 
     @FXML
     public void cancelar() {
-        System.exit(1);
+//        System.exit(1);
+        System.out.println("Cancelar!!");
+        dialogStage.close();
+
     }
 }
