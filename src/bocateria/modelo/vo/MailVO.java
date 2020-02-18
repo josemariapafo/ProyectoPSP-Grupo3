@@ -23,7 +23,7 @@ public class MailVO {
     public String getDestinatario() {
         return destinatario;
     }
-
+/**/
     public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
