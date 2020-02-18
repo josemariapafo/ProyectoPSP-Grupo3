@@ -1,6 +1,7 @@
 package bocateria;
 
 import bocateria.exepcion.Alertas;
+import bocateria.modelo.vo.PedidoVO;
 import bocateria.vista.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.modelo.vo.ProductoVO;
@@ -33,15 +34,19 @@ public class Main extends Application {
     List<ProductoVO> listaCarrito = new ArrayList<>();
     private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
     //DATOS DE LAS COMANDAS PUESTAS EN MARCHA
-    List<ProductoVO> listaComandas = new ArrayList<>();
-    private ObservableList<ProductoVO> listaComanda = FXCollections.observableArrayList();
+    List<PedidoVO> listaComandas = new ArrayList<>();
+    private ObservableList<PedidoVO> listaComanda = FXCollections.observableArrayList();
 
     public ObservableList<ProductoVO> getCarritoData() {
         return listaCarro;
     }
 
-    public ObservableList<ProductoVO> getComandaData() {
+    public ObservableList<PedidoVO> getComandaData() {
         return listaComanda;
+    }
+    public void setListaComanda(List<PedidoVO> listaComanda) {
+        this.listaComandas = listaComanda;
+        getComandaData().addAll(listaComandas);
     }
 
     public Model getModel() {
@@ -241,11 +246,6 @@ public class Main extends Application {
     public void setListaCarrito(List<ProductoVO> listaCarrito) {
         this.listaCarrito = listaCarrito;
         getCarritoData().addAll(listaCarrito);
-    }
-
-    public void setListaComanda(List<ProductoVO> listaComanda) {
-        this.listaComandas = listaComanda;
-        getComandaData().addAll(listaComandas);
     }
 
     public static void main(String[] args) {

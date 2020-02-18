@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="429.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.VistaComanda">
+   <children>
+      <TableView prefHeight="429.0" prefWidth="297.0">
+        <columns>
+          <TableColumn prefWidth="139.0" text="Pedido" />
+          <TableColumn prefWidth="157.0" text="Nombre" />
+        </columns>
+      </TableView>
+      <TableView layoutX="297.0" layoutY="60.0" prefHeight="369.0" prefWidth="308.0">
+        <columns>
+          <TableColumn prefWidth="161.0" text="Producto " />
+          <TableColumn prefWidth="146.0" text="Cantidad" />
+        </columns>
+      </TableView>
+      <Label layoutX="305.0" layoutY="6.0" prefHeight="14.0" prefWidth="51.0" text="Nombre:" />
+      <Label layoutX="369.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" text="Label" />
+      <Label layoutX="305.0" layoutY="30.0" text="Precio Total:" />
+      <Label layoutX="379.0" layoutY="30.0" prefHeight="17.0" prefWidth="87.0" text="Label" />
+   </children>
+</AnchorPane>
