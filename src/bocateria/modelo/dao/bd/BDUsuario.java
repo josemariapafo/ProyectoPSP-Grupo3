@@ -18,6 +18,8 @@ public class BDUsuario implements UsuarioDAO {
     private final String DELETE = "DELETE FROM USUARIO WHERE USUARIO = ?";
     private final String GETALL = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO";
     private final String GETONE = "SELECT USUARIO,NOMBRE,APELLIDOS,EMAIL,CONTRASEÑA,DIRECCION,LOCALIDAD,TELEFONO,ADMIN FROM USUARIO WHERE USUARIO = ?";
+    /*private final String SETMAIL = "INSERT INTO USU_MAIL (USUARIO, GMAIL, GPWD) VALUES (?,?,?)";*/
+    private final String SETMAIL = "UPDATE USUARIO SET GMAIL = ?, GPWD = ? WHERE USUARIO = ?";
 
     BDUsuario(Connection conn) {
         this.conn = conn;
@@ -28,7 +30,7 @@ public class BDUsuario implements UsuarioDAO {
         PreparedStatement stmt = null;
         boolean efectuado = false;
         try {
-            if (!checkAdmin())
+            if (!checkIfThereAreUsers())
                 stmt = conn.prepareStatement(INSERTADMIN);
             else
                 stmt = conn.prepareStatement(INSERT);
@@ -42,7 +44,7 @@ public class BDUsuario implements UsuarioDAO {
             stmt.setString(7, u.getLocalidad());
             stmt.setString(8, u.getTelefono());
             if (stmt.executeUpdate() == 0)
-                throw new ExcepcionBocateria("Puede que no se haya guardado el bocata");
+                throw new ExcepcionBocateria("Puede que no se haya guardado el Usuario");
             else
                 efectuado = true;
         } catch (SQLException e) {
@@ -52,6 +54,24 @@ public class BDUsuario implements UsuarioDAO {
                 stmt.close();
         }
         return efectuado;
+    }
+
+    @Override
+    public boolean setUserGMail(UsuarioVO u) throws ExcepcionBocateria {
+        boolean done;
+        try (PreparedStatement stmt = conn.prepareStatement(SETMAIL)) {
+            stmt.setString(1, u.getgMailVal());
+            stmt.setString(2, u.getgPwdVal());
+            stmt.setString(3, u.getUsuario());
+            if (stmt.executeUpdate() == 0) {
+                throw new ExcepcionBocateria("Puede que no se haya registrado el GMail del Usuario: " + u.getUsuario());
+            } else
+                done = true;
+        } catch (SQLException | ExcepcionBocateria e) {
+            e.printStackTrace();
+            throw new ExcepcionBocateria("Error SQL");
+        }
+        return done;
     }
 
     @Override
@@ -67,7 +87,7 @@ public class BDUsuario implements UsuarioDAO {
             stmt.setString(7, usuarioVO.getTelefono());
             stmt.setString(8, usuarioVO.getUsuario());
             if (stmt.executeUpdate() == 0) {
-                throw new ExcepcionBocateria("Puede que no se haya modificado el cliente");
+                throw new ExcepcionBocateria("Puede que no se haya modificado el cliente " + usuarioVO.getUsuario());
             } else
                 efectuado = true;
         } catch (SQLException | ExcepcionBocateria e) {
@@ -105,18 +125,18 @@ public class BDUsuario implements UsuarioDAO {
     }
 
     @Override
-    public UsuarioVO obtener(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
+    public UsuarioVO obtener(UsuarioVO u) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        UsuarioVO u;
+        UsuarioVO user;
         try {
             stmt = conn.prepareStatement(GETONE);
-            stmt.setString(1, usuarioVO.getUsuario());
+            stmt.setString(1, u.getUsuario());
             rs = stmt.executeQuery();
             if (rs.next()) {
-                u = convertir(rs);
+                user = convertir(rs);
             } else {
-                u = null;
+                user = null;
             }
         } catch (SQLException e) {
             throw new ExcepcionBocateria("Error en SQL", e);
@@ -128,7 +148,7 @@ public class BDUsuario implements UsuarioDAO {
                 stmt.close();
             }
         }
-        return u;
+        return user;
     }
 
 
@@ -147,7 +167,8 @@ public class BDUsuario implements UsuarioDAO {
         return new UsuarioVO(nom, apl, email, usu, pwd, dir, loc, tel);
     }
 
-    private boolean checkAdmin() throws SQLException {
+    // Comprueba si existe algún usuario en nuestra tabla
+    private boolean checkIfThereAreUsers() throws SQLException {
         final String count = "SELECT USUARIO FROM USUARIO";
         Statement stmt;
         stmt = conn.createStatement();
@@ -182,4 +203,5 @@ public class BDUsuario implements UsuarioDAO {
         else
             return false;
     }
+
 }

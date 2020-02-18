@@ -4,6 +4,7 @@ package bocateria.controlador;
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.util.Comprueba;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,12 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.regex.Pattern;
 
 public class RegistroControlador {
 
     private Stage dialogStage;
     private Main main;
+    private Alertas alerta;
 
     @FXML
     TextField usuario;
@@ -45,12 +46,13 @@ public class RegistroControlador {
     public void handleAceptar() throws ExcepcionBocateria, SQLException {
         UsuarioVO u = null;
         boolean p, e;
-        p = compruebaPwd();
-        e = compruebaEmail(email.getText());
+
+        p = Comprueba.pwd(pwd.getText(),pwd2.getText());
+        e = Comprueba.email(email.getText());
         if(!p)
-            Alertas.alertaError("Las contraseñas no coinciden");
+            alerta.error("Las contraseñas no coinciden");
         if(!e)
-            Alertas.alertaError("E-Mail no válido");
+            alerta.error("E-Mail no válido");
         if (p && e) {
             u = new UsuarioVO(nombre.getText(), apellido.getText(), email.getText(), usuario.getText(), pwd.getText(), direccion.getText(), localidad.getText(), telefono.getText());
         }
@@ -96,9 +98,12 @@ public class RegistroControlador {
 
     public void setMainApp(Main main) {
         this.main = main;
+        this.alerta = main.getAlerta();
     }
 
-    private boolean compruebaPwd() {
+
+    // SE CAMBIARON A UNA CLASE LLAMADA COMPRUEBA
+    /*private boolean compruebaPwd() {
         return pwd.getText().equals(pwd2.getText());
     }
 
@@ -114,5 +119,5 @@ public class RegistroControlador {
             return false;
         }
         return pat.matcher(email).matches();
-    }
+    } */
 }

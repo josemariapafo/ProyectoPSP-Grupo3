@@ -44,7 +44,7 @@ public class RegisterSandwichController {
     public void handleEnviar() {
         ProductoVO p = new ProductoVO();
         if (!checkDatos())
-            Alertas.alertaAviso("Rellene todos los campos");
+            Alertas.aviso("Rellene todos los campos");
         else {
             p.setNombre(nombre.getText());
             p.setDescripcion(descripcion.getText());
@@ -75,7 +75,7 @@ public class RegisterSandwichController {
 
     boolean checkRutaImg() {
         if (rutaImg.getText().equals("")) {
-            Alertas.alertaAviso("Elige una imagen");
+            Alertas.aviso("Elige una imagen");
             return false;
         }
         return true;
@@ -83,13 +83,13 @@ public class RegisterSandwichController {
 
     boolean checkStock() {
         if (stock.getText().equals("")) {
-            Alertas.alertaAviso("El campo precio está vacio");
+            Alertas.aviso("El campo precio está vacio");
             return false;
         } else {
             try {
                 int i = Integer.parseInt(stock.getText());
             } catch (NumberFormatException e) {
-                Alertas.alertaAviso("El precio no es un número");
+                Alertas.aviso("El precio no es un número");
                 return false;
             }
             return true;
@@ -99,11 +99,11 @@ public class RegisterSandwichController {
 
     boolean checkNombre() {
         if (nombre.getText().equals("")) {
-            Alertas.alertaAviso("El nombre debe contener texto");
+            Alertas.aviso("El nombre debe contener texto");
             return false;
         }
         if (nombre.getText().length() > 30) {
-            Alertas.alertaAviso("El nombre debe contener 30 o menos caracteres");
+            Alertas.aviso("El nombre debe contener 30 o menos caracteres");
             return false;
         }
         return true;
@@ -113,11 +113,11 @@ public class RegisterSandwichController {
     boolean checkDescripcion() {
 
         if (descripcion.getText().equals("")) {
-            Alertas.alertaAviso("La descripcion debe contener texto");
+            Alertas.aviso("La descripcion debe contener texto");
             return false;
         }
         if (descripcion.getText().length() > 30) {
-            Alertas.alertaAviso("La descripcion debe contener 30 o menos caracteres");
+            Alertas.aviso("La descripcion debe contener 30 o menos caracteres");
             return false;
         }
         return true;
@@ -125,13 +125,13 @@ public class RegisterSandwichController {
 
     boolean checkPrecio() {
         if (precio.getText().equals("")) {
-            Alertas.alertaAviso("El campo precio está vacio");
+            Alertas.aviso("El campo precio está vacio");
             return false;
         } else {
             try {
                 Double d = Double.parseDouble(precio.getText());
             } catch (NumberFormatException e) {
-                Alertas.alertaAviso("El precio no es un número");
+                Alertas.aviso("El precio no es un número");
                 return false;
             }
             return true;

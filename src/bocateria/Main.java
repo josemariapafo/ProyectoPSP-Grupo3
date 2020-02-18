@@ -1,5 +1,6 @@
 package bocateria;
 
+import bocateria.exepcion.Alertas;
 import bocateria.vista.CarritoController;
 import bocateria.controlador.LoginControlador;
 import bocateria.modelo.vo.ProductoVO;
@@ -26,17 +27,19 @@ public class Main extends Application {
     AnchorPane rootLayout;
     Model model = new Model();
     UsuarioVO usuario;
+    private Alertas alerta = new Alertas();
     //DATOS DEL CARRITO
     List<ProductoVO> listaCarrito = new ArrayList<>();
     private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
     //DATOS DE LAS COMANDAS PUESTAS EN MARCHA
-    List<ProductoVO> listaComandas= new ArrayList<>();
+    List<ProductoVO> listaComandas = new ArrayList<>();
     private ObservableList<ProductoVO> listaComanda = FXCollections.observableArrayList();
 
-    public ObservableList<ProductoVO> getCarritoData(){
+    public ObservableList<ProductoVO> getCarritoData() {
         return listaCarro;
     }
-    public ObservableList<ProductoVO> getComandaData(){
+
+    public ObservableList<ProductoVO> getComandaData() {
         return listaComanda;
     }
 
@@ -170,7 +173,7 @@ public class Main extends Application {
     }
 
     public void initVistaCarrito() {
-       try {
+        try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("vista/VistaCarrito.fxml"));
@@ -225,5 +228,11 @@ public class Main extends Application {
         launch(args);
     }
 
+    public Alertas getAlerta() {
+        return alerta;
+    }
 
+    public void setAlerta(Alertas alert) {
+        this.alerta = alert;
+    }
 }

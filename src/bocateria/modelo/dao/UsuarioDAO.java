@@ -7,4 +7,5 @@ import java.sql.SQLException;
 
 public interface UsuarioDAO extends DAO<UsuarioVO>{
     boolean compruebaAdmin(UsuarioVO usuario) throws ExcepcionBocateria, SQLException;
+    boolean setUserGMail(UsuarioVO usuario) throws SQLException, ExcepcionBocateria;
 }

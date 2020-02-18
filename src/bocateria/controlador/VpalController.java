@@ -6,14 +6,12 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -213,7 +211,7 @@ public class VpalController {
                 mainApp.setListaCarrito(listaCompra());
                 mainApp.initVistaCarrito();
             }else
-                Alertas.alertaAviso("Seleccione algún producto");
+                Alertas.aviso("Seleccione algún producto");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al abrir el carrito");

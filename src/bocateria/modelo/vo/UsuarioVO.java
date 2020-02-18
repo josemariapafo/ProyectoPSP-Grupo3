@@ -11,6 +11,9 @@ public class UsuarioVO {
     private String localidad;
     private String telefono;
     private boolean gmailSetted;
+    private String gMailVal;
+    private String gPwdVal;
+
 
     /*
     Añadida vista para enviar correos
@@ -104,6 +107,24 @@ public class UsuarioVO {
 
     public void setGmailSetted(boolean gmailSetted) {
         this.gmailSetted = gmailSetted;
+    }
+
+
+
+    public String getgMailVal() {
+        return gMailVal;
+    }
+
+    public void setgMailVal(String gMailVal) {
+        this.gMailVal = gMailVal;
+    }
+
+    public String getgPwdVal() {
+        return gPwdVal;
+    }
+
+    public void setgPwdVal(String gPwdVal) {
+        this.gPwdVal = gPwdVal;
     }
 
     @Override

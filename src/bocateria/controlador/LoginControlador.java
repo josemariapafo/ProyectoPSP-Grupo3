@@ -34,41 +34,39 @@ public class LoginControlador {
     private Button login;
     @FXML
     private Button regist;
-
+    private Alertas alerta;
     private UsuarioVO usuarioVO = new UsuarioVO();
     private Main mainApp;
     private Desktop desktop = Desktop.getDesktop();
-    private URI uri = new URI ("www.geeksforgeeks.org");
+    private URI uri = new URI("www.geeksforgeeks.org");
 
     public LoginControlador() throws URISyntaxException {
     }
 
     @FXML
-    private void init(){
+    private void initialize() {
+
     }
-    public void setMainApp(Main main){
+
+    public void setMainApp(Main main) {
         this.mainApp = main;
+        this.alerta = main.getAlerta();
     }
 
     @FXML
     public void login() throws ExcepcionBocateria, SQLException {
-        if(usuario.getText().equals("") || pwd.getText().equals(""))
-            Alertas.alertaAviso("Algún campo está vacio");
+        if (usuario.getText().equals("") || pwd.getText().equals(""))
+            alerta.aviso("Algún campo está vacio");
 
         usuarioVO.setUsuario(usuario.getText());
         usuarioVO.setContrasena(pwd.getText());
-        System.out.println("Usuario cogido de los labels= "+ usuarioVO.toString());
+        System.out.println("Usuario cogido de los labels= " + usuarioVO.toString());
 
-        if(mainApp.getModel().usuarioLogueado(usuarioVO)!=null){
+        if (mainApp.getModel().usuarioLogueado(usuarioVO) != null) {
             mainApp.setUsuario(mainApp.getModel().obtenerUsuario(usuarioVO));
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("ACCESO CONCEDIDO");
-//            alert.setHeaderText("Acceso concedido");
-//            alert.setContentText("Has acertado el usuario y la contraseña");
-//            alert.showAndWait();
             mainApp.getPrimaryStage().close();
             mainApp.initVistaPrincipal();
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ACCESO NO PERMITIDO");
             alert.setHeaderText("Error");
@@ -78,7 +76,7 @@ public class LoginControlador {
     }
 
     @FXML
-    public void handleReg(){
+    public void handleReg() {
      /*   try {
             desktop.browse(uri);
         } catch (IOException e){
