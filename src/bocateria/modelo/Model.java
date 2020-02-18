@@ -1,11 +1,19 @@
 package bocateria.modelo;
 
+import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.bd.BDManager;
+import bocateria.modelo.vo.MailVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -117,7 +125,10 @@ public class Model {
             return false;
         }
     }
-
+    public void sendMail(MailVO correo) throws UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException {
+        SendMailController sender = new SendMailController(correo);
+        sender.sendMail();
+    }
     public boolean eliminarProducto(ProductoVO productoVO) {
         try {
             bdManager.getProductoDAO().eliminar(productoVO);

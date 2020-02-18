@@ -150,9 +150,7 @@ public class CarritoController {
         }
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
         modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
-        MailVO correo = new MailVO(pedidoVO);
-        sendMail = new SendMailController(correo);
-        sendMail.sendMail();
+        modelo.sendMail(new MailVO(pedidoVO));
     }
 
     @FXML
