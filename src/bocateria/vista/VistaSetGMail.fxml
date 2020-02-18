@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="195.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.SetGMailController">
+<AnchorPane fx:id="dialogStage" prefHeight="195.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.SetGMailController">
    <children>
       <GridPane layoutX="14.0" layoutY="20.0" prefHeight="118.0" prefWidth="484.0">
         <columnConstraints>
@@ -22,12 +21,12 @@
         </rowConstraints>
          <children>
             <Label text="E-Mail con el que se registro en JOSEB:" />
-            <Label text="correoRegistro" GridPane.columnIndex="1" />
-            <CheckBox mnemonicParsing="false" text="¿Desea usar el mismo para enviar correos?" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="regMail" text="correoRegistro" GridPane.columnIndex="1" />
+            <CheckBox fx:id="sameMail" mnemonicParsing="false" text="¿Desea usar el mismo para enviar correos?" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="G-Mail con el que enviar correos:" GridPane.rowIndex="2" />
             <Label text="Contraseña del G-Mail" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="gMailValue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="gPwdValue" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="106.0" layoutY="157.0" mnemonicParsing="false" text="Aceptar" />

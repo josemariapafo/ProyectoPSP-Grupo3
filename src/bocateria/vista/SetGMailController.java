@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SetGMailController {
+    @FXML
+    private Stage dialogStage;
     @FXML
     CheckBox sameMail;
     @FXML
@@ -47,6 +50,8 @@ public class SetGMailController {
     }
     @FXML
     public void cancelChanges(){
-
+        gMailValue.setText("");
+        gPwdValue.setText("");
+        dialogStage.close();
     }
 }
