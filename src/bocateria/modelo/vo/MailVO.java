@@ -1,7 +1,7 @@
 package bocateria.modelo.vo;
 
 public class MailVO {
-    private String  destinatario, asunto, mensaje;
+    private String destinatario, asunto, mensaje;
 
     public MailVO(PedidoVO p) {
         String nickUsuario = p.getUsuario().getUsuario(), emailDestinatario = p.getUsuario().getEmail();
@@ -14,16 +14,23 @@ public class MailVO {
         for (ProductoVO pro : p.getListaProductos()) {
             msj += " - " + pro.getNombre() + " - Precio ud: " + pro.getPrecio() + " - Uds: " + pro.getCantidad() + " - Total: " + (pro.getPrecio() * pro.getCantidad()) + " Euros\n";
         }
-        msj += "\n\nEso hace un total de: "+p.getTotal()+" Euros\n\n";
+        msj += "\n\nEso hace un total de: " + p.getTotal() + " Euros\n\n";
         msj += "Gracias por confiar en JOSEB!\nSu pedido estará en listo aproximadamente en 20 minutos!";
         this.mensaje = msj;
+    }
+
+    public MailVO(String destinatario, String asunto, String mensaje) {
+        this.destinatario = destinatario;
+        this.asunto = asunto;
+        this.mensaje = mensaje;
     }
 
 
     public String getDestinatario() {
         return destinatario;
     }
-/**/
+
+    /**/
     public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
