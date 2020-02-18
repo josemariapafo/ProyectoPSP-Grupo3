@@ -1,10 +1,10 @@
 package bocateria.vista;
 
 import bocateria.Main;
+import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -15,13 +15,19 @@ import java.util.List;
 public class ComandaController {
 
     @FXML
-    Button listoButton;
+    private TableView<PedidoVO> tablaPedidos;
     @FXML
-    private TableView<ProductoVO> tablaProductos;
+    private TableColumn<PedidoVO, Integer> columnaPedidoId;
     @FXML
-    private TableColumn<ProductoVO, String> columnaNombreProducto;
+    private TableColumn<PedidoVO, String> columnaNombrePedido;
+
     @FXML
-    private TableColumn<ProductoVO, Integer> columnaCantidadProducto;
+    private TableView<PedidoVO> tablaProductos;
+    @FXML
+    private TableColumn<PedidoVO, Integer> columnaNombreProducto;
+    @FXML
+    private TableColumn<PedidoVO, String> columnaCantidadProducto;
+
 
     Main mainApp;
     private Stage dialogStage;
@@ -33,8 +39,8 @@ public class ComandaController {
 
     public void setMainApp(Main main){
         this.mainApp = main;
-        tablaProductos.setItems(main.getCarritoData());
-        listaComandas = new ArrayList<>(main.getComandaData());
+        //tablaProductos.setItems(main.getCarritoData());
+        //listaComandas = new ArrayList<>(main.getComandaData());
     }
 
     @FXML
@@ -42,7 +48,8 @@ public class ComandaController {
 //        cargarLista();
         // Initialize the person table with the two columns.
 
-        columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
-        columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
+        //columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
+       // columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
     }
+
 }
