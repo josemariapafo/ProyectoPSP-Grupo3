@@ -28,6 +28,7 @@ public class VpalController {
     private UsuarioVO usuario;
     private int indexActual = 0;
     private int indexInicial;
+
     private ProductoVO p;
 
     @FXML
@@ -38,6 +39,8 @@ public class VpalController {
 
     @FXML
     private Button comprar;
+    @FXML
+    Button sendMail;
     @FXML
     VBox v00;
     @FXML
@@ -196,6 +199,8 @@ public class VpalController {
     private void loadAdminUI() {
         regSandwich.setVisible(true);
         regSandwich.setDisable(false);
+        sendMail.setVisible(true);
+        sendMail.setDisable(false);
     }
 
     public void setProductos() {
