@@ -33,6 +33,8 @@ public class Comprueba {
     }
 
     public static boolean longitud(String str, int maxLength) {
-        return str.length() <= maxLength;
+        return str.length() > maxLength;
     }
+
+    public static boolean vacio(String str){ return str.equals("");}
 }

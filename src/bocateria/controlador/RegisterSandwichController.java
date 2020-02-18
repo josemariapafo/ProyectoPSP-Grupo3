@@ -2,6 +2,8 @@ package bocateria.controlador;
 
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
+import bocateria.modelo.Model;
+import bocateria.modelo.util.Comprueba;
 import bocateria.modelo.vo.ProductoVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,8 +15,11 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class RegisterSandwichController {
-    Main mainApp;
+    private Main mainApp;
+    private Model modelo;
+    private Alertas alerta;
     private Stage dialogStage;
+
     /*VpalController controller;*/
 
     @FXML
@@ -44,27 +49,19 @@ public class RegisterSandwichController {
     public void handleEnviar() {
         ProductoVO p = new ProductoVO();
         if (!checkDatos())
-            Alertas.aviso("Rellene todos los campos");
+            alerta.aviso("Rellene todos los campos");
         else {
             p.setNombre(nombre.getText());
             p.setDescripcion(descripcion.getText());
             p.setStock(Integer.parseInt(stock.getText()));
             p.setRutaImg(rutaImg.getText());
             p.setPrecio(Double.valueOf(precio.getText()));
-            if (mainApp.getModel().altaProducto(p)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alta realizada con éxito");
-                alert.setHeaderText("Alta realizada con éxito");
-                alert.setContentText("SE REALIZÓ EL ALTA");
-                alert.showAndWait();
+            if (modelo.altaProducto(p)) {
+                alerta.info("Alta realizada con éxito","Alta realizada con éxito","SE REALIZÓ EL ALTA");
                 dialogStage.close();
                 /*controller.setProductos();*/
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("NO SE REALIZÓ EL ALTA");
-                alert.setHeaderText("NO SE REALIZÓ EL ALTA");
-                alert.setContentText("NO SE REALIZÓ EL ALTA");
-                alert.showAndWait();
+                alerta.error("NO SE REALIZÓ EL ALTA","NO SE REALIZÓ EL ALTA","NO SE REALIZÓ EL ALTA");
             }
         }
     }
@@ -74,22 +71,22 @@ public class RegisterSandwichController {
     }
 
     boolean checkRutaImg() {
-        if (rutaImg.getText().equals("")) {
-            Alertas.aviso("Elige una imagen");
+        if (Comprueba.vacio(rutaImg.getText())) {
+            alerta.aviso("Elige una imagen");
             return false;
         }
         return true;
     }
 
     boolean checkStock() {
-        if (stock.getText().equals("")) {
-            Alertas.aviso("El campo precio está vacio");
+        if (Comprueba.vacio(stock.getText())) {
+            alerta.aviso("El campo precio está vacio");
             return false;
         } else {
             try {
                 int i = Integer.parseInt(stock.getText());
             } catch (NumberFormatException e) {
-                Alertas.aviso("El precio no es un número");
+                alerta.aviso("El precio no es un número");
                 return false;
             }
             return true;
@@ -98,12 +95,12 @@ public class RegisterSandwichController {
     }
 
     boolean checkNombre() {
-        if (nombre.getText().equals("")) {
-            Alertas.aviso("El nombre debe contener texto");
+        if (Comprueba.vacio(nombre.getText())) {
+            alerta.aviso("El nombre debe contener texto");
             return false;
         }
-        if (nombre.getText().length() > 30) {
-            Alertas.aviso("El nombre debe contener 30 o menos caracteres");
+        if (Comprueba.longitud(nombre.getText(),30)) {
+            alerta.aviso("El nombre debe contener 30 o menos caracteres");
             return false;
         }
         return true;
@@ -112,26 +109,26 @@ public class RegisterSandwichController {
 
     boolean checkDescripcion() {
 
-        if (descripcion.getText().equals("")) {
-            Alertas.aviso("La descripcion debe contener texto");
+        if (Comprueba.vacio(descripcion.getText())) {
+            alerta.aviso("La descripcion debe contener texto");
             return false;
         }
-        if (descripcion.getText().length() > 30) {
-            Alertas.aviso("La descripcion debe contener 30 o menos caracteres");
+        if (Comprueba.longitud(descripcion.getText(),30)){
+            alerta.aviso("La descripcion debe contener 30 o menos caracteres");
             return false;
         }
         return true;
     }
 
     boolean checkPrecio() {
-        if (precio.getText().equals("")) {
-            Alertas.aviso("El campo precio está vacio");
+        if (Comprueba.vacio(precio.getText())) {
+            alerta.aviso("El campo precio está vacio");
             return false;
         } else {
             try {
                 Double d = Double.parseDouble(precio.getText());
             } catch (NumberFormatException e) {
-                Alertas.aviso("El precio no es un número");
+                alerta.aviso("El precio no es un número");
                 return false;
             }
             return true;
@@ -152,6 +149,8 @@ public class RegisterSandwichController {
 
     public void setMainApp(Main main) {
         this.mainApp = main;
+        this.alerta = main.getAlerta();
+        this.modelo = main.getModel();
     }
 
    /*public VpalController getController() {

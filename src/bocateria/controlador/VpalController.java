@@ -211,7 +211,7 @@ public class VpalController {
                 mainApp.setListaCarrito(listaCompra());
                 mainApp.initVistaCarrito();
             }else
-                Alertas.aviso("Seleccione algún producto");
+                mainApp.getAlerta().aviso("Seleccione algún producto");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al abrir el carrito");
