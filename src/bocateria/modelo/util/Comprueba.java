@@ -27,6 +27,7 @@ public class Comprueba {
         else
             return false;
     }
+    
 
     public static boolean pwd(String p1, String p2) {
         return p1.equals(p2);

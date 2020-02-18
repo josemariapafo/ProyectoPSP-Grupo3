@@ -4,6 +4,7 @@ package bocateria.controlador;
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.Model;
 import bocateria.modelo.util.Comprueba;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class RegistroControlador {
 
     private Stage dialogStage;
     private Main main;
+    private Model modelo;
     private Alertas alerta;
 
     @FXML
@@ -47,8 +49,8 @@ public class RegistroControlador {
         UsuarioVO u = null;
         boolean p, e;
 
-        p = Comprueba.pwd(pwd.getText(),pwd2.getText());
         e = Comprueba.email(email.getText());
+        p = Comprueba.pwd(pwd.getText(),pwd2.getText());
         if(!p)
             alerta.error("Las contraseñas no coinciden");
         if(!e)
@@ -58,19 +60,11 @@ public class RegistroControlador {
         }
 
         if (u != null) {
-            if (main.getModel().altaUsuario(u)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alta realizada con éxito");
-                alert.setHeaderText("Alta realizada con éxito");
-                alert.setContentText("SE REALIZÓ EL ALTA");
-                alert.showAndWait();
+            if (modelo.altaUsuario(u)) {
+                alerta.info("ALTA REALIZADA CON ÉXITO","Alta realizada con éxito","SE REALIZÓ EL ALTA DE "+u.getNombre()+" "+u.getApellidos());
                 dialogStage.close();
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("NO SE REALIZÓ EL ALTA");
-                alert.setHeaderText("ESE NOMBRE DE USUARIO YA EXISTE");
-                alert.setContentText("EL NOMBRE DE USUARIO YA EXISTE");
-                alert.showAndWait();
+                alerta.error("NO SE REALIZÓ EL ALTA","ESE NOMBRE DE USUARIO YA EXISTE","ESE NOMBRE DE USUARIO YA EXISTE");
             }
         }
     }
@@ -99,6 +93,7 @@ public class RegistroControlador {
     public void setMainApp(Main main) {
         this.main = main;
         this.alerta = main.getAlerta();
+        this.modelo = main.getModel();
     }
 
 

@@ -3,6 +3,7 @@ package bocateria.controlador;
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.Model;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ import java.util.List;
 public class VpalController {
     private List<ProductoVO> productos = new ArrayList<>();
     private Main mainApp;
+    private Model modelo;
+    private Alertas alerta;
     private UsuarioVO usuario;
     private int indexActual = 0;
     private int indexInicial;
@@ -136,6 +139,8 @@ public class VpalController {
 
     public void setMainApp(Main main) {
         this.mainApp = main;
+        this.modelo = main.getModel();
+        this.alerta = main.getAlerta();
     }
 
     private List<ProductoVO> getProductos() {
@@ -144,7 +149,7 @@ public class VpalController {
 
 
     public void load() throws ExcepcionBocateria, SQLException {
-        if (mainApp.getModel().compruebaAdmin(usuario))
+        if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
             setIndexInicial(getIndexActual());
             despejaPanel();
@@ -157,7 +162,7 @@ public class VpalController {
     }
     @FXML
     public void loadUI() throws ExcepcionBocateria, SQLException {
-        if (mainApp.getModel().compruebaAdmin(usuario))
+        if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
         setIndexInicial(getIndexActual());
         despejaPanel();
@@ -188,7 +193,7 @@ public class VpalController {
     }
 
     public void setProductos() {
-        this.productos = mainApp.getModel().obtenerTodosProductos();
+        this.productos = modelo.obtenerTodosProductos();
     }
 
     private void despejaPanel() {
@@ -211,7 +216,7 @@ public class VpalController {
                 mainApp.setListaCarrito(listaCompra());
                 mainApp.initVistaCarrito();
             }else
-                mainApp.getAlerta().aviso("Seleccione algún producto");
+                alerta.aviso("Seleccione algún producto");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al abrir el carrito");
