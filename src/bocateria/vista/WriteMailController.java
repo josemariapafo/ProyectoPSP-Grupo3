@@ -69,6 +69,8 @@ public class WriteMailController {
         }
         if(!error){
             modelo.sendMail(new MailVO(txDest.getText(),txAsunto.getText(),txMsj.getText()));
+            main.getAlerta().confirmacion("Correo envíado con éxito a "+txDest.getText());
+            dialogStage.close();
         }
     }
     @FXML
