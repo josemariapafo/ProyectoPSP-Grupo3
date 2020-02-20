@@ -156,4 +156,35 @@ public class BDProducto implements ProductoDAO {
         }
         return image;
     }
+
+    @Override
+    public ProductoVO obtenerProductoMedianteID(int id) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO p=null;
+        try {
+            stmt = conn.prepareStatement(GETONE);
+            stmt.setInt(1,id);
+            rs = stmt.executeQuery();
+            if (rs.next())
+                p = convertir(rs);
+            else {
+                p = null;
+            }
+        } catch (SQLException e) {
+            try {
+                throw new ExcepcionBocateria("Error SQL");
+            } catch (ExcepcionBocateria excepcionBocateria) {
+                excepcionBocateria.printStackTrace();
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return p;
+    }
 }

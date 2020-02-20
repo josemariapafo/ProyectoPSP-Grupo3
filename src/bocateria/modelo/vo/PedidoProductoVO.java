@@ -3,6 +3,15 @@ package bocateria.modelo.vo;
 public class PedidoProductoVO {
     int idPedido, idProducto, cantidad;
 
+    @Override
+    public String toString() {
+        return "PedidoProductoVO{" +
+                "idPedido=" + idPedido +
+                ", idProducto=" + idProducto +
+                ", cantidad=" + cantidad +
+                '}';
+    }
+
     public PedidoProductoVO(int idPedido, int idProducto, int cantidad) {
         this.idPedido = idPedido;
         this.idProducto = idProducto;

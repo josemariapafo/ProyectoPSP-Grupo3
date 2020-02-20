@@ -39,6 +39,10 @@ public class VpalController {
 
     @FXML
     private Button comprar;
+
+    @FXML
+    private Button consultarComandas;
+
     @FXML
     Button sendMail;
     @FXML
@@ -233,6 +237,10 @@ public class VpalController {
             e.printStackTrace();
             System.out.println("Error al abrir el carrito");
         }
+    }
+    @FXML
+    public void pulsarBotonConsultarComandas(){
+        mainApp.initVistaComanda();
     }
 
     @FXML

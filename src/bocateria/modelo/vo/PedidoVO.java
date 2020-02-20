@@ -24,6 +24,8 @@ public class PedidoVO {
             this.total += p.getPrecio() * p.getCantidad();
         }
     }
+    public PedidoVO() {
+    }
 
     @Override
     public String toString() {
@@ -36,8 +38,7 @@ public class PedidoVO {
                 '}';
     }
 
-    public PedidoVO() {
-    }
+
 
     public int getPedidoId() {
         return pedidoId;
