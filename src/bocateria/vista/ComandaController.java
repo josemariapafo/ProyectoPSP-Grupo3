@@ -109,6 +109,11 @@ public class ComandaController {
             pedidosFechaHoy.get(i).setListaProductos(productoVOS);
         }
 
+        //MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS
+        for(int i = 0; i<pedidosFechaHoy.size(); i++){
+            System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario());
+        }
+
 
     }
 

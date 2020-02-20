@@ -182,6 +182,40 @@ public class BDPedido implements PedidoDAO {
         }
         return usuped;
     }
+    @Override
+    public String obtenerUsuarioDelPedido(int idPedido) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            String query = "select idUsuario,idPedido from usuario_pedido where idUsuario='"+idPedido+"'";
+           // stmt = conn.prepareStatement(GETONE_USUPED_PEDIDO);
+            stmt = conn.prepareStatement(query);
+            //stmt.setInt(1, p.getPedidoId());
+            rs = stmt.executeQuery();
+            if (rs.next()){
+                return rs.getString("idUsuario");
+            }
+            else {
+                return null;
+            }
+        } catch (SQLException e) {
+            try {
+                throw new ExcepcionBocateria("ERROR EN SQL");
+            } catch (ExcepcionBocateria excepcionBocateria) {
+                excepcionBocateria.printStackTrace();
+            }
+        } finally {
+
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return null;
+    }
+
     //METODO ENCARGADO DE RECOGER AQUELLO PEDIDOS DE LA FECHA DE HOY
     @Override
     public List<PedidoVO> obtenerTodosPedidosHoy() {
@@ -261,6 +295,8 @@ public class BDPedido implements PedidoDAO {
         return pedidos;
     }
 
+
+
     @Override
     public List<PedidoProductoVO> obtenerPedidoProductoList(PedidoVO p) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
@@ -291,26 +327,6 @@ public class BDPedido implements PedidoDAO {
         }
         return pedprod;
     }
-
-//    @Override
-//    public PedidoVO obtener(PedidoVO pedidoVO) throws ExcepcionBocateria {
-//        PedidoVO pedido = new PedidoVO();
-//        String query1 = "select pedidoId,total,fecha from pedido";
-//        try {
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery(query1);
-//            while (rs.next()) {
-//                pedido.setPedidoId(rs.getInt("pedidoiId"));
-//                pedido.setTotal(rs.getDouble("total"));
-//                pedido.setDate(rs.getDate("fecha"));
-//                return pedido;
-//            }
-//        } catch (SQLException e1) {
-//            throw new ExcepcionBocateria("Error al obtener el Pedido");
-//        }
-//
-//        return pedido;
-//    }
 
     @Override
     public PedidoVO convertir(ResultSet rs) throws SQLException {
