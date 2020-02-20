@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ComandaController {
@@ -71,6 +72,7 @@ public class ComandaController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
+        Date date = new Date();
 
         //columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
        // columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());

@@ -7,6 +7,8 @@ import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.UsuarioPedidoVO;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,8 +222,13 @@ public class BDPedido implements PedidoDAO {
     @Override
     public List<PedidoVO> obtenerTodosPedidosHoy() {
         List<PedidoVO> pedidos = new ArrayList<PedidoVO>();
-       // String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA='2020-02-18'";
-        String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO";
+
+        java.util.Date date = new java.util.Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);
+        // String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA='2020-02-18'";
+        System.out.println(strDate);
+        String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO where fecha='"+strDate+"'";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query1);
