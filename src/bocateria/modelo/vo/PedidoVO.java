@@ -1,5 +1,7 @@
 package bocateria.modelo.vo;
 
+import javafx.beans.property.*;
+
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,10 @@ public class PedidoVO {
 //    private long date;
     private Date date;
     private List<ProductoVO> listaProductos;
+    //ATRIBUTOS PROPERTY
+    private IntegerProperty pedidoIdPropery;
+    private StringProperty usuarioProperty;
+
 
 
     public PedidoVO(int pedidoId, UsuarioVO user, List<ProductoVO> listaProductos) {
@@ -23,7 +29,26 @@ public class PedidoVO {
         for(ProductoVO p : this.listaProductos){
             this.total += p.getPrecio() * p.getCantidad();
         }
+        setPedidoIdPropery(pedidoId);
+        setUsuarioProperty(user.getUsuario());
     }
+
+    public int getPedidoIdPropery() {
+        return pedidoIdPropery.get();
+    }
+
+    public IntegerProperty pedidoIdProperyProperty() {
+        return pedidoIdPropery;
+    }
+
+    public String getUsuarioProperty() {
+        return usuarioProperty.get();
+    }
+
+    public StringProperty usuarioPropertyProperty() {
+        return usuarioProperty;
+    }
+
     public PedidoVO() {
     }
 
@@ -79,4 +104,19 @@ public class PedidoVO {
     public void setListaProductos(List<ProductoVO> listaProductos) {
         this.listaProductos = listaProductos;
     }
+
+    public void setPedidoIdPropery(int id) {
+        if(this.pedidoIdPropery == null)
+            this.pedidoIdPropery = new SimpleIntegerProperty(id);
+        else
+            this.pedidoIdPropery.set(id);
+    }
+
+    public void setUsuarioProperty(String nombre) {
+        if(this.usuarioProperty == null)
+            this.usuarioProperty = new SimpleStringProperty(nombre);
+        else
+            this.usuarioProperty.set(nombre);
+    }
+
 }

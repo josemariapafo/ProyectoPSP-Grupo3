@@ -261,6 +261,8 @@ public class Main extends Application {
 
     public void initVistaComanda() {
         try {
+            ComandaController contro = new ComandaController();
+            listaComanda.setAll(contro.obtenerPedidosHoy());
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("vista/VistaComanda.fxml"));

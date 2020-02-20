@@ -16,7 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-import java.sql.Array;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +43,7 @@ public class ComandaController {
     private Stage dialogStage;
     private BDPedido bdPedido = new BDPedido();
     private BDManager bdManager;
-    List<PedidoVO> pedidoProductoVO = new ArrayList<>();
+    List<PedidoVO> listaPedidos = new ArrayList<>();
 
     //-----------------------------------------------
 
@@ -64,6 +64,8 @@ public class ComandaController {
 
     public void setMain(Main main) {
         this.mainApp = main;
+        listaPedidos = mainApp.getComandaData();
+        tablaPedidos.setItems(mainApp.getComandaData());
        // listaComandas
         //tablaProductos.setItems(main.getCarritoData());
         //pedidoProductoVO = new ArrayList<>(main.getCarritoData());
@@ -72,12 +74,12 @@ public class ComandaController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        Date date = new Date();
+       //Date date = new Date();
 
-        //columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
-       // columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
+       columnaPedidoId.setCellValueFactory(cellData -> cellData.getValue().pedidoIdProperyProperty().asObject());
+      columnaNombrePedido.setCellValueFactory(cellData -> cellData.getValue().usuarioPropertyProperty());
     }
-    public void obtenerPedidosHoy(){
+    public List<PedidoVO> obtenerPedidosHoy(){
         List<PedidoVO> pedidosFechaHoy = bdManager.getPedidoDAO().obtenerTodosPedidosHoy();
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
             System.out.println(pedidosFechaHoy.get(i));
@@ -95,15 +97,6 @@ public class ComandaController {
                 e.printStackTrace();
             }
         }
-       // Mostrar la lista de productos por cada pedido
-        //System.out.println("Por cada pedido , sus productos");
-
-     /*  for(int i = 0; i<pedidoProductoVO.size();i++){
-            for(int j = 0; j<pedidoProductoVO.get(i).size(); j++){
-                System.out.println(pedidoProductoVO.get(i).get(j));
-            }
-        }*/
-
        //Añadir lista de Productos al pedido y añadir el nombre del usuario
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
             List<ProductoVO> productoVOS = new ArrayList<>();
@@ -134,6 +127,8 @@ public class ComandaController {
                 System.out.println("   "+pedidosFechaHoy.get(i).getListaProductos().get(j));
             }
         }
+        //mainApp.setListaComanda(pedidosFechaHoy);
+        return pedidosFechaHoy;
     }
 
 }
