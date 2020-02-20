@@ -17,7 +17,7 @@
             </font>
         </Label>
         <Button layoutX="1138.0" layoutY="851.0" mnemonicParsing="false" onAction="#pulsarBotonComprar" prefHeight="32.0" prefWidth="87.0" text="Comprar" />
-        <Button layoutX="1054.0" layoutY="851.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="Chatear" />
+        <Button layoutX="1054.0" layoutY="851.0" mnemonicParsing="false" onAction="#pulsarBotonChatear" prefHeight="32.0" prefWidth="68.0" text="Chatear" />
         <GridPane layoutX="17.0" layoutY="77.0" prefHeight="732.0" prefWidth="1239.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

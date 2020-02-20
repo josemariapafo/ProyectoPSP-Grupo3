@@ -1,5 +1,6 @@
 package bocateria.controlador;
 
+import bocateria.Chat.UDPMultiChat2;
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;
@@ -42,6 +43,8 @@ public class VpalController {
 
     @FXML
     private Button consultarComandas;
+    @FXML
+    private Button chatear;
 
     @FXML
     Button sendMail;
@@ -241,6 +244,11 @@ public class VpalController {
     @FXML
     public void pulsarBotonConsultarComandas(){
         mainApp.initVistaComanda();
+    }
+    @FXML
+    public void pulsarBotonChatear(){
+        UDPMultiChat2 chat = new UDPMultiChat2("Anonimous");
+        chat.run();
     }
 
     @FXML
