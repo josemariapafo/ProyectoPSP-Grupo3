@@ -7,6 +7,7 @@ import bocateria.modelo.dao.bd.BDPedido;
 import bocateria.modelo.vo.PedidoProductoVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
+import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -92,13 +93,22 @@ public class ComandaController {
 
        for(int i = 0; i<pedidoProductoVO.size();i++){
             for(int j = 0; j<pedidoProductoVO.get(i).size(); j++){
-                System.out.println(pedidoProductoVO.get(i).get(j));
+               // System.out.println(pedidoProductoVO.get(i).get(j));
             }
         }
 
-       //Añadir lista de Productos al pedido
+       //Añadir lista de Productos al pedido y añadir el nombre del usuario
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
             List<ProductoVO> productoVOS = new ArrayList<>();
+            UsuarioVO usuario = new UsuarioVO();
+            try {
+                usuario.setUsuario(bdManager.getPedidoDAO().obtenerUsuarioDelPedido(pedidosFechaHoy.get(i).getPedidoId()));
+                pedidosFechaHoy.get(i).setUsuario(usuario);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Error al guardar el usuario");
+            }
+
             for(int j = 0; j<pedidoProductoVO.size();j++){
                 try {
                     productoVOS.add(bdManager.getProductoDAO().obtenerProductoMedianteID(pedidoProductoVO.get(i).get(j).getIdProducto()));
@@ -110,11 +120,13 @@ public class ComandaController {
         }
 
         //MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS
+        System.out.println("MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS");
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
             System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario());
+            for(int j= 0; j<pedidosFechaHoy.get(i).getListaProductos().size(); j++){
+                System.out.println("   "+pedidosFechaHoy.get(i).getListaProductos().get(j));
+            }
         }
-
-
     }
 
 }
