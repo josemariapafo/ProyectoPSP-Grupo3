@@ -1,6 +1,7 @@
 package bocateria.modelo.dao;
 
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.dao.bd.BDPedido;
 import bocateria.modelo.vo.PedidoProductoVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.UsuarioPedidoVO;
@@ -17,4 +18,5 @@ public interface PedidoDAO extends DAO<PedidoVO>{
     List<PedidoProductoVO> obtenerPedidoProductoList(PedidoVO p) throws ExcepcionBocateria, SQLException;
     UsuarioPedidoVO convertirUsuPed(ResultSet rs) throws SQLException;
     PedidoProductoVO convertirPedProd(ResultSet rs) throws SQLException;
+    List<PedidoVO> obtenerTodosPedidosHoy();
 }

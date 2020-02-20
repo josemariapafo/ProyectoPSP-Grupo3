@@ -25,6 +25,17 @@ public class PedidoVO {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PedidoVO{" +
+                "pedidoId=" + pedidoId +
+                ", total=" + total +
+                ", usuario=" + usuario +
+                ", date=" + date +
+                ", listaProductos=" + listaProductos +
+                '}';
+    }
+
     public PedidoVO() {
     }
 

@@ -1,6 +1,7 @@
 package bocateria.vista;
 
 import bocateria.Main;
+import bocateria.modelo.dao.bd.BDPedido;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import javafx.fxml.FXML;
@@ -32,12 +33,13 @@ public class ComandaController {
     Main mainApp;
     private Stage dialogStage;
     private List<ProductoVO> listaComandas = new ArrayList<ProductoVO>();
+    private BDPedido bdPedido;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void setMainApp(Main main){
+    public void setMain(Main main){
         this.mainApp = main;
         //tablaProductos.setItems(main.getCarritoData());
         //listaComandas = new ArrayList<>(main.getComandaData());
@@ -50,6 +52,12 @@ public class ComandaController {
 
         //columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
        // columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
+    }
+    public void obtenerPedidosHoy(){
+        List<PedidoVO> pedidos = bdPedido.obtenerTodosPedidosHoy();
+        for(int i = 0; i<pedidos.size(); i++){
+            System.out.println(pedidos.get(i));
+        }
     }
 
 }

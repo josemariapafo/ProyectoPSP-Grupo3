@@ -10,6 +10,7 @@ import bocateria.controlador.VpalController;
 import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
+import bocateria.vista.ComandaController;
 import bocateria.vista.WriteMailController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -221,6 +222,35 @@ public class Main extends Application {
             controller.setMain(this);
             controller.calcularTotal();
             //controller.cargarComponentes();
+            //controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void initVistaComanda() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaComanda.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Carrito");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the usuarioVO into the controller.
+            ComandaController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMain(this);
             //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

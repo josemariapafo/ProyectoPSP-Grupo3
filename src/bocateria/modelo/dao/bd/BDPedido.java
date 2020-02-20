@@ -5,7 +5,6 @@ import bocateria.modelo.dao.PedidoDAO;
 import bocateria.modelo.vo.PedidoProductoVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.UsuarioPedidoVO;
-import bocateria.modelo.vo.UsuarioVO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -180,6 +179,49 @@ public class BDPedido implements PedidoDAO {
         }
         return usuped;
     }
+    //METODO ENCARGADO DE RECOGER AQUELLO PEDIDOS DE LA FECHA DE HOY
+    @Override
+    public List<PedidoVO> obtenerTodosPedidosHoy() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<PedidoVO> pedidos = new ArrayList<>();
+        try {
+            stmt = conn.prepareStatement("SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA= '2020-02-20'");
+            //stmt.setInt(1, p.getPedidoId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                PedidoVO pedido = new PedidoVO();
+                pedido.setPedidoId(rs.getInt("pedidoid"));
+                pedido.setTotal(rs.getDouble("total"));
+                pedido.setDate(rs.getDate("fecha"));
+                pedidos.add(pedido);
+            }
+
+        } catch (SQLException e) {
+            try {
+                throw new ExcepcionBocateria("Error al cargar los pedidos a fecha de hoy");
+            } catch (ExcepcionBocateria excepcionBocateria) {
+                excepcionBocateria.printStackTrace();
+            }
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return pedidos;
+    }
 
     @Override
     public List<PedidoProductoVO> obtenerPedidoProductoList(PedidoVO p) throws ExcepcionBocateria, SQLException {
@@ -252,6 +294,9 @@ public class BDPedido implements PedidoDAO {
         cantidad = rs.getInt(3);
         return new PedidoProductoVO(idPedido,idProducto,cantidad);
     }
+
+
+
     @Override
     public boolean insertarPedidoProducto(int idPedido, int idProducto, int cantidad) throws ExcepcionBocateria {
         PreparedStatement stmt = null;
