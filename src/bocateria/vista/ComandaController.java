@@ -1,7 +1,9 @@
 package bocateria.vista;
 
 import bocateria.Main;
+import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
+import bocateria.modelo.Model;
 import bocateria.modelo.dao.bd.BDManager;
 import bocateria.modelo.dao.bd.BDPedido;
 import bocateria.modelo.vo.PedidoProductoVO;
@@ -36,11 +38,13 @@ public class ComandaController {
     private TableColumn<PedidoVO, String> columnaCantidadProducto;
 
 
-    Main mainApp;
+    private Main mainApp;
     private Stage dialogStage;
-    private List<ProductoVO> listaComandas = new ArrayList<ProductoVO>();
     private BDPedido bdPedido = new BDPedido();
     private BDManager bdManager;
+    List<PedidoVO> pedidoProductoVO = new ArrayList<>();
+
+    //-----------------------------------------------
 
     {
         try {
@@ -52,19 +56,20 @@ public class ComandaController {
         }
     }
 
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void setMain(Main main){
+    public void setMain(Main main) {
         this.mainApp = main;
+       // listaComandas
         //tablaProductos.setItems(main.getCarritoData());
-        //listaComandas = new ArrayList<>(main.getComandaData());
+        //pedidoProductoVO = new ArrayList<>(main.getCarritoData());
     }
 
     @FXML
     private void initialize() {
-//        cargarLista();
         // Initialize the person table with the two columns.
 
         //columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
@@ -109,7 +114,7 @@ public class ComandaController {
                 System.out.println("Error al guardar el usuario");
             }
 
-            for(int j = 0; j<pedidoProductoVO.size();j++){
+            for(int j = 0; j<pedidoProductoVO.get(i).size();j++){
                 try {
                     productoVOS.add(bdManager.getProductoDAO().obtenerProductoMedianteID(pedidoProductoVO.get(i).get(j).getIdProducto()));
                 } catch (SQLException e) {

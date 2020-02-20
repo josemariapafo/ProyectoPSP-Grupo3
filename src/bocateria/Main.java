@@ -45,6 +45,7 @@ public class Main extends Application {
     public ObservableList<PedidoVO> getComandaData() {
         return listaComanda;
     }
+
     public void setListaComanda(List<PedidoVO> listaComanda) {
         this.listaComandas = listaComanda;
         getComandaData().addAll(listaComandas);
