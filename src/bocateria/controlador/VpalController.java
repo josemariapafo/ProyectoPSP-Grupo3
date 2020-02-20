@@ -1,6 +1,5 @@
 package bocateria.controlador;
 
-import bocateria.Chat.UDPMultiChat2;
 import bocateria.Main;
 import bocateria.exepcion.Alertas;
 import bocateria.exepcion.ExcepcionBocateria;

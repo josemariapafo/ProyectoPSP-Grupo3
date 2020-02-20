@@ -44,7 +44,7 @@ public class CarritoController {
     private Model modelo;
     private Stage dialogStage;
     private SendMailController sendMail;
-    private List<ProductoVO> listaProductos = new ArrayList<ProductoVO>();
+    private List<ProductoVO> listaProductos = new ArrayList<>();
     double totalPrecio = 0;
 
     UsuarioVO usuario = new UsuarioVO();

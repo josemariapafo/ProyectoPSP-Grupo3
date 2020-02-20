@@ -41,7 +41,6 @@ public class ChatController implements Runnable {
         getMs().joinGroup(getGrupo());
     }
     public void ingreso(){
-
         String texto = "*** Ingresó al chat: " + nombre.toUpperCase() + " ***";
         try {
             // ENVIANDO DESPEDIDA AL GRUPO
@@ -49,11 +48,11 @@ public class ChatController implements Runnable {
                     texto.length(), grupo, Puerto);
             ms.send(paquete);
             System.out.println("Ingresó al chat: " + nombre);
-//            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleEnviar() {
         if (txMsj.getText().equals(""))
@@ -85,7 +84,6 @@ public class ChatController implements Runnable {
             ms.close();
             repetir = false;
             System.out.println("Abandona el chat: " + nombre);
-//            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
         }

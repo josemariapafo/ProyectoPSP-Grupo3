@@ -3,10 +3,7 @@ package bocateria.modelo;
 import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.bd.BDManager;
-import bocateria.modelo.vo.MailVO;
-import bocateria.modelo.vo.PedidoVO;
-import bocateria.modelo.vo.ProductoVO;
-import bocateria.modelo.vo.UsuarioVO;
+import bocateria.modelo.vo.*;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -15,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -148,5 +146,57 @@ public class Model {
             excepcionBocateria.printStackTrace();
         }
         return null;
+    }
+
+    public List<PedidoVO> obtenerPedidosHoy(){
+        List<PedidoVO> pedidosFechaHoy = bdManager.getPedidoDAO().obtenerTodosPedidosHoy();
+        for(int i = 0; i<pedidosFechaHoy.size(); i++){
+            System.out.println(pedidosFechaHoy.get(i));
+        }
+
+        System.out.println("Obtenemos por cada pedido su array de productos");
+        List<List<PedidoProductoVO>> pedidoProductoVO = new ArrayList<>();
+        for(int i = 0; i<pedidosFechaHoy.size(); i++){
+            try {
+                pedidoProductoVO.add(bdManager.getPedidoDAO().obtenerPedidoProductoList(pedidosFechaHoy.get(i)));
+            } catch (ExcepcionBocateria excepcionBocateria) {
+                excepcionBocateria.printStackTrace();
+                System.out.println("Error al obtener de cada pedido sus productos");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        //Añadir lista de Productos al pedido y añadir el nombre del usuario
+        for(int i = 0; i<pedidosFechaHoy.size(); i++){
+            List<ProductoVO> productoVOS = new ArrayList<>();
+            UsuarioVO usuario = new UsuarioVO();
+            try {
+                usuario.setUsuario(bdManager.getPedidoDAO().obtenerUsuarioDelPedido(pedidosFechaHoy.get(i).getPedidoId()));
+                pedidosFechaHoy.get(i).setUsuario(usuario);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Error al guardar el usuario");
+            }
+
+            for(int j = 0; j<pedidoProductoVO.get(i).size();j++){
+                try {
+                    productoVOS.add(bdManager.getProductoDAO().obtenerProductoMedianteID(pedidoProductoVO.get(i).get(j).getIdProducto()));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            pedidosFechaHoy.get(i).setListaProductos(productoVOS);
+        }
+
+        //MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS
+        System.out.println("MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS");
+        for(int i = 0; i<pedidosFechaHoy.size(); i++){
+            System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario().getUsuario());
+            for(int j= 0; j<pedidosFechaHoy.get(i).getListaProductos().size(); j++){
+                System.out.println("   "+pedidosFechaHoy.get(i).getListaProductos().get(j));
+            }
+        }
+        //mainApp.setListaComanda(pedidosFechaHoy);
+        return pedidosFechaHoy;
     }
 }

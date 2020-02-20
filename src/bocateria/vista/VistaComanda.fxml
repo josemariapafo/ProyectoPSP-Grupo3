@@ -8,22 +8,22 @@
 
 <AnchorPane prefHeight="429.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.ComandaController">
    <children>
-      <TableView prefHeight="429.0" prefWidth="297.0">
+      <TableView fx:id="tablaPedidos" prefHeight="429.0" prefWidth="297.0">
         <columns>
-          <TableColumn prefWidth="139.0" text="Pedido" />
-          <TableColumn prefWidth="157.0" text="Nombre" />
+          <TableColumn fx:id="columnaPedidoId" prefWidth="139.0" text="Pedido" />
+          <TableColumn fx:id="columnaNombrePedido" prefWidth="157.0" text="Nombre" />
         </columns>
       </TableView>
-      <TableView layoutX="297.0" layoutY="60.0" prefHeight="369.0" prefWidth="308.0">
+      <TableView fx:id="tablaProductos" layoutX="297.0" layoutY="60.0" prefHeight="369.0" prefWidth="308.0">
         <columns>
-          <TableColumn prefWidth="161.0" text="Producto " />
-          <TableColumn prefWidth="146.0" text="Cantidad" />
+          <TableColumn fx:id="columnaNombreProducto" prefWidth="161.0" text="Producto " />
+          <TableColumn fx:id="columnaCantidadProducto" prefWidth="146.0" text="Cantidad" />
         </columns>
       </TableView>
       <Label layoutX="305.0" layoutY="6.0" prefHeight="14.0" prefWidth="51.0" text="Nombre:" />
-      <Label layoutX="369.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" text="Label" />
+      <Label fx:id="nombreProd" layoutX="369.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" text="Label" />
       <Label layoutX="305.0" layoutY="30.0" text="Precio Total:" />
-      <Label layoutX="379.0" layoutY="30.0" prefHeight="17.0" prefWidth="87.0" text="Label" />
+      <Label fx:id="totalProd" layoutX="379.0" layoutY="30.0" prefHeight="17.0" prefWidth="87.0" text="Label" />
       <Button layoutX="466.0" layoutY="18.0" mnemonicParsing="false" onAction="#obtenerPedidosHoy" text="Listar Comandas Consola" />
    </children>
 </AnchorPane>
