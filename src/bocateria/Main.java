@@ -1,5 +1,6 @@
 package bocateria;
 
+import bocateria.controlador.ChatController;
 import bocateria.exepcion.Alertas;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.vista.CarritoController;
@@ -84,6 +85,7 @@ public class Main extends Application {
 
             Scene scene = new Scene(vistaLogin);
             primaryStage.setScene(scene);
+            primaryStage.setTitle("Login JOSEB");
 
             // Give the controller access to the main app.
             LoginControlador controller = loader.getController();
@@ -122,7 +124,7 @@ public class Main extends Application {
         }
     }
 
-    public void initRegistroSandwich(/*VpalController c*/) {
+    public void initRegistroSandwich() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -149,7 +151,33 @@ public class Main extends Application {
         }
     }
 
+    public void initChat(){
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaChat.fxml"));
+            AnchorPane page = loader.load();
 
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Chat // Nick: "+usuario.getUsuario());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the usuarioVO into the controller.
+            ChatController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMain(this);
+            new Thread(controller).start();
+            controller.ingreso();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        }catch (IOException e){
+            e.printStackTrace();        }
+    }
     public void initVistaPrincipal() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -159,7 +187,7 @@ public class Main extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Vista Principal");
+            dialogStage.setTitle("Vista Principal - Usuario logueado: "+usuario.getUsuario().toUpperCase());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -222,8 +250,6 @@ public class Main extends Application {
             controller.setDialogStage(dialogStage);
             controller.setMain(this);
             controller.calcularTotal();
-            //controller.cargarComponentes();
-            //controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
             dialogStage.show();

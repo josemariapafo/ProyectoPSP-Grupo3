@@ -6,15 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="323.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.VistaChat">
+<AnchorPane prefHeight="323.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.controlador.ChatController">
    <children>
-      <ScrollPane layoutY="14.0" prefHeight="268.0" prefWidth="266.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+      <ScrollPane layoutX="6.0" layoutY="14.0" prefHeight="270.0" prefViewportHeight="268.0" prefViewportWidth="248.0" prefWidth="306.0">
+         <content>
+            <TextArea fx:id="chatBox" editable="false" prefHeight="268.0" prefWidth="304.0" />
+         </content>
       </ScrollPane>
-      <Button layoutX="196.0" layoutY="291.0" mnemonicParsing="false" text="Enviar" />
-      <TextField layoutX="14.0" layoutY="291.0" prefHeight="25.0" prefWidth="163.0" />
+      <Button defaultButton="true" layoutX="204.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleEnviar" text="Enviar" />
+      <TextField fx:id="txMsj" layoutX="6.0" layoutY="291.0" prefHeight="25.0" prefWidth="193.0" />
+      <Button cancelButton="true" layoutX="257.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleSalir" prefHeight="25.0" prefWidth="48.0" text="Salir" />
    </children>
 </AnchorPane>

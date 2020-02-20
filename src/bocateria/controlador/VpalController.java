@@ -250,22 +250,23 @@ public class VpalController {
     @FXML
     public void pulsarBotonChatear(){
         try {
-            System.out.println("Entra chat admin");
-            UDPMultiChat2 chatadmin = new UDPMultiChat2("admin");
-
-            String nombrechat = "admin";
-            // Se crea el socket multicast
-            chatadmin.setMs(new MulticastSocket(12345));
-            chatadmin.setGrupo(InetAddress.getByName("225.0.0.1"));// Grupo
-            // Nos unimos al grupo
-            chatadmin.getMs().joinGroup(chatadmin.getGrupo());
-            if (!nombrechat.trim().equals("")) {
-                UDPMultiChat2 server = new UDPMultiChat2(nombrechat);
-                server.setBounds(0, 0, 540, 400);
-                server.setVisible(true);
-                new Thread(server).start();
-
-            }
+            mainApp.initChat();
+//            System.out.println("Entra chat admin");
+//            UDPMultiChat2 chatadmin = new UDPMultiChat2("admin");
+//
+//            String nombrechat = "admin";
+//            // Se crea el socket multicast
+//            chatadmin.setMs(new MulticastSocket(12345));
+//            chatadmin.setGrupo(InetAddress.getByName("225.0.0.1"));// Grupo
+//            // Nos unimos al grupo
+//            chatadmin.getMs().joinGroup(chatadmin.getGrupo());
+//            if (!nombrechat.trim().equals("")) {
+//                UDPMultiChat2 server = new UDPMultiChat2(nombrechat);
+//                server.setBounds(0, 0, 540, 400);
+//                server.setVisible(true);
+//                new Thread(server).start();
+//
+//            }
 
                 /*
                     System.out.println("Entra chat usuario");
@@ -285,7 +286,7 @@ public class VpalController {
 
                 }
                 */
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             //Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al abrir el chat");
         }

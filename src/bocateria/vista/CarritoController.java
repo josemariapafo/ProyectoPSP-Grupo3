@@ -119,7 +119,9 @@ public class CarritoController {
         }
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
         modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
-        modelo.sendMail(new MailVO(pedidoVO));
+        main.getAlerta().info("Pedido realizado con éxito");
+        System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
+//        modelo.sendMail(new MailVO(pedidoVO));
     }
 
     @FXML
