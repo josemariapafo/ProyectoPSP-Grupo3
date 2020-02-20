@@ -71,37 +71,6 @@ public class CarritoController {
         columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
     }
 
-
-    /*public void visualizarNombreProductos(){
-        ListView list = new ListView();
-        list.getItems().add(listaProductos.get(0).getNombre()+" ");
-        list.getItems().add(listaProductos.get(1).getNombre()+" ");
-        list.getItems().add(listaProductos.get(2).getNombre()+" ");
-        hBoxNombre = new HBox(list);
-
-        Scene scene = new Scene(hBoxNombre);
-        dialogStage.setScene(scene);
-        dialogStage.show();
-    }
-
-    public void visualizarPrecioProductos(){
-        ListView list = new ListView();
-        list.getItems().add(listaProductos.get(0).getCantidad()+" ");
-        list.getItems().add(listaProductos.get(1).getCantidad()+" ");
-        list.getItems().add(listaProductos.get(2).getCantidad()+" ");
-        hBoxCantidad = new HBox(list);
-
-        Scene scene = new Scene(hBoxNombre);
-        dialogStage.setScene(scene);
-        dialogStage.show();
-    }
-
-    public void visualizarListaProductos(){
-
-        visualizarNombreProductos();
-        visualizarPrecioProductos();
-    }*/
-
     public void cargarComponentes() {
 //        cargarLista();
         // visualizarListaProductos();

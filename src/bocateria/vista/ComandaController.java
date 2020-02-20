@@ -89,13 +89,13 @@ public class ComandaController {
             }
         }
        // Mostrar la lista de productos por cada pedido
-        System.out.println("Por cada pedido , sus productos");
+        //System.out.println("Por cada pedido , sus productos");
 
-       for(int i = 0; i<pedidoProductoVO.size();i++){
+     /*  for(int i = 0; i<pedidoProductoVO.size();i++){
             for(int j = 0; j<pedidoProductoVO.get(i).size(); j++){
-               // System.out.println(pedidoProductoVO.get(i).get(j));
+                System.out.println(pedidoProductoVO.get(i).get(j));
             }
-        }
+        }*/
 
        //Añadir lista de Productos al pedido y añadir el nombre del usuario
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
@@ -122,7 +122,7 @@ public class ComandaController {
         //MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS
         System.out.println("MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS");
         for(int i = 0; i<pedidosFechaHoy.size(); i++){
-            System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario());
+            System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario().getUsuario());
             for(int j= 0; j<pedidosFechaHoy.get(i).getListaProductos().size(); j++){
                 System.out.println("   "+pedidosFechaHoy.get(i).getListaProductos().get(j));
             }

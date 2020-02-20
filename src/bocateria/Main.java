@@ -252,7 +252,6 @@ public class Main extends Application {
             controller.setDialogStage(dialogStage);
             controller.setMain(this);
             controller.setDialogStage(dialogStage);
-            System.out.println("Holiii");
 
             // Show the dialog and wait until the user closes it
             dialogStage.show();

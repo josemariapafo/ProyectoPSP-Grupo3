@@ -187,7 +187,7 @@ public class BDPedido implements PedidoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            String query = "select idUsuario,idPedido from usuario_pedido where idUsuario='"+idPedido+"'";
+            String query = "select idUsuario,idPedido from usuario_pedido where idPedido=idPedido";
            // stmt = conn.prepareStatement(GETONE_USUPED_PEDIDO);
             stmt = conn.prepareStatement(query);
             //stmt.setInt(1, p.getPedidoId());
@@ -219,50 +219,6 @@ public class BDPedido implements PedidoDAO {
     //METODO ENCARGADO DE RECOGER AQUELLO PEDIDOS DE LA FECHA DE HOY
     @Override
     public List<PedidoVO> obtenerTodosPedidosHoy() {
-       /* System.out.println("eeeeeeeeeeee");
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        List<PedidoVO> pedidos = new ArrayList<>();
-        System.out.println("11111111111");
-        try {
-           // stmt = conn.prepareStatement("SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA= '2020-02-20'");
-          //  stmt = conn.prepareStatement("SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO");
-            //stmt.setInt(1, p.getPedidoId());
-            System.out.println("22222222222222222");
-            rs = stmt.executeQuery("SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO");
-            System.out.println("333333333333333");
-            while (rs.next()) {
-                PedidoVO pedido = new PedidoVO();
-                pedido.setPedidoId(rs.getInt("pedidoid"));
-                pedido.setTotal(rs.getDouble("total"));
-                pedido.setDate(rs.getDate("fecha"));
-                pedidos.add(pedido);
-            }
-
-        } catch (SQLException e) {
-            try {
-                throw new ExcepcionBocateria("Error al cargar los pedidos a fecha de hoy");
-            } catch (ExcepcionBocateria excepcionBocateria) {
-                excepcionBocateria.printStackTrace();
-            }
-        } finally {
-
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return pedidos;*/
         List<PedidoVO> pedidos = new ArrayList<PedidoVO>();
        // String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA='2020-02-18'";
         String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO";
@@ -275,14 +231,6 @@ public class BDPedido implements PedidoDAO {
                 pedidoVO.setPedidoId((rs.getInt("pedidoId")));
                 pedidoVO.setTotal(rs.getDouble("total"));
                 pedidoVO.setDate(rs.getDate("fecha"));
-                /*
-                 * persona.setNombre(persona.getNombre());
-                 * persona.setApellidos(persona.getApellidos());
-                 * persona.setDni(persona.getDni());
-                 * persona.setDireccion(persona.getDireccion());
-                 * persona.setLocalidad(persona.getLocalidad());
-                 * persona.setProvincia(persona.getProvincia());
-                 */
                 pedidos.add(pedidoVO);
             }
         } catch (SQLException e1) {
@@ -306,11 +254,8 @@ public class BDPedido implements PedidoDAO {
             String query = "select idPedido,idProducto,cantidad from pedido_producto where idPedido="+p.getPedidoId();
             //stmt = conn.prepareStatement(GETONE_PEDPROD);
             stmt = conn.prepareStatement(query);
-            System.out.println("Nasssssss");
            // stmt.setInt(1, p.getPedidoId());
-            System.out.println("looooooooooooooo");
             rs = stmt.executeQuery();
-            System.out.println("kaaaaaaaaaaaaaaaaa");
             while (rs.next())
                 pedprod.add(convertirPedProd(rs));
 
