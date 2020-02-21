@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class Main extends Application {
             Scene scene = new Scene(vistaLogin);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login JOSEB");
+            primaryStage.setResizable(false);
 
             // Give the controller access to the main app.
             LoginControlador controller = loader.getController();
@@ -111,6 +113,8 @@ public class Main extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
+            dialogStage.initStyle(StageStyle.TRANSPARENT);
+
 
             // Set the usuarioVO into the controller.
             RegistroControlador controller = loader.getController();

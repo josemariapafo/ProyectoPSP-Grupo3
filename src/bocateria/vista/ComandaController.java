@@ -1,26 +1,16 @@
 package bocateria.vista;
 
 import bocateria.Main;
-import bocateria.controlador.SendMailController;
-import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
-import bocateria.modelo.dao.bd.BDManager;
-import bocateria.modelo.dao.bd.BDPedido;
-import bocateria.modelo.vo.PedidoProductoVO;
 import bocateria.modelo.vo.PedidoVO;
-import bocateria.modelo.vo.ProductoVO;
-import bocateria.modelo.vo.UsuarioVO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ComandaController {

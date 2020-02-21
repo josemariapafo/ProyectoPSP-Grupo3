@@ -2,7 +2,7 @@ package bocateria.modelo;
 
 import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
-import bocateria.modelo.dao.bd.BDManager;
+import bocateria.modelo.dao.impl.BDManager;
 import bocateria.modelo.vo.*;
 
 import java.io.IOException;
