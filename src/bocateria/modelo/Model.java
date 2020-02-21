@@ -20,12 +20,11 @@ public class Model {
     private BDManager bdManager;
 
     public Model() {
-        try {
-            bdManager = new BDManager();
-        } catch (SQLException e) {
-            System.out.println("Error al cargar bdManager desde el modelo");
-            e.printStackTrace();
-        }
+        bdManager = new BDManager();
+    }
+
+    public BDManager getBdManager() {
+        return bdManager;
     }
 
     //METODOS USUARIO

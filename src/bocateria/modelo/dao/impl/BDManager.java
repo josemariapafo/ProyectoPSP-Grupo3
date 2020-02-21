@@ -1,5 +1,6 @@
 package bocateria.modelo.dao.impl;
 
+import bocateria.exepcion.Alertas;
 import bocateria.modelo.dao.DAOManager;
 import bocateria.modelo.dao.ext.PedidoDAO;
 import bocateria.modelo.dao.ext.ProductoDAO;
@@ -11,27 +12,29 @@ import java.sql.SQLException;
 
 public class BDManager implements DAOManager {
 
-    private Connection conn;
-    private UsuarioDAO usuario;
-    private PedidoDAO pedido;
-    private ProductoDAO producto;
+    private Alertas alerta = new Alertas();
+    private Connection conn = null;
+    private UsuarioDAO usuario = null;
+    private PedidoDAO pedido = null;
+    private ProductoDAO producto = null;
 
-    public BDManager() throws SQLException {
+    public BDManager() {
         loadDriver();
-        conectar();
     }
 
     public void loadDriver() {
         try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bocateria?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET", "root", "");
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
+            alerta.error(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public void conectar() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/bocateria?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET", "root", "");
+    public Connection getConn() {
+        return conn;
     }
 
     @Override

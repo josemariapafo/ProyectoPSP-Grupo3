@@ -30,7 +30,7 @@ import java.util.List;
 public class Main extends Application {
     Stage primaryStage;
     AnchorPane rootLayout;
-    Model model = new Model();
+    Model model;
     UsuarioVO usuario;
     private Alertas alerta = new Alertas();
     //DATOS DEL CARRITO
@@ -67,8 +67,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        showLogIn();
+        model = new Model();
+        if(model.getBdManager().getConn()==null)
+            alerta.aviso("ARRANCA LA BASE DE DATOS PARA PODER EJECUTAR LA APLICACIÓN");
+        else{
+            this.primaryStage = primaryStage;
+            showLogIn();
+        }
 
 //        Parent root = FXMLLoader.load(getClass().getResource("VistaLogin.fxml"));
 //        primaryStage.setTitle("Hello World");
