@@ -35,7 +35,10 @@ public class VpalController {
 
     @FXML
     private Button clienteFTP;
-
+    @FXML
+    private Button atras;
+    @FXML
+    private Button delante;
     @FXML
     private Button comprar;
 
@@ -164,6 +167,10 @@ public class VpalController {
     public void load() throws ExcepcionBocateria, SQLException {
         if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
+        if(getIndexActual() == 0)
+            atras.setDisable(true);
+        else
+            atras.setDisable(false);
         setIndexInicial(getIndexActual());
         despejaPanel();
         if (getProductos().size() < 11)
@@ -174,10 +181,21 @@ public class VpalController {
         }
     }
 
+    /**
+     * Carga la siguiente página de productos en la vista principal
+     * @throws ExcepcionBocateria
+     * @throws SQLException
+     */
     @FXML
     public void loadUI() throws ExcepcionBocateria, SQLException {
-        if (modelo.compruebaAdmin(usuario))
-            loadAdminUI();
+        if(getIndexActual() == 0)
+            atras.setDisable(true);
+        else
+            atras.setDisable(false);
+        if(getIndexActual()==getProductos().size()-1)
+            delante.setDisable(true);
+        else
+            delante.setDisable(false);
         setIndexInicial(getIndexActual());
         despejaPanel();
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
@@ -195,7 +213,7 @@ public class VpalController {
             setIndexActual(getIndexActual() - 1);
         }
         setIndexInicial(getIndexActual());*/
-        setIndexActual(getIndexActual() - 10);
+        setIndexActual(getIndexActual() - 11);
         setIndexInicial(getIndexActual());
         loadUI();
     }
@@ -206,6 +224,10 @@ public class VpalController {
         regSandwich.setDisable(false);
         sendMail.setVisible(true);
         sendMail.setDisable(false);
+        clienteFTP.setDisable(false);
+        clienteFTP.setVisible(true);
+        consultarComandas.setDisable(false);
+        consultarComandas.setVisible(true);
     }
 
     public void setProductos() {
@@ -601,7 +623,7 @@ public class VpalController {
                 break;
             case 8:
                 v13.setVisible(true);
-                img13 = new ImageView(list.get(getIndexActual()).getFoto());
+                img13.setImage(list.get(getIndexActual()).getFoto());
                 nombre13.setText(list.get(getIndexActual()).getNombre());
                 precio13.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion13.setText(list.get(getIndexActual()).getDescripcion());
@@ -615,7 +637,7 @@ public class VpalController {
                 break;
             case 9:
                 v14.setVisible(true);
-                img14 = new ImageView(list.get(getIndexActual()).getFoto());
+                img14.setImage(list.get(getIndexActual()).getFoto());
                 nombre14.setText(list.get(getIndexActual()).getNombre());
                 precio14.setText(String.valueOf(list.get(getIndexActual()).getPrecio()));
                 descripcion14.setText(list.get(getIndexActual()).getDescripcion());

@@ -294,7 +294,6 @@ public class Main extends Application {
             ComandaController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMain(this);
-            controller.listar();
 
             // Show the dialog and wait until the user closes it
             dialogStage.show();
