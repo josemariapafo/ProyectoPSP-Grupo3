@@ -32,20 +32,15 @@ public class VpalController {
 
     @FXML
     private Button regSandwich;
-
     @FXML
     private Button clienteFTP;
     @FXML
     private Button atras;
     @FXML
     private Button delante;
-    @FXML
-    private Button comprar;
 
     @FXML
     private Button consultarComandas;
-    @FXML
-    private Button chatear;
 
     @FXML
     Button sendMail;
@@ -164,7 +159,7 @@ public class VpalController {
     }
 
     /**
-     * 
+     * Carga la vista por primera vez al loguearnos
      * @throws ExcepcionBocateria
      * @throws SQLException
      */
@@ -208,21 +203,21 @@ public class VpalController {
         }
     }
 
+    /**
+     * Acción del botón atras, carga la página anterior de la vista
+     * @throws ExcepcionBocateria
+     * @throws SQLException
+     */
     @FXML
     public void loadUIBack() throws ExcepcionBocateria, SQLException {
-        /*despejaPanel();
-
-        for (int panel = 9; panel > -1 && (getIndexActual() > -1); panel++) {
-            loadPanel(panel);
-            setIndexActual(getIndexActual() - 1);
-        }
-        setIndexInicial(getIndexActual());*/
         setIndexActual(getIndexActual() - 11);
         setIndexInicial(getIndexActual());
         loadUI();
     }
 
-
+    /**
+     * Carga los botones para la vista de administrador
+     */
     private void loadAdminUI() {
         regSandwich.setVisible(true);
         regSandwich.setDisable(false);
@@ -234,10 +229,16 @@ public class VpalController {
         consultarComandas.setVisible(true);
     }
 
+    /**
+     * Instancia la lista de los productos en el controlador de la vista principal
+     */
     public void setProductos() {
         this.productos = modelo.obtenerTodosProductos();
     }
 
+    /**
+     * Hace invisible todos los paneles donde se muestran los productos de la vista principal
+     */
     private void despejaPanel() {
         v00.setVisible(false);
         v01.setVisible(false);
@@ -251,6 +252,9 @@ public class VpalController {
         v14.setVisible(false);
     }
 
+    /**
+     * Acción del botón Comprar
+     */
     @FXML
     public void pulsarBotonComprar() {
         try {
@@ -265,25 +269,40 @@ public class VpalController {
             System.out.println("Error al abrir el carrito");
         }
     }
+
+    /**
+     * Acción del botón Consultar Comandas
+     */
     @FXML
     public void pulsarBotonConsultarComandas(){
         mainApp.initVistaComanda();
     }
+
+    /**
+     * Acción del botón Chatear
+     */
     @FXML
     public void pulsarBotonChatear(){
             mainApp.initChat();
     }
 
+    /**
+     * Acción del botón Enviar Correo
+     */
     @FXML
     public void handleEnviarCorreo() {
         mainApp.initEnviaCorreo();
     }
 
+    /**
+     * Acción del botón Registrar Sandwich
+     */
     @FXML
     public void initRegistrarSandwich() {
         mainApp.initRegistroSandwich(/*this*/);
     }
 
+// Botones de sumar y restar cantidad de los productos deseados
     @FXML
     void botonSuma00() {
         p = getProductos().get(getIndexInicial());
@@ -484,7 +503,10 @@ public class VpalController {
         }
     }
 
-
+    /**
+     * Al pulsar el botón comprar devuelve una lista de los productos que han sido seleccionados
+     * @return listaCompra de los productos seleccionados producto.getCantidad()>0
+     */
     private List<ProductoVO> listaCompra() {
         List<ProductoVO> listaCompra = new ArrayList<>();
         System.out.println("Lista de la compra");
@@ -504,6 +526,10 @@ public class VpalController {
         mainApp.initFTPClient();
     }
 
+    /**
+     * Carga un panel de los 10 que hay en la vista principal
+     * @param n es el panel que cargaremos
+     */
     private void loadPanel(int n) {
         List<ProductoVO> list = getProductos();
         switch (n) {
