@@ -163,7 +163,11 @@ public class VpalController {
         return productos;
     }
 
-
+    /**
+     * 
+     * @throws ExcepcionBocateria
+     * @throws SQLException
+     */
     public void load() throws ExcepcionBocateria, SQLException {
         if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
@@ -498,12 +502,6 @@ public class VpalController {
     @FXML
     private void abrirClienteFTP() {
         mainApp.initFTPClient();
-        try {
-            clienteFTPBasico cliente = new clienteFTPBasico();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al abrir el cliente ftp");
-        }
     }
 
     private void loadPanel(int n) {
