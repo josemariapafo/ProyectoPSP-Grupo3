@@ -34,12 +34,15 @@ public class ChatController implements Runnable {
     private TextArea chatBox;
     private Stage dialogStage;
 
+    //Método que te conecta a un grupo mediante una ip multicast
     @FXML
     private void initialize() throws IOException {
         setMs(new MulticastSocket(12345));
         setGrupo(InetAddress.getByName("225.0.0.1"));
         getMs().joinGroup(getGrupo());
     }
+
+    //METODO QUE SE EJECUTA AL INICIAR EL CHAT, ES EL ENCARGADO DE ENVIAR AL GRUPO QUE HAS ENTRADO
     public void ingreso(){
         String texto = "*** Ingresó al chat: " + nombre.toUpperCase() + " ***";
         try {
@@ -53,6 +56,7 @@ public class ChatController implements Runnable {
         }
     }
 
+    //METODO QUE SE UTILIZA AL ENVIAR UN MENSAGE, ENCARGADO DE ENVIARUN DATAGRAMPAQUET AL GRUPO CON EL MENSAGE
     @FXML
     private void handleEnviar() {
         if (txMsj.getText().equals(""))
@@ -73,6 +77,7 @@ public class ChatController implements Runnable {
         }
     }
 
+    //COMUNICA AL GRUPO QUE HAS ABANDONADO EL GRUPO
     @FXML
     private void handleSalir() {
         String texto = "*** Abandona el chat: " + nombre + " ***";
@@ -90,6 +95,7 @@ public class ChatController implements Runnable {
         this.dialogStage.close();
     }
 
+    //ENCARGADO DE ENVIAR EL PAQUETE DE UN USUARIO AL RESTO DEL GRUPO
     @Override
     public void run() {
         while (repetir) {

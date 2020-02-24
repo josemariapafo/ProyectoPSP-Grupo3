@@ -57,6 +57,7 @@ public class CarritoController {
         this.dialogStage = dialogStage;
     }
 
+    //Método que introduce los datos del carrito en la tabla productos
     public void setMain(Main main) {
         this.main = main;
         this.modelo = main.getModel();
@@ -65,18 +66,14 @@ public class CarritoController {
         listaProductos = new ArrayList<>(main.getCarritoData());
     }
 
+
     @FXML
     private void initialize() {
         columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
         columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
     }
 
-    public void cargarComponentes() {
-//        cargarLista();
-        // visualizarListaProductos();
-        calcularTotal();
-    }
-
+    // Calcula el precio total de la lista de producto del carrito
     public void calcularTotal() {
         for (ProductoVO p : listaProductos) {
             setTotalPrecio(getTotalPrecio() + (p.getPrecio() * p.getCantidad()));
@@ -121,7 +118,7 @@ public class CarritoController {
         modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
         main.getAlerta().info("Pedido realizado con éxito");
         System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
-//        modelo.sendMail(new MailVO(pedidoVO));
+        //modelo.sendMail(new MailVO(pedidoVO));
     }
 
     @FXML

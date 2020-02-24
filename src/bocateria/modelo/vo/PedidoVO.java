@@ -11,7 +11,7 @@ public class PedidoVO {
     private int pedidoId;
     private double total;
     private UsuarioVO usuario;
-//    private long date;
+    //private long date;
     private Date date;
     private List<ProductoVO> listaProductos;
     //ATRIBUTOS PROPERTY
