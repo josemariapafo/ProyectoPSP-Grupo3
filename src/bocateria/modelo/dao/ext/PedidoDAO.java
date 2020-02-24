@@ -19,5 +19,4 @@ public interface PedidoDAO extends DAO<PedidoVO> {
     UsuarioPedidoVO convertirUsuPed(ResultSet rs) throws SQLException;
     PedidoProductoVO convertirPedProd(ResultSet rs) throws SQLException;
     List<PedidoVO> obtenerTodosPedidosHoy();
-    String obtenerUsuarioDelPedido(int idPedido) throws SQLException;
 }

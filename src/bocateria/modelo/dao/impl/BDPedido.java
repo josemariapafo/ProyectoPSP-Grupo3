@@ -160,40 +160,6 @@ public class BDPedido implements PedidoDAO {
         return usuped;
     }
 
-    @Override
-    public String obtenerUsuarioDelPedido(int idPedido) throws SQLException {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            String query = "select idUsuario,idPedido from usuario_pedido where idPedido=idPedido";
-           // stmt = conn.prepareStatement(GETONE_USUPED_PEDIDO);
-            stmt = conn.prepareStatement(query);
-            //stmt.setInt(1, p.getPedidoId());
-            rs = stmt.executeQuery();
-            if (rs.next()){
-                return rs.getString("idUsuario");
-            }
-            else {
-                return null;
-            }
-        } catch (SQLException e) {
-            try {
-                throw new ExcepcionBocateria("ERROR EN SQL");
-            } catch (ExcepcionBocateria excepcionBocateria) {
-                excepcionBocateria.printStackTrace();
-            }
-        } finally {
-
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return null;
-    }
-
     //METODO ENCARGADO DE RECOGER AQUELLO PEDIDOS DE LA FECHA DE HOY
     @Override
     public List<PedidoVO> obtenerTodosPedidosHoy() {
