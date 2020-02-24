@@ -1,21 +1,20 @@
 package bocateria.modelo.productor_consumidor;
 
+import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Consumidor extends Thread{
     private ListaComandas cola;
-    private List<ProductoVO> listaProductos = new ArrayList<>();
-    private int numeroComandas;
+    private List<PedidoVO> listaPedidos = new ArrayList<>();
 
-    public Consumidor(ListaComandas listaComandas, ArrayList<ProductoVO> lista) {
-        this.listaProductos.addAll(listaComandas.get());
-        this.listaProductos = lista;
+    public Consumidor(ListaComandas cola) {
+        this.listaPedidos.addAll(cola.get());
     }
 
     public void run() {
-            listaProductos.removeAll(listaProductos);
-            listaProductos.addAll(cola.get()); //recoge la lista de la cola
+        listaPedidos.removeAll(listaPedidos);
+        listaPedidos.addAll(cola.get());    //recoge la lista de la cola
     }
 }
