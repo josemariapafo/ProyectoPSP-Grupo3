@@ -54,7 +54,6 @@ public class ComandaController {
     }
     @FXML
     private void initialize() {
-
       columnaPedidoId.setCellValueFactory(cellData -> cellData.getValue().pedidoIdProperyProperty().asObject());
       columnaNombrePedido.setCellValueFactory(cellData -> cellData.getValue().usuarioPropertyProperty());
     }
