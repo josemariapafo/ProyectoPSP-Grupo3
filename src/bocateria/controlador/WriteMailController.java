@@ -34,7 +34,6 @@ public class WriteMailController {
     private Alertas alerta;
     private Main main;
     private Model modelo;
-    private String destinatario, asunto, mensaje;
     private Stage dialogStage;
     public void setMain(Main main){
         this.main = main;
