@@ -188,4 +188,31 @@ public class BDUsuario implements UsuarioDAO {
             return false;
     }
 
+    @Override
+    public UsuarioVO obtenerPorId(String idUsuario) throws ExcepcionBocateria, SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UsuarioVO user;
+        try {
+            stmt = conn.prepareStatement(GETONE);
+            stmt.setString(1, idUsuario);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = convertir(rs);
+            } else {
+                user = null;
+            }
+        } catch (SQLException e) {
+            throw new ExcepcionBocateria("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return user;
+    }
+
 }

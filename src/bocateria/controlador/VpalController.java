@@ -478,6 +478,7 @@ public class VpalController {
 
     @FXML
     private void abrirClienteFTP() {
+        mainApp.initFTPClient();
         try {
             clienteFTPBasico cliente = new clienteFTPBasico();
         } catch (IOException e) {

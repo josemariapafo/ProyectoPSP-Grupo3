@@ -43,9 +43,11 @@ public class Model {
     public UsuarioVO obtenerUsuario(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         return bdManager.getUsuarioDAO().obtener(usuarioVO);
     }
+
     public boolean compruebaAdmin(UsuarioVO usuario) throws ExcepcionBocateria, SQLException {
         return bdManager.getUsuarioDAO().compruebaAdmin(usuario);
     }
+
     public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
         String usu, pwd;
         pwd = usuarioVO.getContrasena();
@@ -122,10 +124,12 @@ public class Model {
             return false;
         }
     }
+
     public void sendMail(MailVO correo) throws UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException {
         SendMailController sender = new SendMailController(correo);
         sender.sendMail();
     }
+
     public boolean eliminarProducto(ProductoVO productoVO) {
         try {
             bdManager.getProductoDAO().eliminar(productoVO);
@@ -147,55 +151,24 @@ public class Model {
         return null;
     }
 
-    public List<PedidoVO> obtenerPedidosHoy(){
+    public List<PedidoVO> obtenerPedidosHoy() throws ExcepcionBocateria, SQLException {
         List<PedidoVO> pedidosFechaHoy = bdManager.getPedidoDAO().obtenerTodosPedidosHoy();
-        for(int i = 0; i<pedidosFechaHoy.size(); i++){
-            System.out.println(pedidosFechaHoy.get(i));
+        for (PedidoVO pedido : pedidosFechaHoy) {
+            System.out.println(pedido);
         }
-
-        System.out.println("Obtenemos por cada pedido su array de productos");
-        List<List<PedidoProductoVO>> pedidoProductoVO = new ArrayList<>();
-        for(int i = 0; i<pedidosFechaHoy.size(); i++){
-            try {
-                pedidoProductoVO.add(bdManager.getPedidoDAO().obtenerPedidoProductoList(pedidosFechaHoy.get(i)));
-            } catch (ExcepcionBocateria excepcionBocateria) {
-                excepcionBocateria.printStackTrace();
-                System.out.println("Error al obtener de cada pedido sus productos");
-            } catch (SQLException e) {
-                e.printStackTrace();
+        List<PedidoProductoVO> productosPorPedido;
+        ProductoVO producto;
+        for (PedidoVO pedido : pedidosFechaHoy) {
+            productosPorPedido = bdManager.getPedidoDAO().obtenerPedidoProductoList(pedido);
+            List<ProductoVO> listaProductos = new ArrayList<>();
+            for (PedidoProductoVO pp : productosPorPedido) {
+                producto = bdManager.getProductoDAO().obtenerProductoMedianteID(pp.getIdProducto());
+                producto.setCantidad(pp.getCantidad());
+                listaProductos.add(producto);
             }
+            pedido.setUsuario(bdManager.getUsuarioDAO().obtenerPorId(bdManager.getPedidoDAO().obtenerUsuarioPedido(pedido).getIdUsuario()));
+            pedido.setListaProductos(listaProductos);
         }
-        //Añadir lista de Productos al pedido y añadir el nombre del usuario
-        for(int i = 0; i<pedidosFechaHoy.size(); i++){
-            List<ProductoVO> productoVOS = new ArrayList<>();
-            UsuarioVO usuario = new UsuarioVO();
-            try {
-                usuario.setUsuario(bdManager.getPedidoDAO().obtenerUsuarioDelPedido(pedidosFechaHoy.get(i).getPedidoId()));
-                pedidosFechaHoy.get(i).setUsuario(usuario);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Error al guardar el usuario");
-            }
-
-            for(int j = 0; j<pedidoProductoVO.get(i).size();j++){
-                try {
-                    productoVOS.add(bdManager.getProductoDAO().obtenerProductoMedianteID(pedidoProductoVO.get(i).get(j).getIdProducto()));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            pedidosFechaHoy.get(i).setListaProductos(productoVOS);
-        }
-
-        //MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS
-        System.out.println("MOSTRAR POR CADA PEDIDO TODO SUS ATRIBUTOS");
-        for(int i = 0; i<pedidosFechaHoy.size(); i++){
-            System.out.println(pedidosFechaHoy.get(i).getPedidoId()+" "+pedidosFechaHoy.get(i).getDate()+" "+pedidosFechaHoy.get(i).getTotal()+" "+pedidosFechaHoy.get(i).getUsuario().getUsuario());
-            for(int j= 0; j<pedidosFechaHoy.get(i).getListaProductos().size(); j++){
-                System.out.println("   "+pedidosFechaHoy.get(i).getListaProductos().get(j));
-            }
-        }
-        //mainApp.setListaComanda(pedidosFechaHoy);
         return pedidosFechaHoy;
     }
 }

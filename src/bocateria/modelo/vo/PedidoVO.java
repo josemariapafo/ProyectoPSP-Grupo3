@@ -71,6 +71,7 @@ public class PedidoVO {
 
     public void setPedidoId(int pedidoId) {
         this.pedidoId = pedidoId;
+        setPedidoIdPropery(pedidoId);
     }
 
     public double getTotal() {
@@ -91,10 +92,12 @@ public class PedidoVO {
 
     public UsuarioVO getUsuario() {
         return usuario;
+
     }
 
     public void setUsuario(UsuarioVO usuario) {
         this.usuario = usuario;
+        setUsuarioProperty(usuario.getUsuario());
     }
 
     public List<ProductoVO> getListaProductos() {

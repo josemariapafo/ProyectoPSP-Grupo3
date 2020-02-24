@@ -2,9 +2,7 @@ package bocateria.vista;
 
 import bocateria.Main;
 import bocateria.modelo.Model;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableListValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +19,6 @@ import org.apache.commons.net.ftp.FTPFile;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.List;
 
 
 public class FTPController {
@@ -174,7 +171,7 @@ public class FTPController {
      *
      * @param mainApp
      */
-    public void setMainApp(Main mainApp) {
+    public void setMain(Main mainApp) {
         this.mainApp = mainApp;
         this.modelo = mainApp.getModel();
     }
@@ -183,7 +180,7 @@ public class FTPController {
      * Botón VOLVER
      */
     @FXML
-    private void manejaVolver() {
+    private void volver() {
 
         try {
             cliente.disconnect();
@@ -199,7 +196,7 @@ public class FTPController {
      * Botón SUBIR FICHERO
      */
     @FXML
-    private void manejaSubirFichero() {
+    private void subirFichero() {
         System.out.println("ENTRA SUBIR FICHERO");
         JFileChooser f = new JFileChooser();
         f.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -210,7 +207,7 @@ public class FTPController {
             String archivo = file.getAbsolutePath();
             String nombreArchivo = file.getName();
             try {
-                SubirFichero(archivo, nombreArchivo);
+                subirFichero(archivo, nombreArchivo);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -222,12 +219,12 @@ public class FTPController {
      * Botón DESCARGAR FICHERO
      */
     @FXML
-    private void manejaDescargarFichero() {
+    private void descargarFichero() {
         String directorio = direcSelec;
         if (!direcSelec.equals("/"))
             directorio = directorio + "/";
         if (!ficheroSelec.equals("")) {
-            DescargarFichero(directorio + ficheroSelec, ficheroSelec);
+            descargarFichero(directorio + ficheroSelec, ficheroSelec);
         }
 
     }
@@ -236,19 +233,19 @@ public class FTPController {
      * Botón ELIMINAR FICHERO
      */
     @FXML
-    private void manejaEliminarFichero() {
+    private void eliminarFichero() {
         String directorio = direcSelec;
         if (!direcSelec.equals("/"))
             directorio = directorio + "/";
         if (!ficheroSelec.equals(""))
-            BorrarFichero(directorio + ficheroSelec, ficheroSelec);
+            eliminarFichero(directorio + ficheroSelec, ficheroSelec);
     }
 
     /**
      * Botón CREAR CARPETA
      */
     @FXML
-    private void manejaCrearCarpeta() {
+    private void crearCarpeta() {
         String nombreCarpeta = JOptionPane.showInputDialog(null,
                 "Introduce el nombre del directorio",
                 "carpeta");
@@ -282,7 +279,7 @@ public class FTPController {
      * Botón ELIMINAR CARPETA
      */
     @FXML
-    private void manejaEliminarCarpeta() {
+    private void eliminarCarpeta() {
         String nombreCarpeta = JOptionPane.showInputDialog(null,
                 "Introduce el nombre del directorio a eliminar",
                 "carpeta");
@@ -346,7 +343,7 @@ public class FTPController {
         }
     }//Fin llenarLista
 
-    private void DescargarFichero(String NombreCompleto, String nombreFichero) {
+    private void descargarFichero(String nombreCompleto, String nombreFichero) {
 
         String archivoyCarpetaDestino = "";
         String carpetaDestino = "";
@@ -371,7 +368,7 @@ public class FTPController {
                         archivoyCarpetaDestino));
 
 
-                if (cliente.retrieveFile(NombreCompleto, out))
+                if (cliente.retrieveFile(nombreCompleto, out))
                     JOptionPane.showMessageDialog(null, nombreFichero
                             + " => Se ha descargado correctamente ...");
                 else
@@ -385,7 +382,7 @@ public class FTPController {
         }
     }// ..DescargarFichero
 
-    private void BorrarFichero(String NombreCompleto, String nombreFichero) {
+    private void eliminarFichero(String NombreCompleto, String nombreFichero) {
         //pide confirmacion
         int seleccion = JOptionPane.showConfirmDialog(null,
                 "¿Desea eliminar el fichero seleccionado?");
@@ -409,7 +406,7 @@ public class FTPController {
     }// ..BorrarFichero
 
     // -------------------------------------------------------------------------
-    private boolean SubirFichero(String archivo, String nombreArchivo)
+    private boolean subirFichero(String archivo, String nombreArchivo)
             throws IOException {
 
         System.out.println("Archivo : " + archivo);
@@ -432,75 +429,5 @@ public class FTPController {
             labelFicheroSeleccionado.setText("No se ha podido subir... " + nombreArchivo);
 
         return ok;
-    }// SubirFichero
-
-    /*
-    private ListSelectionListener añadirListenerLista() {
-        ListSelectionListener listener = new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent lse) {
-                if (lse.getValueIsAdjusting()) {
-                    ficheroSelec = "";
-                    //elemento seleccionado de la lista
-                    String fic = listDir.getSelectionModel().getSelectedItem().toString();
-                    if (listDir.getSelectionModel().getSelectedIndex() == 0) {
-                        //Se hace clic en el primer elemento del JList
-                        if (!fic.equals(direcInicial)) {
-                            //si no estamos en el dictorio inicial, hay que
-                            //subir al directorio padre
-                            try {
-                                cliente.changeToParentDirectory();
-                                direcSelec = cliente.printWorkingDirectory();
-                                cliente.changeWorkingDirectory(direcSelec);
-                                FTPFile[] ff2 = cliente.listFiles();
-                                labelFicheroSeleccionado.setText("");
-                                //se llena la lista con fich. del directorio padre
-                                llenarLista(ff2, direcSelec);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    //No se hace clic en el primer elemento del JList
-                    //Puede ser un fichero o un directorio
-                    else {
-                        if (fic.substring(0, 6).equals("(DIR) ")) {
-                            //SE TRATA DE UN DIRECTORIO
-                            try {
-                                fic = fic.substring(6);
-                                String direcSelec2 = "";
-                                if (direcSelec.equals("/"))
-                                    direcSelec2 = direcSelec + fic;
-                                else
-                                    direcSelec2 = direcSelec + "/" + fic;
-                                FTPFile[] ff2 = null;
-                                cliente.changeWorkingDirectory(direcSelec2);
-                                ff2 = cliente.listFiles();
-                                labelFicheroSeleccionado.setText("DIRECTORIO:  " + fic + ", "
-                                        + ff2.length + " elementos");
-                                direcSelec = direcSelec2;
-                                llenarLista(ff2, direcSelec);
-                            } catch (IOException e2) {
-                                e2.printStackTrace();
-                            }
-                        } else {
-                            // SE TRATA DE UN FICHERO
-                            ficheroSelec = direcSelec;
-                            if (direcSelec.equals("/"))
-                                ficheroSelec += fic;
-                            else
-                                ficheroSelec += "/" + fic;
-                            labelFicheroSeleccionado.setText("FICHERO seleccionado:" +
-                                    ficheroSelec);
-                            ficheroSelec = fic;
-                        }//fin else
-                    }//else de fichero o directorio
-                    labelDirActual.setText("DIRECTORIO ACTUAL: " + direcSelec);
-                }//fin if inicial
-            }
-        };
-        return listener;
     }
-     */
-
 }

@@ -8,4 +8,6 @@ import java.sql.SQLException;
 
 public interface UsuarioDAO extends DAO<UsuarioVO> {
     boolean compruebaAdmin(UsuarioVO usuario) throws ExcepcionBocateria, SQLException;
+
+    UsuarioVO obtenerPorId(String idUsuario) throws ExcepcionBocateria, SQLException;
 }

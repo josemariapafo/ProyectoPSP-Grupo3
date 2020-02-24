@@ -4,6 +4,7 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.dao.ext.PedidoDAO;
 import bocateria.modelo.vo.PedidoProductoVO;
 import bocateria.modelo.vo.PedidoVO;
+import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioPedidoVO;
 
 import java.sql.*;
@@ -25,7 +26,7 @@ public class BDPedido implements PedidoDAO {
     private final String GETONE = "SELECT PEDIDOID, TOTAL, FECHA FROM PEDIDO WHERE PEDIDOID = ?";
 
     private final String GETALL_PEDPROD = "SELECT IDPEDIDO,IDPRODUCTO,CANTIDAD FROM PEDIDO_PRODUCTO";
-    private final String GETONE_PEDPROD = "SELECT IDPEDIDO,IDPRODUCTO,CANTIDAD FROM PEDIDO_PRODUCTO WHERE PEDIDOID = ?";
+    private final String GETONE_PEDPROD = "SELECT IDPEDIDO,IDPRODUCTO,CANTIDAD FROM PEDIDO_PRODUCTO WHERE IDPEDIDO = ?";
     private final String GETALL_USUPED = "SELECT IDUSUARIO,IDPEDIDO FROM USUARIO_PEDIDO";
     private final String GETONE_USUPED_USUARIO = "SELECT IDUSUARIO,IDPEDIDO FROM USUARIO_PEDIDO WHERE IDUSUARIO = ?";
     private final String GETONE_USUPED_PEDIDO = "SELECT IDUSUARIO,IDPEDIDO FROM USUARIO_PEDIDO WHERE IDPEDIDO = ?";
@@ -91,32 +92,6 @@ public class BDPedido implements PedidoDAO {
         }
         return false;
     }
-
-//    @Override
-//    public List<PedidoVO> obtenerTodos() throws ExcepcionBocateria{
-//        ArrayList<PedidoVO> pedidos = new ArrayList<>();
-//        String query1 = "select usuario,pedidoId,precio,cantidad from pedido";
-//
-//        try {
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery(query1);
-//            while (rs.next()) {
-//                int pedidoId = (rs.getInt("pedidoiId"));
-//                Double total= (rs.getDouble("total"));
-//                Date fecha = rs.getDate("fecha");
-//
-//                PedidoVO pedido = new PedidoVO();
-//                pedido.setPedidoId(pedidoId);
-//                pedido.setTotal(total);
-//                pedido.setDate(fecha);
-//                pedidos.add(pedido);
-//                return pedidos;
-//            }
-//        } catch (SQLException e1){
-//            throw new ExcepcionBocateria("Error al obtener todos los Pedidos");
-//        }
-//        return pedidos;
-//    }
 
     @Override
     public List<PedidoVO> obtenerTodos() throws ExcepcionBocateria {
@@ -184,6 +159,7 @@ public class BDPedido implements PedidoDAO {
         }
         return usuped;
     }
+
     @Override
     public String obtenerUsuarioDelPedido(int idPedido) throws SQLException {
         PreparedStatement stmt = null;
@@ -226,7 +202,6 @@ public class BDPedido implements PedidoDAO {
         java.util.Date date = new java.util.Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(date);
-        // String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO WHERE FECHA='2020-02-18'";
         System.out.println(strDate);
         String query1 = "SELECT PEDIDOID,TOTAL,FECHA FROM PEDIDO where fecha='"+strDate+"'";
         try {
@@ -250,18 +225,14 @@ public class BDPedido implements PedidoDAO {
         return pedidos;
     }
 
-
-
     @Override
     public List<PedidoProductoVO> obtenerPedidoProductoList(PedidoVO p) throws ExcepcionBocateria, SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<PedidoProductoVO> pedprod = new ArrayList<>();
         try {
-            String query = "select idPedido,idProducto,cantidad from pedido_producto where idPedido="+p.getPedidoId();
-            //stmt = conn.prepareStatement(GETONE_PEDPROD);
-            stmt = conn.prepareStatement(query);
-           // stmt.setInt(1, p.getPedidoId());
+            stmt = conn.prepareStatement(GETONE_PEDPROD);
+            stmt.setInt(1, p.getPedidoId());
             rs = stmt.executeQuery();
             while (rs.next())
                 pedprod.add(convertirPedProd(rs));
@@ -306,8 +277,6 @@ public class BDPedido implements PedidoDAO {
         cantidad = rs.getInt(3);
         return new PedidoProductoVO(idPedido,idProducto,cantidad);
     }
-
-
 
     @Override
     public boolean insertarPedidoProducto(int idPedido, int idProducto, int cantidad) throws ExcepcionBocateria {

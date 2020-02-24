@@ -12,6 +12,7 @@ import bocateria.controlador.RegistroControlador;
 import bocateria.modelo.Model;
 import bocateria.controlador.RegisterSandwichController;
 import bocateria.vista.ComandaController;
+import bocateria.vista.FTPController;
 import bocateria.vista.WriteMailController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -39,6 +40,12 @@ public class Main extends Application {
     //DATOS DE LAS COMANDAS PUESTAS EN MARCHA
     List<PedidoVO> listaComandas = new ArrayList<>();
     private ObservableList<PedidoVO> listaComanda = FXCollections.observableArrayList();
+
+    private ObservableList<ProductoVO> productosPedido = FXCollections.observableArrayList();
+
+    public ObservableList<ProductoVO> getProductosPedido() {
+        return productosPedido;
+    }
 
     public ObservableList<ProductoVO> getCarritoData() {
         return listaCarro;
@@ -325,4 +332,31 @@ public class Main extends Application {
         this.alerta = alert;
     }
 
+    public void initFTPClient() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaFTP.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Carrito");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the usuarioVO into the controller.
+            FTPController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMain(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

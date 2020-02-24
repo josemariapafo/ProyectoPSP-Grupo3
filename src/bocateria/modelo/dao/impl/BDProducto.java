@@ -142,9 +142,11 @@ public class BDProducto implements ProductoDAO {
         Double precio = rs.getDouble(5);
         int stock = rs.getInt(6);
         ProductoVO p = new ProductoVO(nombre, descripcion, foto, precio,stock);
+
         p.setCodigo(rs.getInt(1));
         return p;
     }
+
     private static Image convertToJavaFXImage(byte[] raw, final int width, final int height) {
         WritableImage image = new WritableImage(width, height);
         try {

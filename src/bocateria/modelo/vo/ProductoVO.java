@@ -44,6 +44,7 @@ public class ProductoVO {
         this.precio = precio;
         this.foto = foto;
         this.stock = stock;
+        setNombreProperty(nombre);
     }
 
     public int getStock() {
@@ -60,6 +61,7 @@ public class ProductoVO {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        setCantidadProperty(cantidad);
     }
 
     public int getCodigo() {
