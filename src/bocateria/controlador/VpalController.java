@@ -6,7 +6,6 @@ import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
 import bocateria.modelo.vo.ProductoVO;
 import bocateria.modelo.vo.UsuarioVO;
-import bocateria.vista.clienteFTPBasico;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,8 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

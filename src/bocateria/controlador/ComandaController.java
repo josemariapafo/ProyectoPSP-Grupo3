@@ -1,4 +1,4 @@
-package bocateria.vista;
+package bocateria.controlador;
 
 import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;

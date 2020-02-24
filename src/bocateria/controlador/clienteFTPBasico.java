@@ -1,4 +1,4 @@
-package bocateria.vista;
+package bocateria.controlador;
 import javax.swing.*;
 import javax.swing.event.*;
 import org.apache.commons.net.PrintCommandListener;

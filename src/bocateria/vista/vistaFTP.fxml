@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="426.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.vista.FTPController">
+<AnchorPane prefHeight="426.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bocateria.controlador.FTPController">
    <children>
       <Label fx:id="labelFicheroSeleccionado" layoutX="13.0" layoutY="342.0" prefHeight="22.0" prefWidth="441.0" text="Label" />
       <Label fx:id="labelDirActual" layoutX="13.0" layoutY="364.0" prefHeight="22.0" prefWidth="441.0" text="Label" />
