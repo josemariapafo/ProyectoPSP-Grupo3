@@ -27,7 +27,6 @@ public class VpalController {
     private UsuarioVO usuario;
     private int indexActual = 0;
     private int indexInicial;
-
     private ProductoVO p;
 
     @FXML
