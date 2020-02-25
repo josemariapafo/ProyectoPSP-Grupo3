@@ -218,6 +218,7 @@ public class Main extends Application {
             VpalController controller = loader.getController();
             controller.setMainApp(this);
             controller.setUsuario(getUsuario());
+            controller.setDialogStage(dialogStage);
             controller.setProductos();
             controller.load();
             //controller.setDialogStage(dialogStage);
@@ -312,7 +313,7 @@ public class Main extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Carrito");
+            dialogStage.setTitle("Ver las comandas de hoy");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);

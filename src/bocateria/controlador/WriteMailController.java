@@ -75,6 +75,7 @@ public class WriteMailController {
     @FXML
     public void handleCancel(){
         dialogStage.close();
+        main.initVistaPrincipal();
     }
     @FXML
     public void handleErase(){

@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ public class VpalController {
     private int indexActual = 0;
     private int indexInicial;
     private ProductoVO p;
+    private Stage dialogStage;
 
     @FXML
     private Button regSandwich;
@@ -155,19 +157,24 @@ public class VpalController {
         this.alerta = main.getAlerta();
     }
 
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
     private List<ProductoVO> getProductos() {
         return productos;
     }
 
     /**
      * Carga la vista por primera vez al loguearnos
+     *
      * @throws ExcepcionBocateria
      * @throws SQLException
      */
     public void load() throws ExcepcionBocateria, SQLException {
         if (modelo.compruebaAdmin(usuario))
             loadAdminUI();
-        if(getIndexActual() == 0)
+        if (getIndexActual() == 0)
             atras.setDisable(true);
         else
             atras.setDisable(false);
@@ -183,16 +190,17 @@ public class VpalController {
 
     /**
      * Carga la siguiente página de productos en la vista principal
+     *
      * @throws ExcepcionBocateria
      * @throws SQLException
      */
     @FXML
     public void loadUI() throws ExcepcionBocateria, SQLException {
-        if(getIndexActual() == 0)
+        if (getIndexActual() == 0)
             atras.setDisable(true);
         else
             atras.setDisable(false);
-        if(getIndexActual()==getProductos().size()-1)
+        if (getIndexActual() == getProductos().size() - 1)
             delante.setDisable(true);
         else
             delante.setDisable(false);
@@ -206,6 +214,7 @@ public class VpalController {
 
     /**
      * Acción del botón atras, carga la página anterior de la vista
+     *
      * @throws ExcepcionBocateria
      * @throws SQLException
      */
@@ -265,6 +274,7 @@ public class VpalController {
                 mainApp.getCarritoData().clear();
                 mainApp.getCarritoData().addAll(listaCompra());
                 mainApp.initVistaCarrito();
+                cerrar();
             } else
                 alerta.aviso("Seleccione algún producto");
         } catch (Exception e) {
@@ -273,20 +283,26 @@ public class VpalController {
         }
     }
 
+    private void cerrar() {
+        dialogStage.close();
+    }
+
     /**
      * Acción del botón Consultar Comandas
      */
     @FXML
-    public void pulsarBotonConsultarComandas(){
+    public void pulsarBotonConsultarComandas() {
         mainApp.initVistaComanda();
+        cerrar();
     }
 
     /**
      * Acción del botón Chatear
      */
     @FXML
-    public void pulsarBotonChatear(){
-            mainApp.initChat();
+    public void pulsarBotonChatear() {
+        mainApp.initChat();
+        cerrar();
     }
 
     /**
@@ -295,6 +311,7 @@ public class VpalController {
     @FXML
     public void handleEnviarCorreo() {
         mainApp.initEnviaCorreo();
+        cerrar();
     }
 
     /**
@@ -303,14 +320,16 @@ public class VpalController {
     @FXML
     public void initRegistrarSandwich() {
         mainApp.initRegistroSandwich(/*this*/);
+        cerrar();
     }
 
     @FXML
-    private void initActualizaProducto(){
+    private void initActualizaProducto() {
         mainApp.initActualizaProducto();
+        cerrar();
     }
 
-// Botones de sumar y restar cantidad de los productos deseados
+    // Botones de sumar y restar cantidad de los productos deseados
     @FXML
     void botonSuma00() {
         p = getProductos().get(getIndexInicial());
@@ -513,6 +532,7 @@ public class VpalController {
 
     /**
      * Al pulsar el botón comprar devuelve una lista de los productos que han sido seleccionados
+     *
      * @return listaCompra de los productos seleccionados producto.getCantidad()>0
      */
     private List<ProductoVO> listaCompra() {
@@ -536,6 +556,7 @@ public class VpalController {
 
     /**
      * Carga un panel de los 10 que hay en la vista principal
+     *
      * @param n es el panel que cargaremos
      */
     private void loadPanel(int n) {

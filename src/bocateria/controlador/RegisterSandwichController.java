@@ -59,6 +59,7 @@ public class RegisterSandwichController {
             if (modelo.altaProducto(p)) {
                 alerta.info("Alta realizada con éxito","Alta realizada con éxito","SE REALIZÓ EL ALTA");
                 dialogStage.close();
+                mainApp.initVistaPrincipal();
                 /*controller.setProductos();*/
             } else {
                 alerta.error("NO SE REALIZÓ EL ALTA","NO SE REALIZÓ EL ALTA","NO SE REALIZÓ EL ALTA");

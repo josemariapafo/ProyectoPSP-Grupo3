@@ -98,7 +98,7 @@ public class ComandaController {
         }
     }
 
-    @FXML
+
     public List<PedidoVO> obtenerPedidosHoy() throws ExcepcionBocateria, SQLException {
         return modelo.obtenerPedidosHoy();
     }
@@ -106,6 +106,7 @@ public class ComandaController {
     @FXML
     private void handleCerrar() {
         dialogStage.close();
+        mainApp.initVistaPrincipal();
     }
 
 }

@@ -21,9 +21,9 @@
         </columns>
       </TableView>
       <Label layoutX="305.0" layoutY="6.0" prefHeight="14.0" prefWidth="51.0" text="Nombre:" />
-      <Label fx:id="nombreProd" layoutX="369.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" text="Label" />
+      <Label fx:id="nombreProd" layoutX="369.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" />
       <Label layoutX="305.0" layoutY="30.0" text="Precio Total:" />
-      <Label fx:id="totalProd" layoutX="379.0" layoutY="30.0" prefHeight="17.0" prefWidth="87.0" text="Label" />
-      <Button layoutX="466.0" layoutY="18.0" mnemonicParsing="false" onAction="#obtenerPedidosHoy" text="Listar Comandas Consola" />
+      <Label fx:id="totalProd" layoutX="379.0" layoutY="30.0" prefHeight="17.0" prefWidth="87.0" />
+      <Button layoutX="522.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleCerrar" text="Volver" />
    </children>
 </AnchorPane>

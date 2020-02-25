@@ -93,6 +93,7 @@ public class ChatController implements Runnable {
             e.printStackTrace();
         }
         this.dialogStage.close();
+        main.initVistaPrincipal();
     }
 
     //ENCARGADO DE ENVIAR EL PAQUETE DE UN USUARIO AL RESTO DEL GRUPO

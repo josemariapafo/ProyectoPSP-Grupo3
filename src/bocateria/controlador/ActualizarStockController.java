@@ -73,6 +73,7 @@ public class ActualizarStockController {
     @FXML
     private void handleVolver() {
         dialogStage.close();
+        main.initVistaPrincipal();
     }
 
     @FXML

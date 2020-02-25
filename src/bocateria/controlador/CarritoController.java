@@ -116,10 +116,12 @@ public class CarritoController {
         main.getAlerta().info("Pedido realizado con éxito");
 //        System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
         modelo.sendMail(new MailVO(pedidoVO));
+        cancelar();
     }
 
     @FXML
     public void cancelar() {
         dialogStage.close();
+        main.initVistaPrincipal();
     }
 }
