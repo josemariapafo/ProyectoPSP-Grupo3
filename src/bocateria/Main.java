@@ -364,7 +364,7 @@ public class Main extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("vista/vistaFTP.fxml"));
+            loader.setLocation(Main.class.getResource("vista/VistaFTP.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
