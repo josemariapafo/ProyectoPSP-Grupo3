@@ -14,7 +14,7 @@ import bocateria.controlador.RegisterSandwichController;
 import bocateria.controlador.ComandaController;
 import bocateria.controlador.FTPController;
 import bocateria.controlador.WriteMailController;
-import bocateria.vista.ActualizarStockController;
+import bocateria.controlador.ActualizarStockController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
