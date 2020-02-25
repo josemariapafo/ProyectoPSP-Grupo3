@@ -23,6 +23,7 @@ public class BDProducto implements ProductoDAO {
 
     private final String INSERT = "INSERT INTO PRODUCTO(NOMBRE,DESCRIPCION,FOTO,PRECIO,STOCK) VALUES (?,?,?,?,?)";
     private final String UPDATE = "UPDATE PRODUCTO SET NOMBRE = ?, DESCRIPCION = ?, FOTO = ?, PRECIO = ?, STOCK = ? WHERE CODIGO = ?";
+    private final String UPDATE_NO_IMG = "UPDATE PRODUCTO SET NOMBRE = ?, DESCRIPCION = ?, PRECIO = ?, STOCK = ? WHERE CODIGO = ?";
     private final String STOCKUP = "UPDATE PRODUCTO SET STOCK = (STOCK + ?) WHERE CODIGO = ?";
     private final String STOCKDOWN = "UPDATE PRODUCTO SET STOCK = (STOCK - ?) WHERE CODIGO = ?";
     private final String DELETE = "DELETE FROM PRODUCTO WHERE CODIGO = ?";
@@ -188,5 +189,50 @@ public class BDProducto implements ProductoDAO {
             }
         }
         return p;
+    }
+
+    @Override
+    public boolean modificarSinFoto(ProductoVO productoVO) throws ExcepcionBocateria {
+        try (PreparedStatement stmt = conn.prepareStatement(UPDATE_NO_IMG)) {
+            stmt.setString(1, productoVO.getNombre());
+            stmt.setString(2, productoVO.getDescripcion());
+            stmt.setDouble(3, productoVO.getPrecio());
+            stmt.setInt(4,productoVO.getStock());
+            stmt.setInt(5, productoVO.getCodigo());
+            if (stmt.executeUpdate() == 0) {
+                throw new ExcepcionBocateria("Puede que no se haya modificado el producto");
+            }
+        } catch (SQLException | ExcepcionBocateria e) {
+            throw new ExcepcionBocateria("Error en sql", e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean stockUp(ProductoVO p) throws ExcepcionBocateria, SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement(STOCKUP)) {
+            stmt.setInt(1,p.getCantidad());
+            stmt.setInt(2,p.getCodigo());
+            if (stmt.executeUpdate() == 0) {
+                throw new ExcepcionBocateria("Puede que no se haya modificado el producto");
+            }
+        } catch (SQLException | ExcepcionBocateria e) {
+            throw new ExcepcionBocateria("Error en sql", e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean stockDown(ProductoVO p) throws ExcepcionBocateria, SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement(STOCKDOWN)) {
+            stmt.setInt(1,p.getCantidad());
+            stmt.setInt(2,p.getCodigo());
+            if (stmt.executeUpdate() == 0) {
+                throw new ExcepcionBocateria("Puede que no se haya modificado el producto");
+            }
+        } catch (SQLException | ExcepcionBocateria e) {
+            throw new ExcepcionBocateria("Error en sql", e);
+        }
+        return false;
     }
 }

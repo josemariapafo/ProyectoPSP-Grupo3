@@ -37,6 +37,8 @@ public class VpalController {
     private Button atras;
     @FXML
     private Button delante;
+    @FXML
+    private Button actualizar;
 
     @FXML
     private Button consultarComandas;
@@ -226,6 +228,8 @@ public class VpalController {
         clienteFTP.setVisible(true);
         consultarComandas.setDisable(false);
         consultarComandas.setVisible(true);
+        actualizar.setVisible(true);
+        actualizar.setDisable(false);
     }
 
     /**
@@ -299,6 +303,11 @@ public class VpalController {
     @FXML
     public void initRegistrarSandwich() {
         mainApp.initRegistroSandwich(/*this*/);
+    }
+
+    @FXML
+    private void initActualizaProducto(){
+        mainApp.initActualizaProducto();
     }
 
 // Botones de sumar y restar cantidad de los productos deseados

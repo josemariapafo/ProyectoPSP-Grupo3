@@ -171,4 +171,12 @@ public class Model {
         }
         return pedidosFechaHoy;
     }
+
+    public boolean actualizarProductoSinFoto(ProductoVO productoVO) throws ExcepcionBocateria, SQLException {
+        return bdManager.getProductoDAO().modificarSinFoto(productoVO);
+    }
+
+    public boolean stockDown(ProductoVO p) throws ExcepcionBocateria, SQLException {
+        return bdManager.getProductoDAO().stockDown(p);
+    }
 }

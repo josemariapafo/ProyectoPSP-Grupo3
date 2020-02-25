@@ -14,6 +14,7 @@ import bocateria.controlador.RegisterSandwichController;
 import bocateria.controlador.ComandaController;
 import bocateria.controlador.FTPController;
 import bocateria.controlador.WriteMailController;
+import bocateria.vista.ActualizarStockController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,7 @@ public class Main extends Application {
     private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
     //DATOS DE LAS COMANDAS PUESTAS EN MARCHA
     List<PedidoVO> listaComandas = new ArrayList<>();
+    private ObservableList<ProductoVO> listaProductos = FXCollections.observableArrayList();
     private ObservableList<PedidoVO> listaComanda = FXCollections.observableArrayList();
 
     private ObservableList<ProductoVO> productosPedido = FXCollections.observableArrayList();
@@ -49,6 +51,9 @@ public class Main extends Application {
 
     public ObservableList<ProductoVO> getCarritoData() {
         return listaCarro;
+    }
+    public ObservableList<ProductoVO> getProductData() {
+        return listaProductos;
     }
 
     public ObservableList<PedidoVO> getComandaData() {
@@ -222,6 +227,29 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void initActualizaProducto(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("vista/VistaActualizarStock.fxml"));
+            AnchorPane page = loader.load();
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Enviar un correo");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            ActualizarStockController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMain(this);
+            dialogStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void initEnviaCorreo() {

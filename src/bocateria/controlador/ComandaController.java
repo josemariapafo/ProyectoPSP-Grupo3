@@ -28,7 +28,6 @@ public class ComandaController {
     private TableColumn<PedidoVO, Integer> columnaPedidoId;
     @FXML
     private TableColumn<PedidoVO, String> columnaNombrePedido;
-
     @FXML
     private TableView<ProductoVO> tablaProductos;
     @FXML
@@ -41,11 +40,22 @@ public class ComandaController {
     private Stage dialogStage;
     List<PedidoVO> listaPedidos = new ArrayList<>();
 
-
+    /**
+     * Define la instancia del Stage para poder cerrar la ventana desde nuestro botón de Salir
+     *
+     * @param dialogStage instancia del Stage que abre la vista de la comanda
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Se instancia el main para obtener la instancia del modelo que alli existe, además añadimos a la tabla de pedidos los pedidos que se han realizado a día de hoy
+     *
+     * @param main instancia del main de nuestra aplicacion
+     * @throws ExcepcionBocateria
+     * @throws SQLException
+     */
     public void setMain(Main main) throws ExcepcionBocateria, SQLException {
         this.mainApp = main;
         this.modelo = main.getModel();
@@ -55,6 +65,10 @@ public class ComandaController {
         listaPedidos = new ArrayList<>(main.getComandaData());
     }
 
+    /**
+     * Llamado al instanciar el controlador de la vista comandas
+     * Sirve para rellenar las columnas y define las pulsaciones en los registros de la tabla de pedidos
+     */
     @FXML
     private void initialize() {
         showProductData(null);
@@ -64,6 +78,11 @@ public class ComandaController {
         columnaNombrePedido.setCellValueFactory(cellData -> cellData.getValue().usuarioPropertyProperty());
     }
 
+    /**
+     * Muestra en la tabla de productos los productos del pedido seleccionado
+     *
+     * @param newValue es el pedido seleccionado
+     */
     private void showProductData(PedidoVO newValue) {
         if (newValue != null) {
             List<ProductoVO> lista = new ArrayList<>(newValue.getListaProductos());
@@ -72,7 +91,7 @@ public class ComandaController {
 
             tablaProductos.setItems(mainApp.getCarritoData());
             nombreProd.setText(newValue.getUsuario().getUsuario());
-            totalProd.setText("" + newValue.getTotal());
+            totalProd.setText(newValue.getTotal()+" €");
 
             columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
             columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());

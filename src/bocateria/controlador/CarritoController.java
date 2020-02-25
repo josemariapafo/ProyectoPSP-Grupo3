@@ -36,10 +36,6 @@ public class CarritoController {
     @FXML
     private TableColumn<ProductoVO, Integer> columnaCantidadProducto;
 
-
-    //TENDRÉ QUE RECIBIR UN ARRAYLIST DE TODOS LOS PRODUCTOS DE LA VISTA PRINCIPAL
-    //TENDRE QUE RECIBIR EL USUARIO LOGUEADO
-
     private Main main;
     private Model modelo;
     private Stage dialogStage;
@@ -90,7 +86,7 @@ public class CarritoController {
     }
 
     @FXML
-    public void hacerPedido() throws ExcepcionBocateria, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException {
+    public void hacerPedido() throws ExcepcionBocateria, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException, SQLException {
         System.out.println("HACER PEDIDO!!");
         boolean done = true;
         int ultimaIdPedido = 0;
@@ -113,19 +109,17 @@ public class CarritoController {
         //HACEMOS UN INSERT EN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
         for (ProductoVO p : listaProductos) {
             modelo.insertarPedidoProducto(ultimaIdPedido, p.getCodigo(), p.getCantidad());
+            modelo.stockDown(p);
         }
         //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
         modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
         main.getAlerta().info("Pedido realizado con éxito");
-        System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
-        //modelo.sendMail(new MailVO(pedidoVO));
+//        System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
+        modelo.sendMail(new MailVO(pedidoVO));
     }
 
     @FXML
     public void cancelar() {
-//        System.exit(1);
-        System.out.println("Cancelar!!");
         dialogStage.close();
-
     }
 }

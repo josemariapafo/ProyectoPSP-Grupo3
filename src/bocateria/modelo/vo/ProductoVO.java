@@ -23,17 +23,35 @@ public class ProductoVO {
     private int cantidad;
     public StringProperty nombreProperty;
     public IntegerProperty cantidadProperty;
+    public IntegerProperty stockProperty;
+
+    public int getStockProperty() {
+        return stockProperty.get();
+    }
+
+    public IntegerProperty stockPropertyProperty() {
+        return stockProperty;
+    }
+
+    public void setStockProperty(int stockProperty) {
+        if (this.stockProperty == null)
+            this.stockProperty = new SimpleIntegerProperty(stockProperty);
+        else
+            this.stockProperty.set(stockProperty);
+    }
+
 
     public ProductoVO() {
     }
 
-    public ProductoVO(String nombre, String descripcion, Image foto, Double precio, int stock,int cantidad) {
+    public ProductoVO(String nombre, String descripcion, Image foto, Double precio, int stock, int cantidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.foto = foto;
         this.stock = stock;
         this.cantidad = cantidad;
+        setStockProperty(stock);
         setNombreProperty(nombre);
         setCantidadProperty(cantidad);
     }
@@ -45,6 +63,7 @@ public class ProductoVO {
         this.foto = foto;
         this.stock = stock;
         setNombreProperty(nombre);
+        setStockProperty(stock);
     }
 
     public int getStock() {
@@ -53,6 +72,7 @@ public class ProductoVO {
 
     public void setStock(int stock) {
         this.stock = stock;
+        setStockProperty(stock);
     }
 
     public int getCantidad() {
@@ -127,7 +147,7 @@ public class ProductoVO {
     }
 
     public void setNombreProperty(String nombreProperty) {
-        if(this.nombreProperty == null)
+        if (this.nombreProperty == null)
             this.nombreProperty = new SimpleStringProperty(nombreProperty);
         else
             this.nombreProperty.set(nombreProperty);
@@ -142,7 +162,7 @@ public class ProductoVO {
     }
 
     public void setCantidadProperty(int cantidadProperty) {
-        if(this.cantidadProperty == null)
+        if (this.cantidadProperty == null)
             this.cantidadProperty = new SimpleIntegerProperty(cantidadProperty);
         else
             this.cantidadProperty.set(cantidadProperty);
@@ -161,6 +181,7 @@ public class ProductoVO {
                 ", cantidad=" + cantidad +
                 '}';
     }
+
     public String toString2() {
         return "ProductoVO{" +
                 "codigo=" + codigo +
