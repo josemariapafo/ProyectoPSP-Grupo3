@@ -7,12 +7,12 @@ import bocateria.modelo.vo.ProductoVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Productor extends Thread{
+public class Productor extends Thread {
     private ListaComandas cola;
     private PedidoVO pedido = new PedidoVO();
 
     public Productor(PedidoVO pedido) {
-        this.pedido=pedido;
+        this.pedido = pedido;
     }
 
     public void run() {

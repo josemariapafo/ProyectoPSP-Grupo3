@@ -67,11 +67,7 @@ public class LoginControlador {
             mainApp.getPrimaryStage().close();
             mainApp.initVistaPrincipal();
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ACCESO NO PERMITIDO");
-            alert.setHeaderText("Error");
-            alert.setContentText("Usuario o contraseña incorrectos");
-            alert.showAndWait();
+            mainApp.getAlerta().info("ACCESO NO PERMITIDO","Error","Usuario o contraseña incorrectos");
         }
     }
 
@@ -93,6 +89,10 @@ public class LoginControlador {
 //        mainApp.initRegistroSandwich();
     }
 
+    /**
+     * Fue un método usado de prueba
+     * @param file
+     */
     private void openFile(File file) {
         try {
             desktop.open(file);
@@ -103,32 +103,4 @@ public class LoginControlador {
             );
         }
     }
-
-/*
-    public void showRegister() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-
-            loader.setLocation(VistaRegistroControlador.class.getResource("VistaRegistro.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Person");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the usuarioVO into the controller.
-            VistaRegistroControlador controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

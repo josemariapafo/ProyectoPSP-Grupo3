@@ -90,7 +90,7 @@ public class FTPController {
             //Construyendo arbol de directorios, espere un momento
             llenarLista(files, direcInicial);
 
-            labelServidor.setText("Servidor FTP: "+servidor);
+//            labelServidor.setText("Servidor FTP: "+servidor);
             labelUsuario.setText("Usuario: "+user);
             labelDirRaiz.setText("DIRECTORIO RAIZ: "+direcInicial);
 

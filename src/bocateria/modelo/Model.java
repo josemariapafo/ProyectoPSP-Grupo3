@@ -49,7 +49,7 @@ public class Model {
     }
 
     public UsuarioVO usuarioLogueado(UsuarioVO usuarioVO) throws ExcepcionBocateria, SQLException {
-        String usu, pwd;
+        String pwd;
         pwd = usuarioVO.getContrasena();
         UsuarioVO usuBD = bdManager.getUsuarioDAO().obtener(usuarioVO);
         if (usuBD != null) {
