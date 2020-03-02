@@ -71,9 +71,8 @@ public class FTPController {
         this.dialogStage = dialogStage;
     }
 
-    /**
-     * Incializa el controlador justo depsués de que se cargue la vista .fxml
-     */
+    //REALIZA UNA CONEXION EL CLIENTE AL SERVIDOR DE MANERA PASIVA, PROPORCIONANDO LOS DATOS DEL LOGUEO
+    //LISTA EL DIRECTORIO QUE TIENES COMO RAIZ CUANDO SE CONFIGURO EL SERVIDOR DE FTP
     @FXML
     private void initialize() {
         try {
@@ -176,9 +175,7 @@ public class FTPController {
         this.modelo = mainApp.getModel();
     }
 
-    /**
-     * Botón VOLVER
-     */
+    //SALE DE LA APLICACION Y CIERRA LA CONEXION DEL CLIENTE CON EL SERVER
     @FXML
     private void volver() {
 
