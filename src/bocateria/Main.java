@@ -2,6 +2,7 @@ package bocateria;
 
 import bocateria.controlador.ChatController;
 import bocateria.exepcion.Alertas;
+import bocateria.modelo.productor_consumidor.ListaComandas;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.controlador.CarritoController;
 import bocateria.controlador.LoginControlador;
@@ -35,6 +36,7 @@ public class Main extends Application {
     Model model;
     UsuarioVO usuario;
     private Alertas alerta = new Alertas();
+    private PedidoVO pedidoMain = new PedidoVO();
     //DATOS DEL CARRITO
     List<ProductoVO> listaCarrito = new ArrayList<>();
     private ObservableList<ProductoVO> listaCarro = FXCollections.observableArrayList();
@@ -42,13 +44,12 @@ public class Main extends Application {
     List<PedidoVO> listaComandas = new ArrayList<>();
     private ObservableList<ProductoVO> listaProductos = FXCollections.observableArrayList();
     private ObservableList<PedidoVO> listaComanda = FXCollections.observableArrayList();
-
     private ObservableList<ProductoVO> productosPedido = FXCollections.observableArrayList();
+    private ListaComandas colaComandas = new ListaComandas(this);
 
     public ObservableList<ProductoVO> getProductosPedido() {
         return productosPedido;
     }
-
     public ObservableList<ProductoVO> getCarritoData() {
         return listaCarro;
     }
@@ -63,6 +64,22 @@ public class Main extends Application {
     public void setListaComanda(List<PedidoVO> listaComanda) {
         this.listaComandas = listaComanda;
         getComandaData().addAll(listaComandas);
+    }
+
+    public ListaComandas getColaComandas() {
+        return colaComandas;
+    }
+
+    public PedidoVO getPedidoMain() {
+        return pedidoMain;
+    }
+
+    public void setPedidoMain(PedidoVO pedidoMain) {
+        this.pedidoMain = pedidoMain;
+    }
+
+    public void setColaComandas(ListaComandas colaComandas) {
+        this.colaComandas = colaComandas;
     }
 
     public Model getModel() {

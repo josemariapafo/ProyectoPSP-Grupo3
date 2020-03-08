@@ -18,6 +18,7 @@ import java.util.List;
 public class Model {
 
     private BDManager bdManager;
+    private boolean huecoEnCola = true;
 
     public Model() {
         bdManager = new BDManager();
@@ -25,6 +26,14 @@ public class Model {
 
     public BDManager getBdManager() {
         return bdManager;
+    }
+
+    public boolean isHuecoEnCola() {
+        return huecoEnCola;
+    }
+
+    public void setHuecoEnCola(boolean huecoEnCola) {
+        this.huecoEnCola = huecoEnCola;
     }
 
     //METODOS USUARIO

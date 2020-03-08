@@ -4,6 +4,8 @@ import bocateria.Main;
 import bocateria.controlador.SendMailController;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
+import bocateria.modelo.productor_consumidor.ListaComandas;
+import bocateria.modelo.productor_consumidor.Productor;
 import bocateria.modelo.vo.MailVO;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
@@ -41,6 +43,8 @@ public class CarritoController {
     private Stage dialogStage;
     private SendMailController sendMail;
     private List<ProductoVO> listaProductos = new ArrayList<>();
+    private PedidoVO pedidoVO;
+    private ListaComandas colaComandas;
     double totalPrecio = 0;
 
     UsuarioVO usuario = new UsuarioVO();
@@ -58,6 +62,7 @@ public class CarritoController {
         this.main = main;
         this.modelo = main.getModel();
         this.usuario = main.getUsuario();
+        this.colaComandas = main.getColaComandas();
         tablaProductos.setItems(main.getCarritoData());
         listaProductos = new ArrayList<>(main.getCarritoData());
     }
@@ -86,37 +91,49 @@ public class CarritoController {
     }
 
     @FXML
-    public void hacerPedido() throws ExcepcionBocateria, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException, SQLException {
+    public void hacerPedido() throws ExcepcionBocateria, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, InvalidKeyException, InvalidKeySpecException, SQLException, InterruptedException {
         System.out.println("HACER PEDIDO!!");
-        boolean done = true;
         int ultimaIdPedido = 0;
         //CREAMOS UN PEDIDO
         ultimaIdPedido = modelo.obtenerUltimaIdPedido();
-        PedidoVO pedidoVO = new PedidoVO(ultimaIdPedido, usuario, listaProductos);
-        //Calculamos cuanto será el total de todo el pedido
-        System.out.printf("Total Pedido: " + totalPrecio);
-        try {
-            System.out.printf("Realizar un Pedido");
-            modelo.insertarPedido(pedidoVO);
-        } catch (ExcepcionBocateria excepcionBocateria) {
-            excepcionBocateria.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        pedidoVO = new PedidoVO(ultimaIdPedido, usuario, listaProductos);
+        Productor productor = new Productor(pedidoVO, main);
+        Thread t = new Thread(productor);
+        t.start();
+        if (main.getModel().isHuecoEnCola()) {
 
-        //OBETENER LA ID DEL PEDIDO REALIZADO
-        ultimaIdPedido = modelo.obtenerUltimaIdPedido();
-        //HACEMOS UN INSERT EN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
-        for (ProductoVO p : listaProductos) {
-            modelo.insertarPedidoProducto(ultimaIdPedido, p.getCodigo(), p.getCantidad());
-            modelo.stockDown(p);
-        }
-        //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
-        modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
+            //Calculamos cuanto será el total de todo el pedido
+            System.out.printf("Total Pedido: " + totalPrecio);
+
+            try {
+                System.out.printf("Realizar un Pedido");
+                modelo.insertarPedido(pedidoVO);
+            } catch (ExcepcionBocateria excepcionBocateria) {
+                excepcionBocateria.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            //OBETENER LA ID DEL PEDIDO REALIZADO
+            ultimaIdPedido = modelo.obtenerUltimaIdPedido();
+
+            //HACEMOS UN INSERT EN PEDIDO_PRODUCTO POR CADA GRUPO DE PRODUCTOS QUE EL CLIENTE META EN EL CARRITO
+            for (ProductoVO p : listaProductos) {
+                modelo.insertarPedidoProducto(ultimaIdPedido, p.getCodigo(), p.getCantidad());
+                modelo.stockDown(p);
+            }
+
+
+
+
+            //INSERTAMOS EL PEDIDO EN LA TABLA PEDIDO-USUARIO
+
+            modelo.insertarUsuarioPedido(usuario.getUsuario(), ultimaIdPedido);
 //        System.out.println("Acuerdate de descomentar la linea del correo para que\nla aplicación vuelva a enviar correos ;)");
-        modelo.sendMail(new MailVO(pedidoVO));
-        cancelar();
-        main.getAlerta().info("Pedido realizado con éxito");
+            // modelo.sendMail(new MailVO(pedidoVO));
+            cancelar();
+            main.getAlerta().info("Pedido realizado con éxito");
+        }else
+            main.getAlerta().error("La cocina está a tope, inténtalo de nuevo en unos minutos");
     }
 
     @FXML

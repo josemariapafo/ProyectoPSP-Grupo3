@@ -3,8 +3,11 @@ package bocateria.controlador;
 import bocateria.Main;
 import bocateria.exepcion.ExcepcionBocateria;
 import bocateria.modelo.Model;
+import bocateria.modelo.productor_consumidor.Consumidor;
+import bocateria.modelo.productor_consumidor.ListaComandas;
 import bocateria.modelo.vo.PedidoVO;
 import bocateria.modelo.vo.ProductoVO;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -38,6 +41,7 @@ public class ComandaController {
     private Main mainApp;
     private Model modelo;
     private Stage dialogStage;
+    private ListaComandas colaComandas;
     List<PedidoVO> listaPedidos = new ArrayList<>();
 
     /**
@@ -59,23 +63,30 @@ public class ComandaController {
     public void setMain(Main main) throws ExcepcionBocateria, SQLException {
         this.mainApp = main;
         this.modelo = main.getModel();
-        mainApp.getComandaData().clear();
-        mainApp.getComandaData().addAll(obtenerPedidosHoy());
-        tablaPedidos.setItems(mainApp.getComandaData());
-        listaPedidos = new ArrayList<>(main.getComandaData());
+        this.colaComandas = main.getColaComandas();
+//        mainApp.getComandaData().clear();
+//        mainApp.getComandaData().addAll(obtenerPedidosHoy());
+//        tablaPedidos.setItems(mainApp.getComandaData());
+//        listaPedidos = new ArrayList<>(main.getComandaData());
+        new Thread(new Consumidor(main.getColaComandas(),this)).start();
     }
 
-    /**
+    public void setItems(ObservableList<PedidoVO> pedidos){
+        tablaPedidos.setItems(pedidos);
+        listaPedidos = new ArrayList<>(pedidos);
+    }
+                         /**
      * Llamado al instanciar el controlador de la vista comandas
      * Sirve para rellenar las columnas y define las pulsaciones en los registros de la tabla de pedidos
      */
-    @FXML
+                         @FXML
     private void initialize() {
         showProductData(null);
         tablaPedidos.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> showProductData(newValue));
         columnaPedidoId.setCellValueFactory(cellData -> cellData.getValue().pedidoIdProperyProperty().asObject());
         columnaNombrePedido.setCellValueFactory(cellData -> cellData.getValue().usuarioPropertyProperty());
+
     }
 
     /**
@@ -91,7 +102,7 @@ public class ComandaController {
 
             tablaProductos.setItems(mainApp.getCarritoData());
             nombreProd.setText(newValue.getUsuario().getUsuario());
-            totalProd.setText(newValue.getTotal()+" €");
+            totalProd.setText(newValue.getTotal() + " €");
 
             columnaNombreProducto.setCellValueFactory(cellData -> cellData.getValue().nombrePropertyProperty());
             columnaCantidadProducto.setCellValueFactory(cellData -> cellData.getValue().cantidadPropertyProperty().asObject());
@@ -108,5 +119,4 @@ public class ComandaController {
         dialogStage.close();
         mainApp.initVistaPrincipal();
     }
-
 }
