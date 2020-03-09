@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
@@ -42,6 +43,8 @@ public class FTPController {
     private ListView<String> listDir;
     @FXML
     private ImageView imagenView;
+
+
 
 
     //Datos del servidor FTP
@@ -195,6 +198,19 @@ public class FTPController {
     @FXML
     private void subirFichero() {
         System.out.println("ENTRA SUBIR FICHERO");
+
+        // HAY QUE ARREGLAR EL FILE CHOOSER DEL CLIENTE FTP
+
+
+//        final FileChooser fileChooser = new FileChooser();
+//        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+//        fileChooser.
+//        if (file != null) {
+//            openFile(file);
+//        }
+
+
+
         JFileChooser f = new JFileChooser();
         f.setFileSelectionMode(JFileChooser.FILES_ONLY);
         f.setDialogTitle("Selecciona el Fichero a SUBIR AL SERVIDOR FTP");

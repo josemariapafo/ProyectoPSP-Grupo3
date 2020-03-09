@@ -147,7 +147,7 @@ public class Main extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-            dialogStage.initStyle(StageStyle.TRANSPARENT);
+//            dialogStage.initStyle(StageStyle.TRANSPARENT);
 
 
             // Set the usuarioVO into the controller.

@@ -1,4 +1,4 @@
-package src.bocateria.servidor;
+package bocateria.servidor;
 
 import java.io.*;
 import java.net.Socket;
@@ -36,7 +36,7 @@ public class HiloServidor extends Thread {
                     File d = new File(fic.getDirectorio());
                     File f1 = new File(d, fic.getNombre());
 
-                    //Se crea el ficheor en el directorio
+                    //Se crea el fichero en el directorio
                     //con los bytes enviados en el objeto
                     FileOutputStream fos = new FileOutputStream(f1);
                     fos.write(fic.getContenidoFichero());
@@ -47,7 +47,7 @@ public class HiloServidor extends Thread {
                 }
             }//while
         } catch (IOException | ClassNotFoundException e) {
-            ///cuando un cliente cierrra la conexion
+            ///cuando un cliente cierra la conexion
             try {
                 inObjeto.close();
                 outObjeto.close();
@@ -60,7 +60,6 @@ public class HiloServidor extends Thread {
         }
     }
     //este metodo envia al cliente el fichero solicitado
-
     private void EnviarFichero(PideFichero fich){
         File fichero = new File(fich.getNombreFichero());
         FileInputStream filein=null;
@@ -70,6 +69,7 @@ public class HiloServidor extends Thread {
             long bytes= fichero.length(); //tamaño del fichero
             byte[] buff = new byte[(int) bytes];
             int i,j=0;
+
             //se van leyendo los bytes del fichero y llamando el array
             while((i=filein.read()) !=-1){
                 buff[j]=(byte) i; //se almacenan en el array

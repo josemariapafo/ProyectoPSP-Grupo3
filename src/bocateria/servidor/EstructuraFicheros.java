@@ -1,4 +1,4 @@
-package src.bocateria.servidor;
+package bocateria.servidor;
 
 import java.io.File;
 import java.io.FileNotFoundException;

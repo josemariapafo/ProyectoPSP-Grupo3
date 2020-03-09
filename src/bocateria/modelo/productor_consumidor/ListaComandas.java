@@ -21,11 +21,11 @@ public class ListaComandas {
     }
 
     public synchronized List<PedidoVO> get() {
-        try{
-            wait(1500);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+//        try{
+//            wait(1500);
+//        }catch (InterruptedException e){
+//            e.printStackTrace();
+//        }
         if (listaPedidos.size()>0) {        //hay numero en la cola
             disponible = false; //se pone cola vacia
             List<PedidoVO> pedidos = new ArrayList<>(listaPedidos);

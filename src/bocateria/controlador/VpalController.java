@@ -164,7 +164,11 @@ public class VpalController {
     private List<ProductoVO> getProductos() {
         return productos;
     }
-
+    @FXML
+    private void initialize(){
+        setIndexInicial(0);
+        setIndexActual(getIndexInicial());
+    }
     /**
      * Carga la vista por primera vez al loguearnos
      *
@@ -200,16 +204,16 @@ public class VpalController {
             atras.setDisable(true);
         else
             atras.setDisable(false);
-        if (getIndexActual() == getProductos().size() - 1)
-            delante.setDisable(true);
-        else
-            delante.setDisable(false);
         setIndexInicial(getIndexActual());
         despejaPanel();
         for (int panel = 0; panel < 10 && (getIndexActual() < getProductos().size()); panel++) {
             loadPanel(panel);
             setIndexActual(getIndexActual() + 1);
         }
+        if (getIndexActual() == getProductos().size())
+            delante.setDisable(true);
+        else
+            delante.setDisable(false);
     }
 
     /**
@@ -220,7 +224,8 @@ public class VpalController {
      */
     @FXML
     public void loadUIBack() throws ExcepcionBocateria, SQLException {
-        setIndexActual(getIndexActual() - 11);
+
+        setIndexActual(getIndexInicial() - 10);
         setIndexInicial(getIndexActual());
         loadUI();
     }

@@ -1,4 +1,4 @@
-package src.bocateria.servidor;
+package bocateria.servidor;
 
 import javax.swing.*;
 import java.io.File;
@@ -23,8 +23,8 @@ public class Servidor {
             Directorio = file.getAbsolutePath();
             System.out.println(Directorio);
         }
-        //si no se selecciona nada salir
 
+        //si no se selecciona nada salir
         if (Directorio.equals("")) {
             System.out.println("Debe seleccionar un directorio.");
             System.exit(1);
