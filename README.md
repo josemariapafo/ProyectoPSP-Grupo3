@@ -390,7 +390,7 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
  
  
 ## Video demostración
-Pincha <a name="11" href="https://youtu.be/m77AwkP964E">aquí/a> para ver el vídeo
+Pincha <a name="11" href="https://youtu.be/m77AwkP964E">aquí</a> para ver el vídeo
 <a name="10"></a>
   
   
