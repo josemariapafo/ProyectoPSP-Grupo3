@@ -387,9 +387,13 @@ Si los datos introducidos son correctos se generará el usuario y contraseña  c
   <img src="/recursos/clases/bd/BDProducto.PNG"/>
   <img src="/recursos/clases/bd/BDPedido.PNG"/>
  </p>
+ 
+ 
 ## Video demostración
 Pincha <a name="11" href="https://youtu.be/m77AwkP964E">aquí/a> para ver el vídeo
 <a name="10"></a>
+  
+  
 ## Actividad 8 Diagramas de secuencia
 <p align="center">
   <img src="/recursos/seqdig/cu1.PNG"/>
